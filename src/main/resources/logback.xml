@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<property name="LOGS" value="./logs" />
+
+	<appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>TRACE</level>
+		</filter>
+		<encoder>
+			<Pattern>
+				%d{ISO8601} %highlight(%-5level) [%blue(%t)] %yellow(%C{1.}): %msg%n%rEx
+			</Pattern>
+		</encoder>
+		
+	</appender>
+
+	<appender name="RollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily and when the file reaches 10 MegaBytes -->
+			<fileNamePattern>logs/LissaWeb/LissaWeb-%d{yyyy-MM-dd}.log</fileNamePattern>			
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+		
+		<encoder
+			class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>%d %p %C{1.} [%t] %m%n</Pattern>
+		</encoder>
+		
+	</appender>
+	
+
+	<!-- LOG everything at INFO level -->
+	<root level="info">
+		<appender-ref ref="Console" />
+	</root>
+
+	<!-- LOG "com.sulcacorp.lissa*" at INFO level -->
+	<logger name="com.sulcacorp.lissa" additivity="false">
+		<level value="INFO"/>
+		<appender-ref ref="Console" />
+		<appender-ref ref="RollingFile" />		
+	</logger>
+	
+
+</configuration>
