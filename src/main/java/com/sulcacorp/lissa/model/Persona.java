@@ -1,7 +1,6 @@
 package com.sulcacorp.lissa.model;
 
 import java.time.LocalDate;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
@@ -10,10 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -29,7 +26,7 @@ public class Persona {
 	@Id
 	@Column(name = "ID_PERSONA")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long idPersona;
+	private Long idPersona;
 
 	@ManyToOne
 	@JoinColumn(name = "ID_TIPO_PERSONA", nullable = false, foreignKey = @ForeignKey(name="fk_persona_tipopersona"))
@@ -92,10 +89,5 @@ public class Persona {
 	
 	@Column(name = "ESTADO", nullable = false)
 	private int estado;
-
-	@OneToOne(mappedBy = "persona")
-	private Medico medico;
 	
-	
-
 }

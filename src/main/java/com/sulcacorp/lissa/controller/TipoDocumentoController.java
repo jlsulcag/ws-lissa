@@ -1,12 +1,7 @@
 package com.sulcacorp.lissa.controller;
 
-import java.net.URI;
 import java.util.List;
-
 import javax.validation.Valid;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,18 +14,13 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.sulcacorp.lissa.exception.ModeloNotFoundException;
-import com.sulcacorp.lissa.model.EstadoCivil;
 import com.sulcacorp.lissa.model.TipoDocumento;
-import com.sulcacorp.lissa.model.TipoPersona;
 import com.sulcacorp.lissa.service.ITipoDocumentoService;
 
 @RestController
 @RequestMapping("/api")
 public class TipoDocumentoController {
-	
-	private static Logger log = LoggerFactory.getLogger(PersonaController.class);	
 	
 	@Autowired
 	private ITipoDocumentoService service;

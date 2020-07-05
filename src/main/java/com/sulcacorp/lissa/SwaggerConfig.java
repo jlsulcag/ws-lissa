@@ -18,8 +18,10 @@ public class SwaggerConfig {
 		 * return new Docket(DocumentationType.SWAGGER_2);
 		 */
 		
+		@SuppressWarnings("unused")
 		final Contact DEFAULT_CONTACT = new Contact("SulcaCorp", "www.sulcacorp.com.pe", "jlsulcag@sulcacorp.com.pe");
 		
+		@SuppressWarnings({ "unused", "deprecation" })
 		final ApiInfo DEFAULT_API_INFO = new ApiInfo("Lissa", "Sistema de Gestion de Clinicas", "2.0", "", "", "FREE", "");
 
 		// Acotamos los controller al paquete del proyecto

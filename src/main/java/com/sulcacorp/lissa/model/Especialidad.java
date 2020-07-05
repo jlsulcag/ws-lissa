@@ -1,6 +1,5 @@
 package com.sulcacorp.lissa.model;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -24,7 +23,7 @@ public class Especialidad {
 	@Id
 	@Column(name = "ID_ESPECIALIDAD")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long idEspecialidad;
+	private Long idEspecialidad;
 	
 	@Column(name = "DESC_ESPECIALIDAD", nullable = false, length = 150)
 	private String descEspecialidad;

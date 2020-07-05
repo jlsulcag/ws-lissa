@@ -2,12 +2,9 @@ package com.sulcacorp.lissa.controller;
 
 import java.net.URI;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
-
 import javax.validation.Valid;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +20,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 import com.sulcacorp.lissa.exception.ModeloNotFoundException;
 import com.sulcacorp.lissa.model.Persona;
 import com.sulcacorp.lissa.service.IPersonaService;
-
-import antlr.StringUtils;
 
 @RestController
 @RequestMapping("/api")
@@ -62,8 +56,7 @@ public class PersonaController {
 		Persona persona = new Persona();
 		persona = service.buscar(id);
 		if (persona == null) {
-			throw new ModeloNotFoundException("ID NO ENCONTRADO " + id);
-			
+			throw new ModeloNotFoundException("ID NO ENCONTRADO " + id);			
 		} 
 		return new ResponseEntity<Persona>(persona, HttpStatus.OK);
 	}
@@ -79,10 +72,10 @@ public class PersonaController {
 	public void eliminar(@PathVariable("id") long id) {
 		Persona persona = new Persona();
 		persona = service.buscar(id);
-		if (persona != null || persona.getIdPersona() != 0) {
-			service.eliminar(id);
+		if (persona == null) {
+			throw new ModeloNotFoundException("ID NO ENCONTRADO " + id);			
 		} else {
-			throw new ModeloNotFoundException("ID NO ENCONTRADO " + id);
+			service.eliminar(id);
 		}
 	}
 
@@ -91,7 +84,7 @@ public class PersonaController {
 		log.info("Inicia metodo buscarXDoc {} ", numDoc);
 		Persona persona = new Persona();
 		persona = service.buscarXDoc(numDoc);
-		if (persona != null || persona.getIdPersona() != 0) {
+		if (persona != null && persona.getIdPersona() != null) {
 			return new ResponseEntity<Persona>(persona, HttpStatus.OK);
 		} else {
 			throw new ModeloNotFoundException("PERSONA NO ENCONTRADA " + numDoc);
@@ -112,11 +105,11 @@ public class PersonaController {
 	}
 	
 	@GetMapping(value = "/persona/search/docNumber/{typeDoc}/{numDoc}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Persona> buscarXDoc(@PathVariable("typeDoc") String typeDOc,  @PathVariable("numDoc") String numDoc) {
+	public ResponseEntity<Persona> buscarXDoc(@PathVariable("typeDoc") String typeDoc,  @PathVariable("numDoc") String numDoc) {
 		log.info("Inicia metodo busqueda por tipo y numero de doc {} ", numDoc);
 		Persona persona = new Persona();
-		persona = service.buscarXDoc(Long.parseLong(typeDOc), numDoc);
-		if (persona != null || persona.getIdPersona() != 0) {
+		persona = service.buscarXDoc(Long.parseLong(typeDoc), numDoc);
+		if (persona != null && persona.getIdPersona() != null) {
 			return new ResponseEntity<Persona>(persona, HttpStatus.OK);
 		} else {
 			log.warn("ERROR: No existe persona con Dni : {}", numDoc);

@@ -16,7 +16,7 @@ public interface IPersonaDAO extends JpaRepository<Persona, Long>{
 	@Query("From Persona a where a.numeroDocumentoIdentidad =:docNumber order by a.apellidoPaterno asc, a.apellidoMaterno asc")			
 	Persona buscarXDni(@Param("docNumber") String docNumber);
 
-	@Query("From Persona a where concat(a.apellidoPaterno, ' ', a.apellidoMaterno, ' ', a.nombres) like %:fullName% order by a.apellidoPaterno asc, a.apellidoMaterno asc")
+	@Query("From Persona a where concat(a.nombres, ' ', a.apellidoPaterno, ' ', a.apellidoPaterno) like %:fullName% order by a.apellidoPaterno asc, a.apellidoMaterno asc")
 	List<Persona> listarFullName(@Param("fullName") String fullName);
 
 	@Query("From Persona a where a.tipoDocumento.idTipoDocumento =:typeDoc and a.numeroDocumentoIdentidad =:docNumber order by a.apellidoPaterno asc, a.apellidoMaterno asc")

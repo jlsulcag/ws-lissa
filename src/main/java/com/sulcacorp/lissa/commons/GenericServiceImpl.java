@@ -3,10 +3,7 @@ package com.sulcacorp.lissa.commons;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.sulcacorp.lissa.model.TipoPersona;
 
 public abstract class GenericServiceImpl<T, ID extends Serializable> implements IGenericService<T, ID> {
 
