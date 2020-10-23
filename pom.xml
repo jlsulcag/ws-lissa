@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.sulcacorp.farmacia</groupId>
-	<artifactId>appfarmacia-back</artifactId>
-	<version>1</version>
-	<name>appfarmacia-back</name>
+	<artifactId>sc-app-ws-lissa</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<name>sc-app-ws-lissa</name>
 	<description>Sistema de ventas para una botica, farmacia</description>
 
 	<properties>

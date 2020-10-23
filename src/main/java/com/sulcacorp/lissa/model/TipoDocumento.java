@@ -25,6 +25,9 @@ public class TipoDocumento {
 	@Column(name = "ABREVIATURA" , length = 10)
 	private String abreviatura;
 	
+	@Column(name = "CODIGO" , length = 2)
+	private String codigo;
+	
 	@Column(name = "ESTADO", nullable = false)
 	private int estado;
 	

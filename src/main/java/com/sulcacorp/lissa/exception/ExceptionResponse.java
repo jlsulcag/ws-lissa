@@ -1,7 +1,6 @@
 package com.sulcacorp.lissa.exception;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 

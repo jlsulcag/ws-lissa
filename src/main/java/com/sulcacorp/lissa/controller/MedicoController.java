@@ -47,11 +47,7 @@ public class MedicoController {
 
 	@GetMapping(value = "/medico/findAll", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Medico>> findAll() {
-		List<Medico> list = new ArrayList<>();
-		list = medicoService.listar();
-		if (!list.isEmpty())
-			return ResponseEntity.ok(list);
-		return ResponseEntity.notFound().build();
+		return ResponseEntity.ok(medicoService.listar());
 	}
 
 	@DeleteMapping(value = "/medico/delete/{id}")

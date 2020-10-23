@@ -45,9 +45,8 @@ public class PersonaController {
 	}
 	
 	@PutMapping(value = "/persona/update",produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Object> actualizar(@Valid @RequestBody Persona persona) {
-		service.actualizar(persona);
-		return new ResponseEntity<Object>(HttpStatus.OK);
+	public ResponseEntity<Object> actualizar(@Valid @RequestBody Persona persona) {		;
+		return new ResponseEntity<Object>(service.actualizar(persona),HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/persona/search/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
