@@ -1,4 +1,4 @@
-package com.sulcacorp.lissa.dao;
+package com.sulcacorp.lissa.repository;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ import com.sulcacorp.lissa.model.EstadoCivil;
 @Repository
 public interface IEstadoCivilDAO extends JpaRepository<EstadoCivil, Long>{
 
-	@Query("from EstadoCivil a where a.estado = 1")
+	@Query("from EstadoCivil a where a.estado = '1'")
 	List<EstadoCivil> findAllAct();
 		
 	@Modifying

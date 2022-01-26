@@ -1,4 +1,4 @@
-package com.sulcacorp.lissa.generic;
+package com.sulcacorp.lissa.model.generic;
 
 import java.io.Serializable;
 

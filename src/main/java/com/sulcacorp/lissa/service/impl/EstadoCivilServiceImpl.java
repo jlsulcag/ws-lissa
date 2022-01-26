@@ -7,9 +7,10 @@ import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.sulcacorp.lissa.dao.IEstadoCivilDAO;
+
 import com.sulcacorp.lissa.dto.EstadoCivilDTO;
 import com.sulcacorp.lissa.model.EstadoCivil;
+import com.sulcacorp.lissa.repository.IEstadoCivilDAO;
 import com.sulcacorp.lissa.service.IEstadoCivilService;
 import com.sulcacorp.lissa.service.exception.CustomServiceException;
 

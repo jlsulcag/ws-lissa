@@ -4,8 +4,9 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.sulcacorp.lissa.dao.ITipoMedicoDAO;
+
 import com.sulcacorp.lissa.model.TipoMedico;
+import com.sulcacorp.lissa.repository.ITipoMedicoDAO;
 import com.sulcacorp.lissa.service.ITipoMedicoService;
 import com.sulcacorp.lissa.service.exception.CustomServiceException;
 import com.sulcacorp.lissa.util.Constant;

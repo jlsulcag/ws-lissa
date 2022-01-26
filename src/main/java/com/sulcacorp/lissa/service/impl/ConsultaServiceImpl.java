@@ -5,8 +5,9 @@ package com.sulcacorp.lissa.service.impl;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.sulcacorp.lissa.dao.IConsultaDAO;
+
 import com.sulcacorp.lissa.model.Consulta;
+import com.sulcacorp.lissa.repository.IConsultaDAO;
 import com.sulcacorp.lissa.service.IConsultaService;
 import com.sulcacorp.lissa.service.exception.CustomServiceException;
 

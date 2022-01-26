@@ -8,9 +8,10 @@ import org.apache.commons.lang3.StringUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.sulcacorp.lissa.dao.IEspecialidadDAO;
+
 import com.sulcacorp.lissa.dto.EspecialidadDTO;
 import com.sulcacorp.lissa.model.Especialidad;
+import com.sulcacorp.lissa.repository.IEspecialidadDAO;
 import com.sulcacorp.lissa.service.IEspecialidadService;
 import com.sulcacorp.lissa.service.exception.CustomServiceException;
 import com.sulcacorp.lissa.util.Constant;

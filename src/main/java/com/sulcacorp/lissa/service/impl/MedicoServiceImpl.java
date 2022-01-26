@@ -8,8 +8,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sulcacorp.lissa.dao.IMedicoDAO;
 import com.sulcacorp.lissa.model.Medico;
+import com.sulcacorp.lissa.repository.IMedicoDAO;
 import com.sulcacorp.lissa.service.IMedicoService;
 import com.sulcacorp.lissa.service.exception.CustomServiceException;
 import com.sulcacorp.lissa.util.Constant;

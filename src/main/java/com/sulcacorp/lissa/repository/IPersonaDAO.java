@@ -1,4 +1,4 @@
-package com.sulcacorp.lissa.dao;
+package com.sulcacorp.lissa.repository;
 
 
 import java.util.List;
