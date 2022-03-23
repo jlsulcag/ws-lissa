@@ -35,6 +35,12 @@ public class Constant {
 	public final static String MSG_ERR_GENE			=	"ERROR INTERNO";
 	public final static String MSG_AlER_GENE		=	"ERROR DE OPERACION";
 	public static final String ID_ALERTA 			=	"ID INVALIDO, DEBE SER MAYOR QUE CERO";
+	
+	/*Response Status*/
+	public static final String STATUS_OK = "OK";
+	public static final String STATUS_ERROR = "ERROR";
+	public static final String STATUS_WARN = "WARN";
+	public static final String STATUS_INFO = "INFO";
 }
 
 

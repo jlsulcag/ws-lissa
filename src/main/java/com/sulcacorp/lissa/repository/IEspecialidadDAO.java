@@ -11,7 +11,7 @@ import com.sulcacorp.lissa.model.Especialidad;
 @Repository
 public interface IEspecialidadDAO  extends JpaRepository<Especialidad, Long>{
 	
-	@Query("select e from Especialidad e where e.estado = 1")
+	@Query("select e from Especialidad e where e.estado = '1' order by e.descEspecialidad asc")
 	List<Especialidad> findAllAct();
 
 }

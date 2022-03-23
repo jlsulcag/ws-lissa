@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sulcacorp.lissa.controller.commons.ResponseModel;
 import com.sulcacorp.lissa.controller.generic.GenericController;
+import com.sulcacorp.lissa.dto.MedicoDTO;
 import com.sulcacorp.lissa.model.Medico;
 import com.sulcacorp.lissa.model.view.MedicoView;
 import com.sulcacorp.lissa.service.IMedicoService;
@@ -47,7 +48,7 @@ public class MedicoController extends GenericController{
 			return this.getOkResponseConsulta(list);			
 		} catch (CustomServiceException e) {
 			log.error(">>> Error findAll Medico :\n {}", e.getMessage());
-			return this.getInternalServerError();
+			return this.getInternalServerError(e.getMessage());
 		}
 	}
 	
@@ -63,22 +64,26 @@ public class MedicoController extends GenericController{
 			return getOkResponseConsulta(medico);
 		} catch (CustomServiceException e) {
 			log.error(">>> Error findById Medico :\n {}", e.getMessage());
-			return this.getInternalServerError();
+			return this.getInternalServerError(e.getMessage());
 		}
 		
 	}
 	
 	@PostMapping(value = "/save")
-	public ResponseEntity<ResponseModel> save(@Valid @RequestBody Medico medico, BindingResult result){
+	public ResponseEntity<ResponseModel> save(@Valid @RequestBody MedicoDTO medicoDTO, BindingResult result){
 		log.info(">>> Execute save Medico");
 		if(result.hasErrors()) {
 			return this.getBadRequest(result);
 		}
-		try {			
-			return this.getCreatedResponse(service.save(medico),result);
+		try {
+			return this.getCreatedResponse(service.saveCustom(medicoDTO),result);
 		} catch (CustomServiceException e) {
-			log.error(">>> Error save Medico :\n {}", e.getMessage());
-			return this.getInternalServerError();
+			log.error(">>> CustomServiceException save Medico :\n {}", e.getMessage());
+			return this.getInternalServerError(e.getMessage());
+		} catch (Exception e) {
+			log.error(">>> Exception save Medico :\n {}", e.getMessage());
+			e.printStackTrace();
+			return this.getInternalServerError(e.getMessage());
 		}
 	}
 	
@@ -93,7 +98,7 @@ public class MedicoController extends GenericController{
 			return this.getOkResponseRegistro(service.update(medico), result);
 		} catch (CustomServiceException e) {
 			log.error(">>> Error update Medico : {}", e.getMessage());
-			return this.getInternalServerError();
+			return this.getInternalServerError(e.getMessage());
 		}
 	}
 	
@@ -110,7 +115,7 @@ public class MedicoController extends GenericController{
 			return this.getOkResponseConsulta(obj);
 		} catch (CustomServiceException e) {
 			log.error(">>> Error delete Medico : {}", e.getMessage());
-			return this.getInternalServerError();
+			return this.getInternalServerError(e.getMessage());
 		}
 		
 	}

@@ -3,6 +3,7 @@ package com.sulcacorp.lissa.controller;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -41,7 +42,10 @@ public class EspecialidadController extends GenericController{
 			return this.getOkResponseConsulta(list);			
 		} catch (CustomServiceException e) {
 			log.error(">>> Error especialidad findAll :\n {}", e.getMessage());
-			return this.getInternalServerError();
+			return this.getInternalServerError(e.getMessage());
+		} catch (Exception e) {
+			log.error(">>> Error especialidad update : {}", e.getMessage());
+			return this.getInternalServerError(e.getMessage());
 		}
 	}
 	
@@ -57,12 +61,15 @@ public class EspecialidadController extends GenericController{
 			return getOkResponseConsulta(especialidad);
 		} catch (CustomServiceException e) {
 			log.error(">>> Error especialidad findById :\n {}", e.getMessage());
-			return this.getInternalServerError();
+			return this.getInternalServerError(e.getMessage());
+		} catch (Exception e) {
+			log.error(">>> Error especialidad update : {}", e.getMessage());
+			return this.getInternalServerError(e.getMessage());
 		}
 		
 	}
 	
-	@PostMapping(value = "/save")
+	@PostMapping(value = "/save", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ResponseModel> save(@Valid @RequestBody EspecialidadDTO especialidad, BindingResult result){
 		log.info(">>> Process save");
 		if(result.hasErrors()) {
@@ -73,7 +80,10 @@ public class EspecialidadController extends GenericController{
 			return this.getCreatedResponse(dto,result);
 		} catch (CustomServiceException e) {
 			log.error(">>> Error especialidad findById :\n {}", e.getMessage());
-			return this.getInternalServerError();
+			return this.getInternalServerError(e.getMessage());
+		} catch (Exception e) {
+			log.error(">>> Error especialidad update : {}", e.getMessage());
+			return this.getInternalServerError(e.getMessage());
 		}
 	}
 	
@@ -81,14 +91,22 @@ public class EspecialidadController extends GenericController{
 	public ResponseEntity<ResponseModel> update(@Valid @RequestBody EspecialidadDTO especialidad, BindingResult result){
 		log.info(">>> Process update");
 		try {
+			if(result.hasErrors()) {
+				return this.getBadRequest(result);
+			}
 			EspecialidadDTO especialidadDTO = especialidadService.findById(especialidad.getIdEspecialidad());
 			if(especialidadDTO == null) {
 				return this.getNotFoundRequest();
 			}
+			especialidad.setEstado(especialidadDTO.getEstado());
+			especialidad.setFechaReg(especialidadDTO.getFechaReg());
 			return this.getOkResponseRegistro(especialidadService.update(especialidad), result);
 		} catch (CustomServiceException e) {
 			log.error(">>> Error especialidad update : {}", e.getMessage());
-			return this.getInternalServerError();
+			return this.getInternalServerError(e.getMessage());
+		} catch (Exception e) {
+			log.error(">>> Error especialidad update : {}", e.getMessage());
+			return this.getInternalServerError(e.getMessage());
 		}
 	}
 	
@@ -105,7 +123,7 @@ public class EspecialidadController extends GenericController{
 			return this.getOkResponseConsulta(obj);
 		} catch (CustomServiceException e) {
 			log.error(">>> Error especialidad delete : {}", e.getMessage());
-			return this.getInternalServerError();
+			return this.getInternalServerError(e.getMessage());
 		}
 		
 	}
@@ -118,11 +136,10 @@ public class EspecialidadController extends GenericController{
 			if(obj == null) {
 				return this.getNotFoundRequest();
 			}
-			obj.setEstado(Constant.STATUS_DISABLE);
 			return this.getOkResponseConsulta(especialidadService.update(obj));
 		} catch (CustomServiceException e) {
 			log.error(">>> Error especialidad updateStatus : {}", e.getMessage());
-			return this.getInternalServerError();
+			return this.getInternalServerError(e.getMessage());
 		}
 		
 	}

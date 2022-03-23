@@ -43,7 +43,7 @@ public class EstadoCivilController extends GenericController {
 			return this.getCreatedResponse(dto, result);
 		} catch (CustomServiceException e) {
 			log.error(">>> Error /api/estadoCivil/save {}", e.getMessage());
-			return this.getInternalServerError();
+			return this.getInternalServerError(e.getMessage());
 		}
 	}
 
@@ -61,7 +61,7 @@ public class EstadoCivilController extends GenericController {
 			return this.getOkResponseRegistro(service.update(t), result);
 		} catch (CustomServiceException e) {
 			log.error(">>> Error /api/estadoCivil/update {}", e.getMessage());
-			return this.getInternalServerError();
+			return this.getInternalServerError(e.getMessage());
 		}
 	}
 
@@ -77,7 +77,7 @@ public class EstadoCivilController extends GenericController {
 			return this.getOkResponseConsulta(service.update(dto));
 		} catch (CustomServiceException e) {
 			log.error(">>> Error estadoCivil delete : {}", e.getMessage());
-			return this.getInternalServerError();
+			return this.getInternalServerError(e.getMessage());
 		}
 	}
 	
@@ -94,7 +94,7 @@ public class EstadoCivilController extends GenericController {
 			return this.getOkResponseConsulta(null);
 		} catch (CustomServiceException e) {
 			log.error(">>> Error estadoCivil delete : {}", e.getMessage());
-			return this.getInternalServerError();
+			return this.getInternalServerError(e.getMessage());
 		}
 	}
 
@@ -111,7 +111,7 @@ public class EstadoCivilController extends GenericController {
 			return this.getOkResponseConsulta(estadoCivilDTO);
 		} catch (CustomServiceException e) {
 			log.error(">>> Error estadoCivil findById :\n {}", e.getMessage());
-			return this.getInternalServerError();
+			return this.getInternalServerError(e.getMessage());
 		}
 
 	}
@@ -127,7 +127,7 @@ public class EstadoCivilController extends GenericController {
 			return this.getOkResponseConsulta(list);
 		} catch (CustomServiceException e) {
 			log.error(">>> Error findAll... {}", e.getMessage());
-			return this.getInternalServerError();
+			return this.getInternalServerError(e.getMessage());
 		}
 		
 	}

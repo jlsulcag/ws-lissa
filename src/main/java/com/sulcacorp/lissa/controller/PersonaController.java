@@ -40,7 +40,7 @@ public class PersonaController extends GenericController{
 			return this.getOkResponseConsulta(list);			
 		} catch (CustomServiceException e) {
 			log.error(">>> Error findAll Persona :\n {}", e.getMessage());
-			return this.getInternalServerError();
+			return this.getInternalServerError(e.getMessage());
 		}
 	}
 	
@@ -56,7 +56,7 @@ public class PersonaController extends GenericController{
 			return getOkResponseConsulta(persona);
 		} catch (CustomServiceException e) {
 			log.error(">>> Error findById Persona :\n {}", e.getMessage());
-			return this.getInternalServerError();
+			return this.getInternalServerError(e.getMessage());
 		}
 		
 	}
@@ -71,7 +71,7 @@ public class PersonaController extends GenericController{
 			return this.getCreatedResponse(service.save(persona),result);
 		} catch (CustomServiceException e) {
 			log.error(">>> Error save Persona :\n {}", e.getMessage());
-			return this.getInternalServerError();
+			return this.getInternalServerError(e.getMessage());
 		}
 	}
 	
@@ -86,7 +86,7 @@ public class PersonaController extends GenericController{
 			return this.getOkResponseRegistro(service.update(persona), result);
 		} catch (CustomServiceException e) {
 			log.error(">>> Error update Persona : {}", e.getMessage());
-			return this.getInternalServerError();
+			return this.getInternalServerError(e.getMessage());
 		}
 	}
 	
@@ -103,7 +103,7 @@ public class PersonaController extends GenericController{
 			return this.getOkResponseConsulta(obj);
 		} catch (CustomServiceException e) {
 			log.error(">>> Error delete Persona : {}", e.getMessage());
-			return this.getInternalServerError();
+			return this.getInternalServerError(e.getMessage());
 		}
 		
 	}
@@ -120,7 +120,7 @@ public class PersonaController extends GenericController{
 			return getOkResponseConsulta(persona);
 		} catch (CustomServiceException e) {
 			log.error(">>> Error findByTipoDocAndNumero Persona :\n {}", e.getMessage());
-			return this.getInternalServerError();
+			return this.getInternalServerError(e.getMessage());
 		}
 	}
 	

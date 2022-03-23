@@ -9,7 +9,7 @@ public class EspecialidadDTO {
 	
 	private Long idEspecialidad;
 	
-	@Size(min = 3, max = 150, message = "La especialidad es requerida y debe tener minimo 3 y maximo  150 caracteres")
+	@Size(min = 3, max = 150, message = "La especialidad es requerida y debe tener mínimo 3 y máximo  150 caracteres")
 	private String descEspecialidad;
 	
 	private LocalDateTime fechaReg;

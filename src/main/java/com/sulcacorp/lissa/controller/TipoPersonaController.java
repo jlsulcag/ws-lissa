@@ -42,7 +42,7 @@ public class TipoPersonaController extends GenericController{
 			return this.getOkResponseConsulta(list);
 		} catch (CustomServiceException e) {
 			log.error(">>> Error execute findAll {}", TipoPersona.class.getName());
-			return this.getInternalServerError();
+			return this.getInternalServerError(e.getMessage());
 		}
 	}
 	
@@ -57,7 +57,7 @@ public class TipoPersonaController extends GenericController{
 			return this.getOkResponseConsulta(obj);
 		} catch (CustomServiceException e) {
 			log.error(">>> Error execute findById {}", TipoPersona.class.getName());
-			return this.getInternalServerError();
+			return this.getInternalServerError(e.getMessage());
 		}
 	}
 	
@@ -71,7 +71,7 @@ public class TipoPersonaController extends GenericController{
 			return this.getCreatedResponse(service.save(obj), result);
 		} catch (CustomServiceException e) {
 			log.error(">>> Error save {} ", TipoPersona.class.getName());
-			return this.getInternalServerError();
+			return this.getInternalServerError(e.getMessage());
 		}
 		
 	}
@@ -90,7 +90,7 @@ public class TipoPersonaController extends GenericController{
 			return this.getOkResponseRegistro(service.save(obj), result);
 		} catch (CustomServiceException e) {
 			log.error(">>> Error update {} ", TipoPersona.class.getName());
-			return this.getInternalServerError();
+			return this.getInternalServerError(e.getMessage());
 		}
 		
 	}
@@ -107,7 +107,7 @@ public class TipoPersonaController extends GenericController{
 			return this.getOkResponseConsulta(service.save(temp));
 		} catch (CustomServiceException e) {
 			log.error(">>> Error updateStatus {} ", TipoPersona.class.getName());
-			return this.getInternalServerError();
+			return this.getInternalServerError(e.getMessage());
 		}
 		
 	}
@@ -124,7 +124,7 @@ public class TipoPersonaController extends GenericController{
 			return this.getOkResponseConsulta(null);
 		} catch (CustomServiceException e) {
 			log.error(">>> Error delete {} ", TipoPersona.class.getName());
-			return this.getInternalServerError();
+			return this.getInternalServerError(e.getMessage());
 		}
 		
 	}

@@ -39,15 +39,11 @@ public class TipoDocumentoController extends GenericController{
 			return this.getBadRequest(result);
 		}
 		try {
-			TipoDocumento obj = service.save(t);
-			if(obj == null) {
-				log.error("Error de registro");
-				return this.getInternalServerError();
-			}
+			TipoDocumento obj = service.save(t);			
 			return this.getCreatedResponse(service.save(t), result);
 		} catch (CustomServiceException e) {
 			log.error(">>>  Error /api/tipodocumento/save");
-			return this.getInternalServerError();
+			return this.getInternalServerError(e.getMessage());
 		}
 	}
 	
@@ -66,7 +62,7 @@ public class TipoDocumentoController extends GenericController{
 			return this.getOkResponseRegistro(service.update(t), result);
 		} catch (CustomServiceException e) {
 			log.error(">>>  Error /api/tipodocumento/update");
-			return this.getInternalServerError();
+			return this.getInternalServerError(e.getMessage());
 		}
 	}
 	
@@ -82,7 +78,7 @@ public class TipoDocumentoController extends GenericController{
 			return this.getOkResponseConsulta(service.update(obj));
 		} catch (CustomServiceException e) {
 			log.error(">>>  Error /api/tipodocumento/updateStatus");
-			return this.getInternalServerError();
+			return this.getInternalServerError(e.getMessage());
 		}
 	}
 	
@@ -96,7 +92,7 @@ public class TipoDocumentoController extends GenericController{
 			return this.getOkResponseConsulta(list);
 		} catch (CustomServiceException e) {
 			log.info(">>> Error /api/tipodocumento/findAll");
-			return this.getInternalServerError();
+			return this.getInternalServerError(e.getMessage());
 		}
 		
 	}
@@ -113,7 +109,7 @@ public class TipoDocumentoController extends GenericController{
 			return this.getOkResponseConsulta(obj);
 		} catch (CustomServiceException e) {
 			log.info(">>> Error /api/tipodocumento/findById");
-			return this.getInternalServerError();
+			return this.getInternalServerError(e.getMessage());
 		}
 		
 	}	
@@ -130,7 +126,7 @@ public class TipoDocumentoController extends GenericController{
 			return this.getOkResponseConsulta(null);
 		} catch (CustomServiceException e) {
 			log.info("Error delete {} ", this.getClass().getName());
-			return this.getInternalServerError();
+			return this.getInternalServerError(e.getMessage());
 		}
 			
 	}
