@@ -2,8 +2,11 @@ package com.sulcacorp.lissa.service.impl;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
 import javax.transaction.Transactional;
 import org.apache.commons.lang3.StringUtils;
 import org.modelmapper.ModelMapper;
@@ -34,30 +37,34 @@ public class MedicoServiceImpl implements IMedicoService{
 	private ModelMapper modelMapper;
 	
 	@Override
-	public Medico save(Medico t) {
+	public MedicoDTO save(MedicoDTO t) {
 		t.setColegiatura(StringUtils.upperCase(t.getColegiatura()));
 		t.setEstado(Constant.STATUS_ENABLE);
 		t.setFechaReg(LocalDate.now());
-		return medicoDAO.save(t);
+		return convertToDTOMedico(medicoDAO.save(convertToEntityMedico(t)));
 	}
 
 	@Override
-	public Medico update(Medico t) {
+	public MedicoDTO update(MedicoDTO t) {
 		t.setColegiatura(StringUtils.upperCase(t.getColegiatura()));
 		t.setFechaReg(t.getFechaReg());
-		return medicoDAO.save(t);
+		return convertToDTOMedico(medicoDAO.save(convertToEntityMedico(t)));
 	}
 
 	@Override
-	public Medico findById(Long id) {
+	public MedicoDTO findById(Long id) {
 		Optional<Medico> opt = medicoDAO.findById(id);
-		return opt.isPresent()?opt.get(): null;
+		return opt.isPresent()?convertToDTOMedico(opt.get()): null;
 	}
 
 	@Override
-	public List<Medico> findAllAct() {
-		
-		return medicoDAO.findAll();
+	public List<MedicoDTO> findAllAct() {
+		List<Medico> list = new ArrayList<>();
+		list = medicoDAO.findAll();
+		if(!list.isEmpty()) {
+			return list.stream().map(this::convertToDTOMedico).collect(Collectors.toList());
+		}
+		return new ArrayList<>();
 	}
 
 	@Override
@@ -66,7 +73,7 @@ public class MedicoServiceImpl implements IMedicoService{
 	}
 
 	@Override
-	public void deleteLogic(Medico t) throws CustomServiceException {
+	public void deleteLogic(MedicoDTO t) throws CustomServiceException {
 		
 	}
 
@@ -109,6 +116,11 @@ public class MedicoServiceImpl implements IMedicoService{
 	private Medico convertToEntityMedico(MedicoDTO dto) {
 		Medico entity = modelMapper.map(dto, Medico.class);		
 		return entity;
+	}
+	
+	private MedicoDTO convertToDTOMedico(Medico medico) {
+		MedicoDTO dto = modelMapper.map(medico, MedicoDTO.class);		
+		return dto;
 	}
 
 }

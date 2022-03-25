@@ -1,5 +1,7 @@
 package com.sulcacorp.lissa.dto;
 
+import java.time.LocalDate;
+
 import javax.validation.Valid;
 
 import com.sulcacorp.lissa.model.TipoMedico;
@@ -9,6 +11,7 @@ import lombok.Data;
 @Data
 public class MedicoDTO {
 
+	private Long id;
 	/*Usar la anotacion para  validacion de objetos en cascada*/
 	@Valid
 	private PersonaDTO personaDTO;
@@ -20,9 +23,10 @@ public class MedicoDTO {
 	
 	private String colegiatura;
 	
-	private String fechaReg;
+	private LocalDate fechaReg;
 	
 	private String estado;
+	
 	
 
 }

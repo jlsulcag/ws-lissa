@@ -49,6 +49,9 @@ public class MedicoController extends GenericController{
 		} catch (CustomServiceException e) {
 			log.error(">>> Error findAll Medico :\n {}", e.getMessage());
 			return this.getInternalServerError(e.getMessage());
+		} catch (Exception e) {
+			log.error(">>> Error findAll Medico :\n {}", e.getMessage());
+			return this.getInternalServerError(e.getMessage());
 		}
 	}
 	
@@ -63,6 +66,9 @@ public class MedicoController extends GenericController{
 			}
 			return getOkResponseConsulta(medico);
 		} catch (CustomServiceException e) {
+			log.error(">>> Error findById Medico :\n {}", e.getMessage());
+			return this.getInternalServerError(e.getMessage());
+		} catch (Exception e) {
 			log.error(">>> Error findById Medico :\n {}", e.getMessage());
 			return this.getInternalServerError(e.getMessage());
 		}
@@ -88,10 +94,10 @@ public class MedicoController extends GenericController{
 	}
 	
 	@PutMapping(value = "/update")
-	public ResponseEntity<ResponseModel> update(@Valid @RequestBody Medico medico, BindingResult result){
+	public ResponseEntity<ResponseModel> update(@Valid @RequestBody MedicoDTO medico, BindingResult result){
 		log.info(">>> Execute update Medico");
 		try {
-			Medico temp = service.findById(medico.getId());
+			MedicoDTO temp = service.findById(medico.getId());
 			if(temp == null) {
 				return this.getNotFoundRequest();
 			}
@@ -105,7 +111,7 @@ public class MedicoController extends GenericController{
 	@DeleteMapping(value = "/delete/{id}")
 	public ResponseEntity<ResponseModel> delete(@PathVariable("id") Long id) {
 		log.info(">>> Execute delete Medico");
-		Medico obj = new Medico();
+		MedicoDTO obj = new MedicoDTO();
 		try {
 			obj = service.findById(id);
 			if(obj == null) {

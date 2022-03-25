@@ -29,7 +29,46 @@ import lombok.extern.slf4j.Slf4j;
 public class TipoDocumentoController extends GenericController{
 	
 	@Autowired
-	private TipoDocumentoServiceImpl service;	
+	private TipoDocumentoServiceImpl service;
+	
+	@GetMapping(value = "/findAll", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<ResponseModel> findAll(){
+		log.info(">>> Process findAll");
+		try {
+			List<TipoDocumento> list = service.findAllAct();
+			if(list.isEmpty()) {
+				return this.getNotFoundRequest();
+			}
+			return this.getOkResponseConsulta(list);
+		} catch (CustomServiceException e) {
+			log.info(">>> Error /api/tipodocumento/findAll");
+			return this.getInternalServerError(e.getMessage());
+		} catch (Exception e) {
+			log.info(">>> Error /api/tipodocumento/findAll");
+			return this.getInternalServerError(e.getMessage());
+		}
+		
+	}
+	
+	@GetMapping(value = "/findById/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<ResponseModel> findById(@PathVariable("id") long id){
+		log.info(">>> Process /list/findById");
+		try {
+			TipoDocumento obj = service.findById(id);
+			if(obj == null) {
+				log.info(">>> TipoDocumento no encontrado");
+				return this.getNotFoundRequest();
+			}
+			return this.getOkResponseConsulta(obj);
+		} catch (CustomServiceException e) {
+			log.info(">>> Error /api/tipodocumento/findById");
+			return this.getInternalServerError(e.getMessage());
+		} catch (Exception e) {
+			log.info(">>> Error /api/tipodocumento/findById");
+			return this.getInternalServerError(e.getMessage());
+		}
+		
+	}
 	
 	@PostMapping(value = "/save", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ResponseModel> save(@Valid @RequestBody TipoDocumento t,
@@ -40,8 +79,11 @@ public class TipoDocumentoController extends GenericController{
 		}
 		try {
 			TipoDocumento obj = service.save(t);			
-			return this.getCreatedResponse(service.save(t), result);
+			return this.getCreatedResponse(obj, result);
 		} catch (CustomServiceException e) {
+			log.error(">>>  Error /api/tipodocumento/save");
+			return this.getInternalServerError(e.getMessage());
+		} catch (Exception e) {
 			log.error(">>>  Error /api/tipodocumento/save");
 			return this.getInternalServerError(e.getMessage());
 		}
@@ -58,9 +100,13 @@ public class TipoDocumentoController extends GenericController{
 			TipoDocumento obj = service.findById(t.getIdTipoDocumento());
 			if(obj == null) {
 				return this.getNotFoundRequest();
-			}			
+			}
+			t.setEstado(obj.getEstado());
 			return this.getOkResponseRegistro(service.update(t), result);
 		} catch (CustomServiceException e) {
+			log.error(">>>  Error /api/tipodocumento/update");
+			return this.getInternalServerError(e.getMessage());
+		} catch (Exception e) {
 			log.error(">>>  Error /api/tipodocumento/update");
 			return this.getInternalServerError(e.getMessage());
 		}
@@ -79,40 +125,13 @@ public class TipoDocumentoController extends GenericController{
 		} catch (CustomServiceException e) {
 			log.error(">>>  Error /api/tipodocumento/updateStatus");
 			return this.getInternalServerError(e.getMessage());
+		} catch (Exception e) {
+			log.error(">>>  Error /api/tipodocumento/updateStatus");
+			return this.getInternalServerError(e.getMessage());
 		}
 	}
 	
-	@GetMapping(value = "/list/findAll", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ResponseModel> findAll(){
-		try {
-			List<TipoDocumento> list = service.findAllAct();
-			if(list.isEmpty()) {
-				return this.getNotFoundRequest();
-			}
-			return this.getOkResponseConsulta(list);
-		} catch (CustomServiceException e) {
-			log.info(">>> Error /api/tipodocumento/findAll");
-			return this.getInternalServerError(e.getMessage());
-		}
 		
-	}
-	
-	@GetMapping(value = "/list/findById/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ResponseModel> findById(@PathVariable("id") long id){
-		log.info(">>> Process /list/findById");
-		try {
-			TipoDocumento obj = service.findById(id);
-			if(obj == null) {
-				log.info(">>> TipoDocumento no encontrado");
-				return this.getNotFoundRequest();
-			}
-			return this.getOkResponseConsulta(obj);
-		} catch (CustomServiceException e) {
-			log.info(">>> Error /api/tipodocumento/findById");
-			return this.getInternalServerError(e.getMessage());
-		}
-		
-	}	
 	
 	@DeleteMapping(value = "/delete/{id}")
 	public ResponseEntity<ResponseModel> delete(@PathVariable("id") long id) {
@@ -122,9 +141,12 @@ public class TipoDocumentoController extends GenericController{
 			if(obj == null) {
 				return this.getNotFoundRequest();
 			}
-			service.update(obj);
-			return this.getOkResponseConsulta(null);
+			service.delete(id);
+			return this.getOkResponseConsulta(obj);
 		} catch (CustomServiceException e) {
+			log.info("Error delete {} ", this.getClass().getName());
+			return this.getInternalServerError(e.getMessage());
+		} catch (Exception e) {
 			log.info("Error delete {} ", this.getClass().getName());
 			return this.getInternalServerError(e.getMessage());
 		}

@@ -31,7 +31,7 @@ public class EspecialidadController extends GenericController{
 	@Autowired
 	private IEspecialidadService especialidadService;
 	
-	@GetMapping(value = "/findAll")
+	@GetMapping(value = "/findAll", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ResponseModel> findAll(){
 		log.info(">>> Process findAll");
 		try {
@@ -49,7 +49,7 @@ public class EspecialidadController extends GenericController{
 		}
 	}
 	
-	@GetMapping(value = "/findById/{id}")
+	@GetMapping(value = "/findById/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ResponseModel> findById(@PathVariable("id") Long id){
 		log.info(">>> Process findById");
 		EspecialidadDTO especialidad = new EspecialidadDTO();
@@ -87,7 +87,7 @@ public class EspecialidadController extends GenericController{
 		}
 	}
 	
-	@PutMapping(value = "/update")
+	@PutMapping(value = "/update", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ResponseModel> update(@Valid @RequestBody EspecialidadDTO especialidad, BindingResult result){
 		log.info(">>> Process update");
 		try {
@@ -109,8 +109,29 @@ public class EspecialidadController extends GenericController{
 			return this.getInternalServerError(e.getMessage());
 		}
 	}
+
 	
-	@DeleteMapping(value = "/delete/{id}")
+	@PutMapping(value = "/updateStatus/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<ResponseModel> updateStatus(@PathVariable("id") Long id) {
+		log.info(">>> Process updateStatus");
+		try {
+			EspecialidadDTO obj = especialidadService.findById(id);
+			if(obj == null) {
+				return this.getNotFoundRequest();
+			}
+			obj.setEstado(Constant.STATUS_DISABLE);
+			return this.getOkResponseConsulta(especialidadService.update(obj));
+		} catch (CustomServiceException e) {
+			log.error(">>> Error especialidad updateStatus : {}", e.getMessage());
+			return this.getInternalServerError(e.getMessage());
+		} catch (Exception e) {
+			log.error(">>> Error especialidad updateStatus : {}", e.getMessage());
+			return this.getInternalServerError(e.getMessage());
+		}
+		
+	}
+	
+	@DeleteMapping(value = "/delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ResponseModel> delete(@PathVariable("id") Long id) {
 		log.info(">>> Process delete");
 		EspecialidadDTO obj = new EspecialidadDTO();
@@ -124,21 +145,8 @@ public class EspecialidadController extends GenericController{
 		} catch (CustomServiceException e) {
 			log.error(">>> Error especialidad delete : {}", e.getMessage());
 			return this.getInternalServerError(e.getMessage());
-		}
-		
-	}
-	
-	@PutMapping(value = "/updateStatus/{id}")
-	public ResponseEntity<ResponseModel> updateStatus(@PathVariable("id") Long id) {
-		log.info(">>> Process updateStatus");
-		try {
-			EspecialidadDTO obj = especialidadService.findById(id);
-			if(obj == null) {
-				return this.getNotFoundRequest();
-			}
-			return this.getOkResponseConsulta(especialidadService.update(obj));
-		} catch (CustomServiceException e) {
-			log.error(">>> Error especialidad updateStatus : {}", e.getMessage());
+		} catch (Exception e) {
+			log.error(">>> Error especialidad delete : {}", e.getMessage());
 			return this.getInternalServerError(e.getMessage());
 		}
 		

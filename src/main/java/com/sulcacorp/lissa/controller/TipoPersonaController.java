@@ -43,6 +43,9 @@ public class TipoPersonaController extends GenericController{
 		} catch (CustomServiceException e) {
 			log.error(">>> Error execute findAll {}", TipoPersona.class.getName());
 			return this.getInternalServerError(e.getMessage());
+		} catch (Exception e) {
+			log.error(">>> Error execute findAll {}", TipoPersona.class.getName());
+			return this.getInternalServerError(e.getMessage());
 		}
 	}
 	
@@ -58,6 +61,9 @@ public class TipoPersonaController extends GenericController{
 		} catch (CustomServiceException e) {
 			log.error(">>> Error execute findById {}", TipoPersona.class.getName());
 			return this.getInternalServerError(e.getMessage());
+		} catch (Exception e) {
+			log.error(">>> Error execute findById {}", TipoPersona.class.getName());
+			return this.getInternalServerError(e.getMessage());
 		}
 	}
 	
@@ -70,6 +76,9 @@ public class TipoPersonaController extends GenericController{
 		try {
 			return this.getCreatedResponse(service.save(obj), result);
 		} catch (CustomServiceException e) {
+			log.error(">>> Error save {} ", TipoPersona.class.getName());
+			return this.getInternalServerError(e.getMessage());
+		} catch (Exception e) {
 			log.error(">>> Error save {} ", TipoPersona.class.getName());
 			return this.getInternalServerError(e.getMessage());
 		}
@@ -87,7 +96,7 @@ public class TipoPersonaController extends GenericController{
 			if(temp == null) {
 				return this.getNotFoundRequest();
 			}
-			return this.getOkResponseRegistro(service.save(obj), result);
+			return this.getOkResponseRegistro(service.update(obj), result);
 		} catch (CustomServiceException e) {
 			log.error(">>> Error update {} ", TipoPersona.class.getName());
 			return this.getInternalServerError(e.getMessage());
@@ -104,8 +113,11 @@ public class TipoPersonaController extends GenericController{
 				return this.getNotFoundRequest();
 			}
 			temp.setEstado(Constant.STATUS_DISABLE);
-			return this.getOkResponseConsulta(service.save(temp));
+			return this.getOkResponseConsulta(service.update(temp));
 		} catch (CustomServiceException e) {
+			log.error(">>> Error updateStatus {} ", TipoPersona.class.getName());
+			return this.getInternalServerError(e.getMessage());
+		} catch (Exception e) {
 			log.error(">>> Error updateStatus {} ", TipoPersona.class.getName());
 			return this.getInternalServerError(e.getMessage());
 		}
@@ -121,8 +133,11 @@ public class TipoPersonaController extends GenericController{
 				return this.getNotFoundRequest();
 			}
 			service.delete(id);
-			return this.getOkResponseConsulta(null);
+			return this.getOkResponseConsulta(temp);
 		} catch (CustomServiceException e) {
+			log.error(">>> Error delete {} ", TipoPersona.class.getName());
+			return this.getInternalServerError(e.getMessage());
+		} catch (Exception e) {
 			log.error(">>> Error delete {} ", TipoPersona.class.getName());
 			return this.getInternalServerError(e.getMessage());
 		}

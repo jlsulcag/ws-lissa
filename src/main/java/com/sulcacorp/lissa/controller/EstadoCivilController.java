@@ -30,74 +30,26 @@ public class EstadoCivilController extends GenericController {
 
 	@Autowired
 	private EstadoCivilServiceImpl service;
-
-	@PostMapping(value = "/save", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ResponseModel> save(@Valid @RequestBody EstadoCivilDTO t, BindingResult result) {
-		log.info("Process estadoCivil save :::>");
-		if (result.hasErrors()) {
-			return this.getBadRequest(result);
-		}
+	
+	@GetMapping(value = "/findAll", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<ResponseModel> findAllAct() {
+		log.info(">>> Process estadoCivil findAllAct :::>");
 		try {
-			EstadoCivilDTO dto;
-			dto = service.save(t);
-			return this.getCreatedResponse(dto, result);
-		} catch (CustomServiceException e) {
-			log.error(">>> Error /api/estadoCivil/save {}", e.getMessage());
-			return this.getInternalServerError(e.getMessage());
-		}
-	}
-
-	@PutMapping(value = "/update", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ResponseModel> update(@Valid @RequestBody EstadoCivilDTO t, BindingResult result) {
-		log.info("Process estadoCivil actualizar :::>");
-		if (result.hasErrors()) {
-			return this.getBadRequest(result);
-		}
-		try {
-			EstadoCivilDTO dto = service.findById(t.getIdEstadoCivil());
-			if(dto == null) {
+			List<EstadoCivilDTO> list = service.findAllAct();
+			if(list.isEmpty()) {
 				return this.getNotFoundRequest();
 			}
-			return this.getOkResponseRegistro(service.update(t), result);
+			return this.getOkResponseConsulta(list);
 		} catch (CustomServiceException e) {
-			log.error(">>> Error /api/estadoCivil/update {}", e.getMessage());
+			log.error(">>> Error estadoCivil findAll... {}", e.getMessage());
+			return this.getInternalServerError(e.getMessage());
+		} catch (Exception e) {
+			log.error(">>> Error estadoCivil findAll : {}", e.getMessage());
 			return this.getInternalServerError(e.getMessage());
 		}
-	}
-
-	@PutMapping(value = "/deleteLogic/{id}")
-	public ResponseEntity<ResponseModel> deleteLogic(@PathVariable("id") long id) {
-		log.info(">>> Process estadoCivil eliminar x ID :::>");
-		try {
-			EstadoCivilDTO dto = service.findById(id);
-			if (dto == null) {
-				return this.getNotFoundRequest();
-			}
-			dto.setEstado(Constant.STATUS_DISABLE);			
-			return this.getOkResponseConsulta(service.update(dto));
-		} catch (CustomServiceException e) {
-			log.error(">>> Error estadoCivil delete : {}", e.getMessage());
-			return this.getInternalServerError(e.getMessage());
-		}
+		
 	}
 	
-	@DeleteMapping(value = "/delete/{id}")
-	public ResponseEntity<ResponseModel> delete(@PathVariable("id") long id) {
-		log.info(">>> Process estadoCivil eliminar x ID :::>");
-		try {
-			EstadoCivilDTO dto = service.findById(id);
-			if (dto == null) {
-				log.info(">>> {} no encontrado", this.getClass().getName());
-				return this.getNotFoundRequest();
-			}			
-			service.delete(id);
-			return this.getOkResponseConsulta(null);
-		} catch (CustomServiceException e) {
-			log.error(">>> Error estadoCivil delete : {}", e.getMessage());
-			return this.getInternalServerError(e.getMessage());
-		}
-	}
-
 	@GetMapping(value = "/findById/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ResponseModel> findById(@PathVariable("id") long id) {
 		log.info(">>> Process estadoCivil buscar x ID");
@@ -112,24 +64,95 @@ public class EstadoCivilController extends GenericController {
 		} catch (CustomServiceException e) {
 			log.error(">>> Error estadoCivil findById :\n {}", e.getMessage());
 			return this.getInternalServerError(e.getMessage());
-		}
-
-	}
-
-	@GetMapping(value = "/findAll")
-	public ResponseEntity<ResponseModel> findAllAct() {
-		log.info(">>> Process estadoCivil findAllAct :::>");
-		try {
-			List<EstadoCivilDTO> list = service.findAllAct();
-			if(list.isEmpty()) {
-				return this.getNotFoundRequest();
-			}
-			return this.getOkResponseConsulta(list);
-		} catch (CustomServiceException e) {
-			log.error(">>> Error findAll... {}", e.getMessage());
+		} catch (Exception e) {
+			log.error(">>> Error estadoCivil findById :\n {}", e.getMessage());
 			return this.getInternalServerError(e.getMessage());
 		}
-		
+
 	}
+
+	@PostMapping(value = "/save", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<ResponseModel> save(@Valid @RequestBody EstadoCivilDTO t, BindingResult result) {
+		log.info(">>> Process estadoCivil save :::>");
+		if (result.hasErrors()) {
+			return this.getBadRequest(result);
+		}
+		try {
+			EstadoCivilDTO dto;
+			dto = service.save(t);
+			return this.getCreatedResponse(dto, result);
+		} catch (CustomServiceException e) {
+			log.error(">>> Error estadoCivil save {}", e.getMessage());
+			return this.getInternalServerError(e.getMessage());
+		} catch (Exception e) {
+			log.error(">>> Error estadoCivil save {}", e.getMessage());
+			return this.getInternalServerError(e.getMessage());
+		}
+	}
+
+	@PutMapping(value = "/update", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<ResponseModel> update(@Valid @RequestBody EstadoCivilDTO t, BindingResult result) {
+		log.info(">>> Process estadoCivil actualizar :::>");
+		if (result.hasErrors()) {
+			return this.getBadRequest(result);
+		}
+		try {
+			EstadoCivilDTO dto = service.findById(t.getIdEstadoCivil());
+			if(dto == null) {
+				return this.getNotFoundRequest();
+			}
+			t.setEstado(dto.getEstado());
+			return this.getOkResponseRegistro(service.update(t), result);
+		} catch (CustomServiceException e) {
+			log.error(">>> Error estadoCivil update {}", e.getMessage());
+			return this.getInternalServerError(e.getMessage());
+		} catch (Exception e) {
+			log.error(">>> Error estadoCivil update {}", e.getMessage());
+			return this.getInternalServerError(e.getMessage());
+		}
+	}
+
+	@PutMapping(value = "/updateStatus/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<ResponseModel> deleteLogic(@PathVariable("id") long id) {
+		log.info(">>> Process estadoCivil eliminar x ID :::>");
+		try {
+			EstadoCivilDTO dto = service.findById(id);
+			if (dto == null) {
+				return this.getNotFoundRequest();
+			}
+			dto.setEstado(Constant.STATUS_DISABLE);			
+			return this.getOkResponseConsulta(service.update(dto));
+		} catch (CustomServiceException e) {
+			log.error(">>> Error estadoCivil delete : {}", e.getMessage());
+			return this.getInternalServerError(e.getMessage());
+		} catch (Exception e) {
+			log.error(">>> Error estadoCivil delete : {}", e.getMessage());
+			return this.getInternalServerError(e.getMessage());
+		}
+	}
+	
+	@DeleteMapping(value = "/delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<ResponseModel> delete(@PathVariable("id") long id) {
+		log.info(">>> Process estadoCivil eliminar x ID :::>");
+		try {
+			EstadoCivilDTO dto = service.findById(id);
+			if (dto == null) {
+				log.info(">>> {} no encontrado", this.getClass().getName());
+				return this.getNotFoundRequest();
+			}			
+			service.delete(id);
+			return this.getOkResponseConsulta(dto);
+		} catch (CustomServiceException e) {
+			log.error(">>> Error estadoCivil delete : {}", e.getMessage());
+			return this.getInternalServerError(e.getMessage());
+		} catch (Exception e) {
+			log.error(">>> Error estadoCivil delete : {}", e.getMessage());
+			return this.getInternalServerError(e.getMessage());
+		}
+	}
+
+	
+
+	
 
 }
