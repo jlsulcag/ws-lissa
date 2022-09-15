@@ -41,11 +41,11 @@ public class TipoPersonaController extends GenericController{
 			}
 			return this.getOkResponseConsulta(list);
 		} catch (CustomServiceException e) {
-			log.error(">>> Error execute findAll {}", TipoPersona.class.getName());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error execute findAll {}", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.error(">>> Error execute findAll {}", TipoPersona.class.getName());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error execute findAll {}", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		}
 	}
 	
@@ -59,11 +59,11 @@ public class TipoPersonaController extends GenericController{
 			}
 			return this.getOkResponseConsulta(obj);
 		} catch (CustomServiceException e) {
-			log.error(">>> Error execute findById {}", TipoPersona.class.getName());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error execute findById {}", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.error(">>> Error execute findById {}", TipoPersona.class.getName());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error execute findById {}", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		}
 	}
 	
@@ -76,11 +76,11 @@ public class TipoPersonaController extends GenericController{
 		try {
 			return this.getCreatedResponse(service.save(obj), result);
 		} catch (CustomServiceException e) {
-			log.error(">>> Error save {} ", TipoPersona.class.getName());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error save {} ", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.error(">>> Error save {} ", TipoPersona.class.getName());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error save {} ", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		}
 		
 	}
@@ -98,8 +98,11 @@ public class TipoPersonaController extends GenericController{
 			}
 			return this.getOkResponseRegistro(service.update(obj), result);
 		} catch (CustomServiceException e) {
-			log.error(">>> Error update {} ", TipoPersona.class.getName());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error update {} ", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
+		} catch (Exception e) {
+			log.error(">>> Error update {} ", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		}
 		
 	}
@@ -115,11 +118,11 @@ public class TipoPersonaController extends GenericController{
 			temp.setEstado(Constant.STATUS_DISABLE);
 			return this.getOkResponseConsulta(service.update(temp));
 		} catch (CustomServiceException e) {
-			log.error(">>> Error updateStatus {} ", TipoPersona.class.getName());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error updateStatus {} ", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.error(">>> Error updateStatus {} ", TipoPersona.class.getName());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error updateStatus {} ", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		}
 		
 	}
@@ -135,11 +138,11 @@ public class TipoPersonaController extends GenericController{
 			service.delete(id);
 			return this.getOkResponseConsulta(temp);
 		} catch (CustomServiceException e) {
-			log.error(">>> Error delete {} ", TipoPersona.class.getName());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error delete {} ", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.error(">>> Error delete {} ", TipoPersona.class.getName());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error delete {} ", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		}
 		
 	}

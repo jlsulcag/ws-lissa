@@ -41,11 +41,11 @@ public class EstadoCivilController extends GenericController {
 			}
 			return this.getOkResponseConsulta(list);
 		} catch (CustomServiceException e) {
-			log.error(">>> Error estadoCivil findAll... {}", e.getMessage());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error estadoCivil findAll... {}", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.error(">>> Error estadoCivil findAll : {}", e.getMessage());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error estadoCivil findAll : {}", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		}
 		
 	}
@@ -62,11 +62,11 @@ public class EstadoCivilController extends GenericController {
 			}
 			return this.getOkResponseConsulta(estadoCivilDTO);
 		} catch (CustomServiceException e) {
-			log.error(">>> Error estadoCivil findById :\n {}", e.getMessage());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error estadoCivil findById :\n {}", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.error(">>> Error estadoCivil findById :\n {}", e.getMessage());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error estadoCivil findById :\n {}", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		}
 
 	}
@@ -82,11 +82,11 @@ public class EstadoCivilController extends GenericController {
 			dto = service.save(t);
 			return this.getCreatedResponse(dto, result);
 		} catch (CustomServiceException e) {
-			log.error(">>> Error estadoCivil save {}", e.getMessage());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error estadoCivil save {}", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.error(">>> Error estadoCivil save {}", e.getMessage());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error estadoCivil save {}", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		}
 	}
 
@@ -104,15 +104,15 @@ public class EstadoCivilController extends GenericController {
 			t.setEstado(dto.getEstado());
 			return this.getOkResponseRegistro(service.update(t), result);
 		} catch (CustomServiceException e) {
-			log.error(">>> Error estadoCivil update {}", e.getMessage());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error estadoCivil update {}", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.error(">>> Error estadoCivil update {}", e.getMessage());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error estadoCivil update {}", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		}
 	}
 
-	@PutMapping(value = "/updateStatus/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(value = "/updateStatus/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ResponseModel> deleteLogic(@PathVariable("id") long id) {
 		log.info(">>> Process estadoCivil eliminar x ID :::>");
 		try {
@@ -123,15 +123,15 @@ public class EstadoCivilController extends GenericController {
 			dto.setEstado(Constant.STATUS_DISABLE);			
 			return this.getOkResponseConsulta(service.update(dto));
 		} catch (CustomServiceException e) {
-			log.error(">>> Error estadoCivil delete : {}", e.getMessage());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error estadoCivil delete : {}", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.error(">>> Error estadoCivil delete : {}", e.getMessage());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error estadoCivil delete : {}", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		}
 	}
 	
-	@DeleteMapping(value = "/delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@DeleteMapping(value = "/delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ResponseModel> delete(@PathVariable("id") long id) {
 		log.info(">>> Process estadoCivil eliminar x ID :::>");
 		try {
@@ -143,11 +143,11 @@ public class EstadoCivilController extends GenericController {
 			service.delete(id);
 			return this.getOkResponseConsulta(dto);
 		} catch (CustomServiceException e) {
-			log.error(">>> Error estadoCivil delete : {}", e.getMessage());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error estadoCivil delete : {}", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.error(">>> Error estadoCivil delete : {}", e.getMessage());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error estadoCivil delete : {}", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		}
 	}
 

@@ -11,7 +11,7 @@ import com.sulcacorp.lissa.model.TipoDocumento;
 @Repository
 public interface ITipoDocumentoDAO extends JpaRepository<TipoDocumento, Long>{
 
-	@Query("from TipoDocumento a where a.estado = 1")
+	@Query("from TipoDocumento a where a.estado = '1'")
 	List<TipoDocumento> findAllAct();
 
 }

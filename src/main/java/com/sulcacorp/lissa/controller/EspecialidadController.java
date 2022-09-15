@@ -31,7 +31,7 @@ public class EspecialidadController extends GenericController{
 	@Autowired
 	private IEspecialidadService especialidadService;
 	
-	@GetMapping(value = "/findAll", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/findAll", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ResponseModel> findAll(){
 		log.info(">>> Process findAll");
 		try {
@@ -41,15 +41,15 @@ public class EspecialidadController extends GenericController{
 			}	
 			return this.getOkResponseConsulta(list);			
 		} catch (CustomServiceException e) {
-			log.error(">>> Error especialidad findAll :\n {}", e.getMessage());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error especialidad findAll :\n {}", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.error(">>> Error especialidad update : {}", e.getMessage());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error especialidad update : {}", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		}
 	}
 	
-	@GetMapping(value = "/findById/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/findById/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ResponseModel> findById(@PathVariable("id") Long id){
 		log.info(">>> Process findById");
 		EspecialidadDTO especialidad = new EspecialidadDTO();
@@ -60,11 +60,11 @@ public class EspecialidadController extends GenericController{
 			}
 			return getOkResponseConsulta(especialidad);
 		} catch (CustomServiceException e) {
-			log.error(">>> Error especialidad findById :\n {}", e.getMessage());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error especialidad findById :\n {}", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.error(">>> Error especialidad update : {}", e.getMessage());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error especialidad update : {}", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		}
 		
 	}
@@ -79,11 +79,11 @@ public class EspecialidadController extends GenericController{
 			EspecialidadDTO dto = especialidadService.save(especialidad);			
 			return this.getCreatedResponse(dto,result);
 		} catch (CustomServiceException e) {
-			log.error(">>> Error especialidad findById :\n {}", e.getMessage());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error especialidad findById :\n {}", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.error(">>> Error especialidad update : {}", e.getMessage());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error especialidad update : {}", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		}
 	}
 	
@@ -102,11 +102,11 @@ public class EspecialidadController extends GenericController{
 			especialidad.setFechaReg(especialidadDTO.getFechaReg());
 			return this.getOkResponseRegistro(especialidadService.update(especialidad), result);
 		} catch (CustomServiceException e) {
-			log.error(">>> Error especialidad update : {}", e.getMessage());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error especialidad update : {}", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.error(">>> Error especialidad update : {}", e.getMessage());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error especialidad update : {}", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		}
 	}
 
@@ -122,11 +122,11 @@ public class EspecialidadController extends GenericController{
 			obj.setEstado(Constant.STATUS_DISABLE);
 			return this.getOkResponseConsulta(especialidadService.update(obj));
 		} catch (CustomServiceException e) {
-			log.error(">>> Error especialidad updateStatus : {}", e.getMessage());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error especialidad updateStatus : {}", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.error(">>> Error especialidad updateStatus : {}", e.getMessage());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error especialidad updateStatus : {}", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		}
 		
 	}
@@ -143,11 +143,11 @@ public class EspecialidadController extends GenericController{
 			especialidadService.delete(id);
 			return this.getOkResponseConsulta(obj);
 		} catch (CustomServiceException e) {
-			log.error(">>> Error especialidad delete : {}", e.getMessage());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error especialidad delete : {}", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.error(">>> Error especialidad delete : {}", e.getMessage());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error especialidad delete : {}", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		}
 		
 	}

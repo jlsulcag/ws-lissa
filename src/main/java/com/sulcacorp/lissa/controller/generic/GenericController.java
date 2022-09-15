@@ -29,7 +29,7 @@ public abstract class GenericController {
 	protected ResponseEntity<ResponseModel> getOkResponseConsulta(Object obj){
 		ResponseModel response = ResponseModel.builder()
 						.statusCode(HttpStatus.OK.value())
-						.code(Constant.STATUS_OK)				
+						.statusResponse(Constant.STATUS_SUCCESS)				
 						.data(obj)
 						.build();
 		return ResponseEntity.status(HttpStatus.OK).body(response);
@@ -39,7 +39,7 @@ public abstract class GenericController {
 	protected ResponseEntity<ResponseModel> getOkResponseRegistro(Object obj, BindingResult result){
 		ResponseModel response = ResponseModel.builder()
 				.statusCode(HttpStatus.OK.value())
-				.code(Constant.STATUS_OK)
+				.statusResponse(Constant.STATUS_SUCCESS)
 				.errors(this.formatMapMessageList(result))
 				.data(obj)
 				.build();
@@ -51,7 +51,7 @@ public abstract class GenericController {
 	protected ResponseEntity<ResponseModel> getCreatedResponse(Object obj, BindingResult result){
 		ResponseModel response = ResponseModel.builder()
 				.statusCode(HttpStatus.CREATED.value())
-				.code(Constant.STATUS_OK)
+				.statusResponse(Constant.STATUS_SUCCESS)
 				.errors(this.formatMapMessageList(result))
 				.data(obj)
 				.build();
@@ -62,7 +62,7 @@ public abstract class GenericController {
 	protected ResponseEntity<ResponseModel> getBadRequest(BindingResult result){
 		ResponseModel response = ResponseModel.builder()
 				.statusCode(HttpStatus.BAD_REQUEST.value())
-				.code(Constant.STATUS_WARN)
+				.statusResponse(Constant.STATUS_ERROR)
 				.errors(this.formatMapMessageList(result))
 				.build();
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
@@ -72,17 +72,17 @@ public abstract class GenericController {
 	protected ResponseEntity<ResponseModel> getNotFoundRequest(){
 		ResponseModel response = ResponseModel.builder()
 				.statusCode(HttpStatus.NOT_FOUND.value())
-				.code(Constant.STATUS_INFO)
+				.statusResponse(Constant.STATUS_ERROR)
 				.errors(null)
 				.build();
-		return ResponseEntity.status(HttpStatus.OK).body(response);
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
 	}
 	
 	/*HttpStatus : 500*/
 	protected ResponseEntity<ResponseModel> getInternalServerError(String msj){
 		ResponseModel response = ResponseModel.builder()
 				.statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
-				.code(Constant.STATUS_ERROR)
+				.statusResponse(Constant.STATUS_ERROR)
 				.errors(msj)
 				.build();
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);

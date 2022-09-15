@@ -37,10 +37,11 @@ public class Constant {
 	public static final String ID_ALERTA 			=	"ID INVALIDO, DEBE SER MAYOR QUE CERO";
 	
 	/*Response Status*/
-	public static final String STATUS_OK = "OK";
-	public static final String STATUS_ERROR = "ERROR";
-	public static final String STATUS_WARN = "WARN";
-	public static final String STATUS_INFO = "INFO";
+	public static final Integer STATUS_SUCCESS = 1;
+	public static final Integer STATUS_ERROR = 0;
+	
+	/*Mensajes de Error*/
+	public final static String ERROR_500			=	"Error interno, vuelva a intentarlo más tarde...";
 }
 
 

@@ -11,7 +11,7 @@ import com.sulcacorp.lissa.model.TipoMedico;
 @Repository
 public interface ITipoMedicoDAO extends JpaRepository<TipoMedico, Long>{
 
-	@Query("from TipoMedico a where a.estado = 1")
+	@Query("from TipoMedico a where a.estado = '1'")
 	List<TipoMedico> findAllAct();
 	
 }

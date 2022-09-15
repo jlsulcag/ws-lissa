@@ -41,11 +41,11 @@ public class TipoDocumentoController extends GenericController{
 			}
 			return this.getOkResponseConsulta(list);
 		} catch (CustomServiceException e) {
-			log.info(">>> Error /api/tipodocumento/findAll");
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error /api/tipodocumento/findAll : {}", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.info(">>> Error /api/tipodocumento/findAll");
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error /api/tipodocumento/findAll : {}", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		}
 		
 	}
@@ -61,11 +61,11 @@ public class TipoDocumentoController extends GenericController{
 			}
 			return this.getOkResponseConsulta(obj);
 		} catch (CustomServiceException e) {
-			log.info(">>> Error /api/tipodocumento/findById");
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error /api/tipodocumento/findById : {} ", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.info(">>> Error /api/tipodocumento/findById");
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error /api/tipodocumento/findById : {} ", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		}
 		
 	}
@@ -81,11 +81,11 @@ public class TipoDocumentoController extends GenericController{
 			TipoDocumento obj = service.save(t);			
 			return this.getCreatedResponse(obj, result);
 		} catch (CustomServiceException e) {
-			log.error(">>>  Error /api/tipodocumento/save");
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>>  Error /api/tipodocumento/save : {} ",e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.error(">>>  Error /api/tipodocumento/save");
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>>  Error /api/tipodocumento/save : {} ", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		}
 	}
 	
@@ -104,11 +104,11 @@ public class TipoDocumentoController extends GenericController{
 			t.setEstado(obj.getEstado());
 			return this.getOkResponseRegistro(service.update(t), result);
 		} catch (CustomServiceException e) {
-			log.error(">>>  Error /api/tipodocumento/update");
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>>  Error /api/tipodocumento/update : {} ",e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.error(">>>  Error /api/tipodocumento/update");
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>>  Error /api/tipodocumento/update : {}",e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		}
 	}
 	
@@ -123,11 +123,11 @@ public class TipoDocumentoController extends GenericController{
 			obj.setEstado(Constant.STATUS_DISABLE);
 			return this.getOkResponseConsulta(service.update(obj));
 		} catch (CustomServiceException e) {
-			log.error(">>>  Error /api/tipodocumento/updateStatus");
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>>  Error /api/tipodocumento/updateStatus : {} ",e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.error(">>>  Error /api/tipodocumento/updateStatus");
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>>  Error /api/tipodocumento/updateStatus : {} ", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		}
 	}
 	
@@ -144,11 +144,11 @@ public class TipoDocumentoController extends GenericController{
 			service.delete(id);
 			return this.getOkResponseConsulta(obj);
 		} catch (CustomServiceException e) {
-			log.info("Error delete {} ", this.getClass().getName());
-			return this.getInternalServerError(e.getMessage());
+			log.error("Error delete {} ", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.info("Error delete {} ", this.getClass().getName());
-			return this.getInternalServerError(e.getMessage());
+			log.error("Error delete {} ", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		}
 			
 	}

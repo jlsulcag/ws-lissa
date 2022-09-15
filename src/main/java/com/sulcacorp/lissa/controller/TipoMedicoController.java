@@ -44,11 +44,11 @@ public class TipoMedicoController extends GenericController{
 			}
 			return this.getOkResponseConsulta(list);
 		} catch (CustomServiceException e) {
-			log.error(">>> Error execute findAll {}", TipoMedico.class.getName());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error execute findAll {}", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.error(">>> Error execute findAll {}", TipoMedico.class.getName());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error execute findAll {}", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		}
 	}
 	
@@ -62,11 +62,11 @@ public class TipoMedicoController extends GenericController{
 			}
 			return this.getOkResponseConsulta(obj);
 		} catch (CustomServiceException e) {
-			log.error(">>> Error execute findById {}", TipoMedico.class.getName());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error execute findById {}", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.error(">>> Error execute findById {}", TipoMedico.class.getName());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error execute findById {}", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		}
 	}
 	
@@ -79,11 +79,11 @@ public class TipoMedicoController extends GenericController{
 		try {
 			return this.getCreatedResponse(iTipoMedicoService.save(obj), result);
 		} catch (CustomServiceException e) {
-			log.error(">>> Error save {} ", TipoMedico.class.getName());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error save {} ", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.error(">>> Error save {} ", TipoMedico.class.getName());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error save {} ", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		}
 		
 	}
@@ -101,11 +101,11 @@ public class TipoMedicoController extends GenericController{
 			}
 			return this.getOkResponseRegistro(iTipoMedicoService.save(obj), result);
 		} catch (CustomServiceException e) {
-			log.error(">>> Error update {} ", TipoMedico.class.getName());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error update {} ", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.error(">>> Error update {} ", TipoMedico.class.getName());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error update {} ", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		}
 		
 	}
@@ -121,11 +121,11 @@ public class TipoMedicoController extends GenericController{
 			temp.setEstado(Constant.STATUS_DISABLE);
 			return this.getOkResponseConsulta(iTipoMedicoService.update(temp));
 		} catch (CustomServiceException e) {
-			log.error(">>> Error updateStatus {} ", TipoMedico.class.getName());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error updateStatus {} ", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.error(">>> Error updateStatus {} ", TipoMedico.class.getName());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error updateStatus {} ", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		}
 		
 	}
@@ -141,11 +141,11 @@ public class TipoMedicoController extends GenericController{
 			iTipoMedicoService.delete(id);
 			return this.getOkResponseConsulta(null);
 		} catch (CustomServiceException e) {
-			log.error(">>> Error delete {} ", TipoMedico.class.getName());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error delete {} ", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.error(">>> Error delete {} ", TipoMedico.class.getName());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error delete {} ", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		}
 		
 	}

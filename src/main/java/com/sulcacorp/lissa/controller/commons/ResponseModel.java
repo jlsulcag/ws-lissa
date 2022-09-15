@@ -11,15 +11,17 @@ import lombok.Data;
 
 @Data
 @Builder
-@JsonPropertyOrder({"timestamps", "statusCode", "code", "errors", "data"})
+@JsonPropertyOrder({"timestamps", "statusCode", "statusResponse", "errors", "data"})
 public class ResponseModel{
 	
 	@Builder.Default
 	private LocalDateTime timestamps= LocalDateTime.now(); 
 		
+	//200,201,400
 	private Integer statusCode;
 	
-	private String code;
+	//1=Exito, 0=Error
+	private Integer statusResponse;
 	
 	@JsonInclude(Include.NON_NULL)
 	private Object errors; 
