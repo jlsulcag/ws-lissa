@@ -123,4 +123,28 @@ public class MedicoServiceImpl implements IMedicoService{
 		return dto;
 	}
 
+	@Transactional
+	@Override
+	public Medico actualizardatos(MedicoDTO medicoDTO) {
+		/*Trasaccion 1 actualizar datos de la persona*/
+		Persona persona = new Persona();
+		persona = convertToEntity(medicoDTO.getPersonaDTO());
+		persona.setIdPersona(medicoDTO.getPersonaDTO().getIdPersona());
+		personaDAO.save(persona);
+		
+		/*Transaccion 2 actualizar datos del medico*/
+		Especialidad especialidad = new Especialidad();
+		especialidad = convertToEntity(medicoDTO.getEspecialidadDTO());
+		
+		Medico medico = new Medico();
+		medico = convertToEntityMedico(medicoDTO);
+		medico.setId(medicoDTO.getId());
+		//medico.setPersona(persona);
+		medico.setEspecialidad(especialidad);
+		
+		medicoDAO.save(medico);
+		
+		return medico;
+	}
+
 }

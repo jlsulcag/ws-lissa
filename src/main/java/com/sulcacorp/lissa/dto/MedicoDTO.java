@@ -16,7 +16,7 @@ public class MedicoDTO {
 	@Valid
 	private PersonaDTO personaDTO;
 	
-	@Valid
+	//@Valid
 	private EspecialidadDTO especialidadDTO;
 	
 	private TipoMedico tipoMedico;

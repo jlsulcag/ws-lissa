@@ -9,4 +9,6 @@ public interface IMedicoService extends IGenericService<MedicoDTO, Long> {
 
 	Medico saveCustom(MedicoDTO medicoDTO) throws CustomServiceException;
 
+	Medico actualizardatos(MedicoDTO medico);
+
 }

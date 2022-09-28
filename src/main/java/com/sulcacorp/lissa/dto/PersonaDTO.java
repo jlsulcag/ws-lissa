@@ -18,7 +18,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @JsonIgnoreProperties(ignoreUnknown = true)//Ignora campos desconocidos
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonInclude(JsonInclude.Include.NON_NULL)//los valores nulos no forman parte de la salida json final
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

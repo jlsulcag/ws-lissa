@@ -47,11 +47,11 @@ public class MedicoController extends GenericController{
 			}	
 			return this.getOkResponseConsulta(list);			
 		} catch (CustomServiceException e) {
-			log.error(">>> Error findAll Medico :\n {}", e.getMessage());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error findAll Medico :\n {}", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.error(">>> Error findAll Medico :\n {}", e.getMessage());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error findAll Medico :\n {}", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		}
 	}
 	
@@ -66,11 +66,11 @@ public class MedicoController extends GenericController{
 			}
 			return getOkResponseConsulta(medico);
 		} catch (CustomServiceException e) {
-			log.error(">>> Error findById Medico :\n {}", e.getMessage());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error findById Medico :\n {}", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.error(">>> Error findById Medico :\n {}", e.getMessage());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error findById Medico :\n {}", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		}
 		
 	}
@@ -84,28 +84,32 @@ public class MedicoController extends GenericController{
 		try {
 			return this.getCreatedResponse(service.saveCustom(medicoDTO),result);
 		} catch (CustomServiceException e) {
-			log.error(">>> CustomServiceException save Medico :\n {}", e.getMessage());
-			return this.getInternalServerError(e.getMessage());
+			log.error("Error CustomServiceException - MedicoController - save ", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.error(">>> Exception save Medico :\n {}", e.getMessage());
-			e.printStackTrace();
-			return this.getInternalServerError(e.getMessage());
+			log.error("Error Exception - MedicoController - save ", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		}
 	}
 	
 	@PutMapping(value = "/update")
 	public ResponseEntity<ResponseModel> update(@Valid @RequestBody MedicoDTO medico, BindingResult result){
-		log.info(">>> Execute update Medico");
+		log.info("Inicio - MedicoController - update");
 		try {
 			MedicoDTO temp = service.findById(medico.getId());
 			if(temp == null) {
 				return this.getNotFoundRequest();
 			}
-			return this.getOkResponseRegistro(service.update(medico), result);
+			log.info("Fin - MedicoController - update");
+			return this.getOkResponseRegistro(service.actualizardatos(medico), result);
 		} catch (CustomServiceException e) {
-			log.error(">>> Error update Medico : {}", e.getMessage());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error CustomServiceException MedicoController - update ", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
+		} catch (Exception e) {
+			log.error("Error Exception - MedicoController - update ", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		}
+		
 	}
 	
 	@DeleteMapping(value = "/delete/{id}")
@@ -120,8 +124,11 @@ public class MedicoController extends GenericController{
 			service.delete(id);
 			return this.getOkResponseConsulta(obj);
 		} catch (CustomServiceException e) {
-			log.error(">>> Error delete Medico : {}", e.getMessage());
-			return this.getInternalServerError(e.getMessage());
+			log.error(">>> Error CustomServiceException MedicoController - delete ", e.getMessage());
+			return this.getInternalServerError(Constant.ERROR_500);
+		} catch (Exception e) {
+			log.error("Error Exception - MedicoController - delete ", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
 		}
 		
 	}
