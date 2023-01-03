@@ -115,7 +115,7 @@ public class TipoPersonaController extends GenericController{
 			if(temp == null) {
 				return this.getNotFoundRequest();
 			}
-			temp.setEstado(Constant.STATUS_DISABLE);
+			temp.setEstado(Constant.STATUS_REG_DISABLE);
 			return this.getOkResponseConsulta(service.update(temp));
 		} catch (CustomServiceException e) {
 			log.error(">>> Error updateStatus {} ", e.fillInStackTrace());

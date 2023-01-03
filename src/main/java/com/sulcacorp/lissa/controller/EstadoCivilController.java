@@ -120,7 +120,7 @@ public class EstadoCivilController extends GenericController {
 			if (dto == null) {
 				return this.getNotFoundRequest();
 			}
-			dto.setEstado(Constant.STATUS_DISABLE);			
+			dto.setEstado(Constant.STATUS_REG_DISABLE);			
 			return this.getOkResponseConsulta(service.update(dto));
 		} catch (CustomServiceException e) {
 			log.error(">>> Error estadoCivil delete : {}", e.fillInStackTrace());

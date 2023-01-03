@@ -120,7 +120,7 @@ public class TipoDocumentoController extends GenericController{
 			if(obj == null) {
 				return this.getNotFoundRequest();
 			}	
-			obj.setEstado(Constant.STATUS_DISABLE);
+			obj.setEstado(Constant.STATUS_REG_DISABLE);
 			return this.getOkResponseConsulta(service.update(obj));
 		} catch (CustomServiceException e) {
 			log.error(">>>  Error /api/tipodocumento/updateStatus : {} ",e.fillInStackTrace());

@@ -24,7 +24,7 @@ public class TipoDocumentoServiceImpl implements ITipoDocumentoService {
 		t.setDescripcion(StringUtils.isBlank(t.getDescripcion()) ? "" : t.getDescripcion().toUpperCase().trim());
 		t.setAbreviatura(StringUtils.isBlank(t.getAbreviatura()) ? null : t.getAbreviatura().toUpperCase().trim());
 		t.setCodigo(StringUtils.isBlank(t.getCodigo()) ? null : t.getCodigo().toUpperCase().trim());
-		t.setEstado(Constant.STATUS_ENABLE);
+		t.setEstado(Constant.STATUS_REG_ENABLE);
 		return dao.save(t);
 
 	}

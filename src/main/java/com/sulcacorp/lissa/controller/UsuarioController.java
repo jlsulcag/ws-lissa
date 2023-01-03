@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.sulcacorp.lissa.controller.commons.ResponseModel;
 import com.sulcacorp.lissa.controller.generic.GenericController;
-import com.sulcacorp.lissa.dto.EspecialidadDTO;
-import com.sulcacorp.lissa.service.IEspecialidadService;
+import com.sulcacorp.lissa.model.Usuario;
+import com.sulcacorp.lissa.service.IUsuarioService;
 import com.sulcacorp.lissa.service.exception.CustomServiceException;
 import com.sulcacorp.lissa.util.Constant;
 
@@ -25,128 +25,107 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/especialidad")
-public class EspecialidadController extends GenericController{
+@RequestMapping("/api/usuario")
+public class UsuarioController extends GenericController{
 
 	@Autowired
-	private IEspecialidadService especialidadService;
+	private IUsuarioService usuarioService;
 	
 	@GetMapping(value = "/findAll", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ResponseModel> findAll(){
-		log.info(">>> Process findAll");
+		log.info("Inicio UsuarioController findAll");
 		try {
-			List<EspecialidadDTO> list = especialidadService.findAllAct();
+			List<Usuario> list = usuarioService.findAllAct();
 			if(list.isEmpty()) {
 				return this.getNotFoundRequest();
 			}	
 			return this.getOkResponseConsulta(list);			
 		} catch (CustomServiceException e) {
-			log.error(">>> Error especialidad findAll :\n {}", e.fillInStackTrace());
+			log.error("Error UsuarioController findAll :\n {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.error(">>> Error especialidad update : {}", e.fillInStackTrace());
+			log.error("Error UsuarioController findAll : {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constant.ERROR_500);
 		}
 	}
 	
 	@GetMapping(value = "/findById/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ResponseModel> findById(@PathVariable("id") Long id){
-		log.info(">>> Process findById");
-		EspecialidadDTO especialidad = new EspecialidadDTO();
+		log.info("Process findById");
+		Usuario usuario = new Usuario();
 		try {
-			especialidad = especialidadService.findById(id);
-			if(especialidad == null) {
+			usuario = usuarioService.findById(id);
+			if(usuario == null) {
 				return this.getNotFoundRequest();
 			}
-			return getOkResponseConsulta(especialidad);
+			return getOkResponseConsulta(usuario);
 		} catch (CustomServiceException e) {
-			log.error(">>> Error especialidad findById :\n {}", e.fillInStackTrace());
+			log.error("Error usuario findById :\n {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.error(">>> Error especialidad update : {}", e.fillInStackTrace());
+			log.error("Error usuario update : {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constant.ERROR_500);
 		}
 		
 	}
 	
 	@PostMapping(value = "/save", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ResponseModel> save(@Valid @RequestBody EspecialidadDTO especialidad, BindingResult result){
-		log.info(">>> Process save");
+	public ResponseEntity<ResponseModel> save(@Valid @RequestBody Usuario usuario, BindingResult result){
+		log.info("Inicio UsuarioController save");
 		if(result.hasErrors()) {
 			return this.getBadRequest(result);
 		}
 		try {
-			EspecialidadDTO dto = especialidadService.save(especialidad);			
-			return this.getCreatedResponse(dto,result);
+			Usuario user = usuarioService.save(usuario);
+			log.info("Fin UsuarioController save");
+			return this.getCreatedResponse(user,result);
 		} catch (CustomServiceException e) {
-			log.error(">>> Error especialidad findById :\n {}", e.fillInStackTrace());
+			log.error("Error usuario save :\n {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.error(">>> Error especialidad update : {}", e.fillInStackTrace());
+			log.error("Error usuario save : {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constant.ERROR_500);
 		}
 	}
 	
 	@PutMapping(value = "/update", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ResponseModel> update(@Valid @RequestBody EspecialidadDTO especialidad, BindingResult result){
-		log.info(">>> Process update");
+	public ResponseEntity<ResponseModel> update(@Valid @RequestBody Usuario usuario, BindingResult result){
+		log.info("Inicio UsuarioController update");
 		try {
 			if(result.hasErrors()) {
 				return this.getBadRequest(result);
 			}
-			EspecialidadDTO especialidadDTO = especialidadService.findById(especialidad.getIdEspecialidad());
-			if(especialidadDTO == null) {
+			Usuario usuarioDTO = usuarioService.findById(usuario.getIdUsuario());
+			if(usuarioDTO == null) {
 				return this.getNotFoundRequest();
 			}
-			especialidad.setEstado(especialidadDTO.getEstado());
-			especialidad.setFechaReg(especialidadDTO.getFechaReg());
-			return this.getOkResponseRegistro(especialidadService.update(especialidad), result);
+			log.info("Fin UsuarioController update");
+			return this.getOkResponseRegistro(usuarioService.update(usuario), result);
 		} catch (CustomServiceException e) {
-			log.error(">>> Error especialidad update : {}", e.fillInStackTrace());
+			log.error("Error usuario update : {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.error(">>> Error especialidad update : {}", e.fillInStackTrace());
+			log.error("Error usuario update : {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constant.ERROR_500);
 		}
-	}
-
-	
-	@PutMapping(value = "/updateStatus/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ResponseModel> updateStatus(@PathVariable("id") Long id) {
-		log.info(">>> Process updateStatus");
-		try {
-			EspecialidadDTO obj = especialidadService.findById(id);
-			if(obj == null) {
-				return this.getNotFoundRequest();
-			}
-			obj.setEstado(Constant.STATUS_REG_DISABLE);
-			return this.getOkResponseConsulta(especialidadService.update(obj));
-		} catch (CustomServiceException e) {
-			log.error(">>> Error especialidad updateStatus : {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
-		} catch (Exception e) {
-			log.error(">>> Error especialidad updateStatus : {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
-		}
-		
 	}
 	
 	@DeleteMapping(value = "/delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ResponseModel> delete(@PathVariable("id") Long id) {
-		log.info(">>> Process delete");
-		EspecialidadDTO obj = new EspecialidadDTO();
+		log.info("Process delete");
+		Usuario obj = new Usuario();
 		try {
-			obj = especialidadService.findById(id);
+			obj = usuarioService.findById(id);
 			if(obj == null) {
 				return this.getNotFoundRequest();
 			}			
-			especialidadService.delete(id);
+			usuarioService.delete(id);
 			return this.getOkResponseConsulta(obj);
 		} catch (CustomServiceException e) {
-			log.error(">>> Error especialidad delete : {}", e.fillInStackTrace());
+			log.error("Error usuario delete : {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.error(">>> Error especialidad delete : {}", e.fillInStackTrace());
+			log.error("Error usuario delete : {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constant.ERROR_500);
 		}
 		

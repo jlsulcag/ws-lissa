@@ -20,7 +20,7 @@ public class TipoMedicoServiceImpl implements ITipoMedicoService {
 	@Override
 	public TipoMedico save(TipoMedico t) {
 		t.setDescTipoMedico(t.getDescTipoMedico().toUpperCase());
-		t.setEstado(Constant.STATUS_ENABLE);
+		t.setEstado(Constant.STATUS_REG_ENABLE);
 		return tipoMedicoDAO.save(t);
 	}
 

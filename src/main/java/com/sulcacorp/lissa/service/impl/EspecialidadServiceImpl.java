@@ -28,7 +28,7 @@ public class EspecialidadServiceImpl implements IEspecialidadService {
 	public EspecialidadDTO save(EspecialidadDTO t) {
 		Especialidad especialidad = new Especialidad();
 		t.setDescEspecialidad(StringUtils.upperCase(t.getDescEspecialidad()));
-		t.setEstado(Constant.STATUS_ENABLE);
+		t.setEstado(Constant.STATUS_REG_ENABLE);
 		t.setFechaReg(LocalDateTime.now());
 		especialidad = especialidadDAO.saveAndFlush(convertToEntity(t));
 		return convertToDto(especialidad);

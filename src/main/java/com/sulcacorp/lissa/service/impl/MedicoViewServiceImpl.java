@@ -26,7 +26,7 @@ public class MedicoViewServiceImpl implements IMedicoViewService{
 
 	@Override
 	public List<MedicoView> findAllAct() throws CustomServiceException {
-		return repository.findAllAct(Constant.STATUS_ENABLE);
+		return repository.findAllAct(Constant.STATUS_REG_ENABLE);
 	}
 
 

@@ -19,8 +19,8 @@ public class Constant {
 	public static final String EXTERNO = "2";
 	
 	/*estados*/
-	public static final String STATUS_ENABLE = "1";
-	public static final String STATUS_DISABLE = "0";
+	public static final String STATUS_REG_ENABLE = "1";
+	public static final String STATUS_REG_DISABLE = "0";
 	
 	/*Mensajes*/
 	public final static String MSG_CONS_EXITO		=	"CONSULTA EXITOSA";
