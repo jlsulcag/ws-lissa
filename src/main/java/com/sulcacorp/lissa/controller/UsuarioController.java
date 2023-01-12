@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sulcacorp.lissa.controller.commons.ResponseModel;
 import com.sulcacorp.lissa.controller.generic.GenericController;
 import com.sulcacorp.lissa.model.Usuario;
+import com.sulcacorp.lissa.request.UsuarioRequest;
 import com.sulcacorp.lissa.service.IUsuarioService;
 import com.sulcacorp.lissa.service.exception.CustomServiceException;
 import com.sulcacorp.lissa.util.Constant;
@@ -51,7 +52,7 @@ public class UsuarioController extends GenericController{
 	
 	@GetMapping(value = "/findById/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ResponseModel> findById(@PathVariable("id") Long id){
-		log.info("Process findById");
+		log.info("Inicion UsuarioController findById");
 		Usuario usuario = new Usuario();
 		try {
 			usuario = usuarioService.findById(id);
@@ -60,10 +61,10 @@ public class UsuarioController extends GenericController{
 			}
 			return getOkResponseConsulta(usuario);
 		} catch (CustomServiceException e) {
-			log.error("Error usuario findById :\n {}", e.fillInStackTrace());
+			log.error("Error UsuarioController findById :\n {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.error("Error usuario update : {}", e.fillInStackTrace());
+			log.error("Error UsuarioController update : {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constant.ERROR_500);
 		}
 		
@@ -80,10 +81,10 @@ public class UsuarioController extends GenericController{
 			log.info("Fin UsuarioController save");
 			return this.getCreatedResponse(user,result);
 		} catch (CustomServiceException e) {
-			log.error("Error usuario save :\n {}", e.fillInStackTrace());
+			log.error("Error UsuarioController save :\n {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.error("Error usuario save : {}", e.fillInStackTrace());
+			log.error("Error UsuarioController save : {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constant.ERROR_500);
 		}
 	}
@@ -102,17 +103,17 @@ public class UsuarioController extends GenericController{
 			log.info("Fin UsuarioController update");
 			return this.getOkResponseRegistro(usuarioService.update(usuario), result);
 		} catch (CustomServiceException e) {
-			log.error("Error usuario update : {}", e.fillInStackTrace());
+			log.error("Error UsuarioController update : {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.error("Error usuario update : {}", e.fillInStackTrace());
+			log.error("Error UsuarioController update : {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constant.ERROR_500);
 		}
 	}
 	
 	@DeleteMapping(value = "/delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ResponseModel> delete(@PathVariable("id") Long id) {
-		log.info("Process delete");
+		log.info("Inicio UsuarioController delete");
 		Usuario obj = new Usuario();
 		try {
 			obj = usuarioService.findById(id);
@@ -122,12 +123,31 @@ public class UsuarioController extends GenericController{
 			usuarioService.delete(id);
 			return this.getOkResponseConsulta(obj);
 		} catch (CustomServiceException e) {
-			log.error("Error usuario delete : {}", e.fillInStackTrace());
+			log.error("Error UsuarioController delete : {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.error("Error usuario delete : {}", e.fillInStackTrace());
+			log.error("Error UsuarioController delete : {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constant.ERROR_500);
 		}
 		
+	}
+	
+	@PostMapping(value = "/create-user", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<ResponseModel> createUser(@RequestBody UsuarioRequest usuarioRequest){
+		Integer response;
+		log.info("Inicio UsuarioController createUser ");
+		try {
+			response = usuarioService.createUser(usuarioRequest);
+			if(response == Constant.STATUS_SUCCESS) {
+				return this.getCreatedResponseTransactional();
+			}
+			return this.getInternalServerError(Constant.ERROR_500);
+		} catch (CustomServiceException e) {
+			log.error("Error UsuarioRolController createUser :\n {}", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
+		} catch (Exception e) {
+			log.error("Error UsuarioRolController createUser :\n {}", e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
+		}
 	}
 }

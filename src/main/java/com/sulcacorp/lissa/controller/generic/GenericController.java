@@ -58,6 +58,17 @@ public abstract class GenericController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(response);
 	}
 	
+	/*HttpStatus : 201*/
+	protected ResponseEntity<ResponseModel> getCreatedResponseTransactional(){
+		ResponseModel response = ResponseModel.builder()
+				.statusCode(HttpStatus.CREATED.value())
+				.statusResponse(Constant.STATUS_SUCCESS)
+				.errors(null)
+				.data(null)
+				.build();
+		return ResponseEntity.status(HttpStatus.CREATED).body(response);
+	}
+	
 	/*HttpStatus 400*/
 	protected ResponseEntity<ResponseModel> getBadRequest(BindingResult result){
 		ResponseModel response = ResponseModel.builder()

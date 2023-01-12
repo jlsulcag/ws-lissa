@@ -15,14 +15,14 @@ import javax.persistence.Table;
 
 import com.sulcacorp.lissa.model.generic.GenericModel;
 
-import io.swagger.annotations.ApiModel;
+//import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 
-@ApiModel(description = "Informacion de Persona")
+//@ApiModel(description = "Informacion de Persona")
 @EqualsAndHashCode(callSuper=false)
 @Data
 @NoArgsConstructor
