@@ -1,4 +1,4 @@
-package com.sulcacorp.lissa.repository;
+package com.sulcacorp.lissa.security.repository;
 
 import java.util.List;
 

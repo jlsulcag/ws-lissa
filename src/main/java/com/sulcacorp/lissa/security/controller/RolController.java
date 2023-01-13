@@ -1,4 +1,4 @@
-package com.sulcacorp.lissa.controller;
+package com.sulcacorp.lissa.security.controller;
 
 import java.util.List;
 
@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sulcacorp.lissa.controller.commons.ResponseModel;
 import com.sulcacorp.lissa.controller.generic.GenericController;
 import com.sulcacorp.lissa.model.Rol;
+import com.sulcacorp.lissa.security.service.impl.RolServiceimpl;
 import com.sulcacorp.lissa.service.exception.CustomServiceException;
-import com.sulcacorp.lissa.service.impl.RolServiceimpl;
 import com.sulcacorp.lissa.util.Constant;
 
 import lombok.extern.slf4j.Slf4j;

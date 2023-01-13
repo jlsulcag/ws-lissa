@@ -1,4 +1,4 @@
-package com.sulcacorp.lissa.service.impl;
+package com.sulcacorp.lissa.security.service.impl;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -12,10 +12,10 @@ import com.sulcacorp.lissa.model.Persona;
 import com.sulcacorp.lissa.model.Usuario;
 import com.sulcacorp.lissa.model.UsuarioRol;
 import com.sulcacorp.lissa.repository.IPersonaDAO;
-import com.sulcacorp.lissa.repository.IUsuarioRepository;
-import com.sulcacorp.lissa.repository.IUsuarioRolRepository;
-import com.sulcacorp.lissa.request.UsuarioRequest;
-import com.sulcacorp.lissa.service.IUsuarioService;
+import com.sulcacorp.lissa.security.repository.IUsuarioRepository;
+import com.sulcacorp.lissa.security.repository.IUsuarioRolRepository;
+import com.sulcacorp.lissa.security.request.UsuarioRequest;
+import com.sulcacorp.lissa.security.service.IUsuarioService;
 import com.sulcacorp.lissa.service.exception.CustomServiceException;
 import com.sulcacorp.lissa.util.Constant;
 

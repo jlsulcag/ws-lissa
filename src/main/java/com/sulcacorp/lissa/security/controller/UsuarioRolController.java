@@ -1,7 +1,9 @@
-package com.sulcacorp.lissa.controller;
+package com.sulcacorp.lissa.security.controller;
 
 import java.util.List;
+
 import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -14,11 +16,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.sulcacorp.lissa.controller.commons.ResponseModel;
 import com.sulcacorp.lissa.controller.generic.GenericController;
-import com.sulcacorp.lissa.model.Usuario;
-import com.sulcacorp.lissa.request.UsuarioRequest;
-import com.sulcacorp.lissa.service.IUsuarioService;
+import com.sulcacorp.lissa.model.UsuarioRol;
+import com.sulcacorp.lissa.security.service.impl.UsuarioRolServiceImpl;
 import com.sulcacorp.lissa.service.exception.CustomServiceException;
 import com.sulcacorp.lissa.util.Constant;
 
@@ -26,128 +28,108 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/usuario")
-public class UsuarioController extends GenericController{
-
+@RequestMapping(value = "api/usuario-rol")
+public class UsuarioRolController extends GenericController{
+	
 	@Autowired
-	private IUsuarioService usuarioService;
+	private UsuarioRolServiceImpl usuarioRolService;
 	
 	@GetMapping(value = "/findAll", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ResponseModel> findAll(){
-		log.info("Inicio UsuarioController findAll");
+		log.info("Inicio UsuarioRolController findAll");
 		try {
-			List<Usuario> list = usuarioService.findAllAct();
+			List<UsuarioRol> list = usuarioRolService.findAllAct();
 			if(list.isEmpty()) {
 				return this.getNotFoundRequest();
 			}	
 			return this.getOkResponseConsulta(list);			
 		} catch (CustomServiceException e) {
-			log.error("Error UsuarioController findAll :\n {}", e.fillInStackTrace());
+			log.error("Error UsuarioRolController findAll :\n {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.error("Error UsuarioController findAll : {}", e.fillInStackTrace());
+			log.error("Error UsuarioRolController findAll : {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constant.ERROR_500);
 		}
 	}
 	
 	@GetMapping(value = "/findById/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ResponseModel> findById(@PathVariable("id") Long id){
-		log.info("Inicion UsuarioController findById");
-		Usuario usuario = new Usuario();
+		log.info("Inicio UsuarioRolController findById");
+		UsuarioRol usuarioRol = new UsuarioRol();
 		try {
-			usuario = usuarioService.findById(id);
-			if(usuario == null) {
+			usuarioRol = usuarioRolService.findById(id);
+			if(usuarioRol == null) {
 				return this.getNotFoundRequest();
 			}
-			return getOkResponseConsulta(usuario);
+			return getOkResponseConsulta(usuarioRol);
 		} catch (CustomServiceException e) {
-			log.error("Error UsuarioController findById :\n {}", e.fillInStackTrace());
+			log.error("Error UsuarioRolController findById :\n {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.error("Error UsuarioController update : {}", e.fillInStackTrace());
+			log.error("Error UsuarioRolController findById : {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constant.ERROR_500);
 		}
 		
 	}
 	
 	@PostMapping(value = "/save", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ResponseModel> save(@Valid @RequestBody Usuario usuario, BindingResult result){
-		log.info("Inicio UsuarioController save");
+	public ResponseEntity<ResponseModel> save(@Valid @RequestBody UsuarioRol usuarioRol, BindingResult result){
+		log.info("Inicio UsuarioRolController save");
 		if(result.hasErrors()) {
 			return this.getBadRequest(result);
 		}
 		try {
-			Usuario user = usuarioService.save(usuario);
-			log.info("Fin UsuarioController save");
-			return this.getCreatedResponse(user,result);
+			UsuarioRol dto = usuarioRolService.save(usuarioRol);			
+			return this.getCreatedResponse(dto,result);
 		} catch (CustomServiceException e) {
-			log.error("Error UsuarioController save :\n {}", e.fillInStackTrace());
+			log.error("Error UsuarioRolController save :\n {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.error("Error UsuarioController save : {}", e.fillInStackTrace());
+			log.error("Error UsuarioRolController save : {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constant.ERROR_500);
 		}
 	}
 	
 	@PutMapping(value = "/update", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ResponseModel> update(@Valid @RequestBody Usuario usuario, BindingResult result){
-		log.info("Inicio UsuarioController update");
+	public ResponseEntity<ResponseModel> update(@Valid @RequestBody UsuarioRol usuarioRol, BindingResult result){
+		log.info("Inicio UsuarioRolController update");
 		try {
 			if(result.hasErrors()) {
 				return this.getBadRequest(result);
 			}
-			Usuario usuarioDTO = usuarioService.findById(usuario.getIdUsuario());
-			if(usuarioDTO == null) {
+			UsuarioRol rolDTO = usuarioRolService.findById(usuarioRol.getIdUsuarioRol());
+			if(rolDTO == null) {
 				return this.getNotFoundRequest();
-			}
-			log.info("Fin UsuarioController update");
-			return this.getOkResponseRegistro(usuarioService.update(usuario), result);
+			}			
+			return this.getOkResponseRegistro(usuarioRolService.update(usuarioRol), result);
 		} catch (CustomServiceException e) {
-			log.error("Error UsuarioController update : {}", e.fillInStackTrace());
+			log.error("Error UsuarioRolController update : {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.error("Error UsuarioController update : {}", e.fillInStackTrace());
+			log.error("Error UsuarioRolController update : {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constant.ERROR_500);
 		}
 	}
 	
 	@DeleteMapping(value = "/delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ResponseModel> delete(@PathVariable("id") Long id) {
-		log.info("Inicio UsuarioController delete");
-		Usuario obj = new Usuario();
+		log.info("Inicio UsuarioRolController delete");
+		UsuarioRol obj = new UsuarioRol();
 		try {
-			obj = usuarioService.findById(id);
+			obj = usuarioRolService.findById(id);
 			if(obj == null) {
 				return this.getNotFoundRequest();
 			}			
-			usuarioService.delete(id);
+			usuarioRolService.delete(id);
 			return this.getOkResponseConsulta(obj);
 		} catch (CustomServiceException e) {
-			log.error("Error UsuarioController delete : {}", e.fillInStackTrace());
+			log.error("Error UsuarioRolController delete : {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constant.ERROR_500);
 		} catch (Exception e) {
-			log.error("Error UsuarioController delete : {}", e.fillInStackTrace());
+			log.error("Error UsuarioRolController delete : {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constant.ERROR_500);
 		}
 		
 	}
-	
-	@PostMapping(value = "/create-user", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ResponseModel> createUser(@RequestBody UsuarioRequest usuarioRequest){
-		Integer response;
-		log.info("Inicio UsuarioController createUser ");
-		try {
-			response = usuarioService.createUser(usuarioRequest);
-			if(response == Constant.STATUS_SUCCESS) {
-				return this.getCreatedResponseTransactional();
-			}
-			return this.getInternalServerError(Constant.ERROR_500);
-		} catch (CustomServiceException e) {
-			log.error("Error UsuarioRolController createUser :\n {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
-		} catch (Exception e) {
-			log.error("Error UsuarioRolController createUser :\n {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
-		}
-	}
+
 }

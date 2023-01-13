@@ -1,7 +1,7 @@
-package com.sulcacorp.lissa.service;
+package com.sulcacorp.lissa.security.service;
 
 import com.sulcacorp.lissa.model.Usuario;
-import com.sulcacorp.lissa.request.UsuarioRequest;
+import com.sulcacorp.lissa.security.request.UsuarioRequest;
 import com.sulcacorp.lissa.service.exception.CustomServiceException;
 import com.sulcacorp.lissa.service.generic.IGenericService;
 

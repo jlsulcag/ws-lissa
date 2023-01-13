@@ -1,6 +1,7 @@
-package com.sulcacorp.lissa.repository;
+package com.sulcacorp.lissa.security.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -17,7 +18,7 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Long>{
 	
 	
 	@Query("from Usuario u where u.nombreUsuario =:userName and u.estado = '1' ")
-	Usuario findByNombre(@Param("userName") String userName);
+	Optional<Usuario> findByNombre(@Param("userName") String userName);
 	
 	
 	

@@ -1,4 +1,4 @@
-package com.sulcacorp.lissa.service.impl;
+package com.sulcacorp.lissa.security.service.impl;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -18,13 +18,14 @@ import org.springframework.transaction.annotation.Transactional;
 import com.sulcacorp.lissa.model.Rol;
 import com.sulcacorp.lissa.model.Usuario;
 import com.sulcacorp.lissa.model.UsuarioRol;
-import com.sulcacorp.lissa.repository.IUsuarioRepository;
-import com.sulcacorp.lissa.repository.IUsuarioRolRepository;
+import com.sulcacorp.lissa.security.entity.UserDetailsImpl;
+import com.sulcacorp.lissa.security.repository.IUsuarioRepository;
+import com.sulcacorp.lissa.security.repository.IUsuarioRolRepository;
 import com.sulcacorp.lissa.service.exception.CustomServiceException;
 
 @Service("usuarioDetailServiceImpl")
 public class UsuarioDetailServiceImpl implements UserDetailsService {
-	
+
 	@Autowired
 	private IUsuarioRepository repository;
 
@@ -33,15 +34,17 @@ public class UsuarioDetailServiceImpl implements UserDetailsService {
 
 	@Autowired
 	private RolServiceimpl serviceRol;
-	
+
 	@Override
 	@Transactional
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
 		List<UsuarioRol> listUsuarioRol = new ArrayList<>();
 		Set<GrantedAuthority> authorities = new HashSet<>();
+
+		Usuario usuario = repository.findByNombre(username)
+				.orElseThrow(() -> new UsernameNotFoundException("El usuario " + username + "No existe."));
 		
-		Usuario usuario = repository.findByNombre(username);
 		if (usuario != null && usuario.getIdUsuario() > 0) {
 			listUsuarioRol = repositoryUsuarioRol.listByUsuario(usuario.getIdUsuario());
 		}
@@ -60,9 +63,11 @@ public class UsuarioDetailServiceImpl implements UserDetailsService {
 			}
 		}
 
-		return new User(usuario.getNombreUsuario(), usuario.getContrasenia(), authorities);
-	
-		//return null;
+		return new UserDetailsImpl(usuario);
+
+		// return new User(usuario.getNombreUsuario(), usuario.getContrasenia(),
+		// authorities);
+
 	}
 
 }

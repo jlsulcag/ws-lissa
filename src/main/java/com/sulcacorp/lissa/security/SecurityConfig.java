@@ -8,27 +8,39 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.sulcacorp.lissa.service.impl.UsuarioDetailServiceImpl;
+import com.sulcacorp.lissa.security.jwt.JWTAuthenticationFilter;
+import com.sulcacorp.lissa.security.jwt.JWTAuthorizationFilter;
+import com.sulcacorp.lissa.security.service.impl.UsuarioDetailServiceImpl;
+
+import lombok.AllArgsConstructor;
 
 
 //@EnableWebSecurity //configuración de seguridad web
 //@EnableGlobalMethodSecurity(prePostEnabled = true) //Proteger toda la aplicación a nivel global
+@AllArgsConstructor
 @Configuration
 public class SecurityConfig{
 	
 	@Autowired
 	@Qualifier("usuarioDetailServiceImpl")
 	private UsuarioDetailServiceImpl usuarioDetailServiceImpl;
+	
+	@Autowired
+	private final JWTAuthorizationFilter jwtAuthorizationFilter;
 		
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity http, AuthenticationManager authManager) throws Exception {
+		
+		JWTAuthenticationFilter jwtAuthenticationFilter = new JWTAuthenticationFilter();
+		jwtAuthenticationFilter.setAuthenticationManager(authManager);
+		jwtAuthenticationFilter.setFilterProcessesUrl("/login");
+		
+		
 		return http
 		.csrf()
 		.disable()
@@ -36,14 +48,15 @@ public class SecurityConfig{
 		.anyRequest()
 		.authenticated()
 		.and()
-		.httpBasic()
-		.and()
 		.sessionManagement()
 		.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 		.and()
+		.addFilter(jwtAuthenticationFilter)
+		.addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
 		.build();
 	}
 	
+	/*
 	@Bean
 	UserDetailsService userDetailService() {
 		InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
@@ -53,12 +66,13 @@ public class SecurityConfig{
 				.build());
 		
 		return manager;
-	}	
+	}
+	*/	
 	
 	@Bean
 	AuthenticationManager autManager(HttpSecurity http, PasswordEncoder passEncoder) throws Exception {
 		return http.getSharedObject(AuthenticationManagerBuilder.class)
-				.userDetailsService(userDetailService())
+				.userDetailsService(usuarioDetailServiceImpl)
 				.passwordEncoder(passwordEncoder())
 				.and()
 				.build();
@@ -69,6 +83,7 @@ public class SecurityConfig{
 		return new BCryptPasswordEncoder();
 	}
 	
+
 	
 
 	/*

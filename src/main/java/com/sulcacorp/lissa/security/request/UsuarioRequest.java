@@ -1,4 +1,4 @@
-package com.sulcacorp.lissa.request;
+package com.sulcacorp.lissa.security.request;
 
 import java.util.List;
 

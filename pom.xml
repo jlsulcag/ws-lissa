@@ -3,7 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -51,74 +51,80 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.18.12</version><!--$NO-MVN-MAN-VER$-->
+			<version>1.18.12</version><!--$NO-MVN-MAN-VER$ -->
 			<scope>provided</scope>
 		</dependency>
 
 		<!-- Dependencias de documentacion de servicios REST -->
-		<!--  
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger2</artifactId>
-			<version>3.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger-ui</artifactId>
-			<version>3.0.0</version>
-		</dependency>
-		-->
+		<!-- <dependency> <groupId>io.springfox</groupId> <artifactId>springfox-swagger2</artifactId> 
+			<version>3.0.0</version> </dependency> <dependency> <groupId>io.springfox</groupId> 
+			<artifactId>springfox-swagger-ui</artifactId> <version>3.0.0</version> </dependency> -->
 		<!-- Fin Dependencias de documentacion de servicios REST -->
 
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
-			<version>3.11</version><!--$NO-MVN-MAN-VER$-->
+			<version>3.11</version><!--$NO-MVN-MAN-VER$ -->
 		</dependency>
-		
+
 		<!-- Validation para spring boot 2.3.x en adelante -->
-<!-- 		<dependency> -->
-<!-- 		    <groupId>javax.validation</groupId> -->
-<!-- 		    <artifactId>validation-api</artifactId> -->
-<!-- 		    <version>2.0.1.Final</version>$NO-MVN-MAN-VER$ -->
-<!-- 		</dependency> -->
-		
+		<!-- <dependency> -->
+		<!-- <groupId>javax.validation</groupId> -->
+		<!-- <artifactId>validation-api</artifactId> -->
+		<!-- <version>2.0.1.Final</version>$NO-MVN-MAN-VER$ -->
+		<!-- </dependency> -->
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
-				
+
 		<!-- Conversión entidad-dto -->
 		<dependency>
-		    <groupId>org.modelmapper</groupId>
-		    <artifactId>modelmapper</artifactId>
-		    <version>2.3.9</version>
+			<groupId>org.modelmapper</groupId>
+			<artifactId>modelmapper</artifactId>
+			<version>2.3.9</version>
 		</dependency>
-		
+
 		<!-- Security -->
-		    
+
 		<dependency>
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-security</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
-		
-		<!--
+
+		<!-- JWT -->
 		<dependency>
-		    <groupId>org.springframework.security</groupId>
-		    <artifactId>spring-security-jwt</artifactId>
-		    <version>1.1.1.RELEASE</version>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-api</artifactId>
+			<version>0.11.5</version>
 		</dependency>
-		
+
 		<dependency>
-		    <groupId>org.springframework.security.oauth</groupId>
-		    <artifactId>spring-security-oauth2</artifactId>
-		    <version>2.3.8.RELEASE</version>
-		</dependency>	
-		-->	
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-impl</artifactId>
+			<version>0.11.5</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-jackson</artifactId>
+			<version>0.11.5</version>
+			<scope>runtime</scope>
+		</dependency>
+
+
+
+
+		<!-- <dependency> <groupId>org.springframework.security</groupId> <artifactId>spring-security-jwt</artifactId> 
+			<version>1.1.1.RELEASE</version> </dependency> <dependency> <groupId>org.springframework.security.oauth</groupId> 
+			<artifactId>spring-security-oauth2</artifactId> <version>2.3.8.RELEASE</version> 
+			</dependency> -->
 		<!-- Fin Security -->
 
 	</dependencies>
-	
+
 	<build>
 		<plugins>
 			<plugin>
