@@ -20,7 +20,6 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Long>{
 	@Query("from Usuario u where u.nombreUsuario =:userName and u.estado = '1' ")
 	Optional<Usuario> findByNombre(@Param("userName") String userName);
 	
-	
-	
+	boolean existsByNombreUsuario(String nombreUsuario);
 
 }

@@ -9,4 +9,6 @@ public interface IUsuarioService extends IGenericService<Usuario, Long>{
 
 	Integer createUser(UsuarioRequest usuarioRequest) throws CustomServiceException;
 	
+	boolean existsByNombreUsuario(String nombreUsuario) throws CustomServiceException;
+	
 }

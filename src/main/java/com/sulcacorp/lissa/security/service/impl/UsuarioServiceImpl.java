@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,6 +27,9 @@ import lombok.extern.slf4j.Slf4j;
 public class UsuarioServiceImpl implements IUsuarioService {
 
 	private Integer responseStatus;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@Autowired
 	private IUsuarioRepository repository;
@@ -94,7 +98,7 @@ public class UsuarioServiceImpl implements IUsuarioService {
 			/* Reg User */
 			Usuario user = new Usuario();
 			user.setNombreUsuario(usuarioRequest.getNombreUsuario());
-			user.setContrasenia(usuarioRequest.getContrasenia());
+			user.setContrasenia(passwordEncoder.encode(usuarioRequest.getContrasenia()));
 			user.setPersona(temp);
 
 			this.save(user);
@@ -115,6 +119,11 @@ public class UsuarioServiceImpl implements IUsuarioService {
 		}
 
 		return responseStatus;
+	}
+
+	@Override
+	public boolean existsByNombreUsuario(String nombreUsuario) throws CustomServiceException {
+		return repository.existsByNombreUsuario(nombreUsuario);
 	}
 
 

@@ -5,7 +5,14 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,11 +24,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sulcacorp.lissa.controller.commons.ResponseModel;
 import com.sulcacorp.lissa.controller.generic.GenericController;
 import com.sulcacorp.lissa.model.Usuario;
+import com.sulcacorp.lissa.security.dto.JwtDto;
+import com.sulcacorp.lissa.security.jwt.TokenUtils;
+import com.sulcacorp.lissa.security.request.AuthRequest;
 import com.sulcacorp.lissa.security.request.UsuarioRequest;
 import com.sulcacorp.lissa.security.service.IUsuarioService;
 import com.sulcacorp.lissa.service.exception.CustomServiceException;
 import com.sulcacorp.lissa.util.Constant;
-
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -31,6 +40,48 @@ public class UsuarioController extends GenericController{
 
 	@Autowired
 	private IUsuarioService usuarioService;
+	
+	@Autowired
+	private AuthenticationManager authenticationManager;	
+	
+	@PostMapping(value = "/login")
+	public ResponseEntity<ResponseModel>  login(@Valid @RequestBody AuthRequest authRequest, BindingResult bindingResult){
+		log.info("Inicio UsuarioController login() - Obtener usuario, roles y token");
+		
+		try {
+			
+			if(bindingResult.hasErrors()) {
+				return this.getBadRequest(bindingResult);
+			}
+			
+			Authentication authentication = authenticationManager.authenticate(
+					new UsernamePasswordAuthenticationToken(authRequest.getUsuario(), authRequest.getContrasenia()));			
+						
+			if(!authentication.isAuthenticated()) {
+				return this.getNotFoundRequest();
+			}
+			
+			SecurityContextHolder.getContext().setAuthentication(authentication);			
+			String token = TokenUtils.createToken(authRequest.getUsuario());			
+			UserDetails userDetails = (UserDetails) authentication.getPrincipal();	
+			log.info("userDetails.getAuthorities() "+userDetails.getAuthorities());
+			JwtDto jwtDto = new JwtDto(token, userDetails.getUsername(), userDetails.getAuthorities());
+			
+			log.info("Fin UsuarioController login()");
+			return this.getOkResponseRegistro(jwtDto, bindingResult);
+		} catch (BadCredentialsException e) {
+			log.info("Error UsuarioController login()  BadCredentialsException {} ",e.fillInStackTrace());
+			return this.getNotFoundRequest();
+		} catch (Exception e) {
+			log.error("Error UsuarioController login()  {} ",e.fillInStackTrace());
+			return this.getInternalServerError(Constant.ERROR_500);
+		}
+		
+		
+		
+		
+	}
+	
 	
 	@GetMapping(value = "/findAll", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ResponseModel> findAll(){
@@ -133,10 +184,22 @@ public class UsuarioController extends GenericController{
 	}
 	
 	@PostMapping(value = "/create-user", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ResponseModel> createUser(@RequestBody UsuarioRequest usuarioRequest){
+	public ResponseEntity<ResponseModel> createUser(@Valid @RequestBody UsuarioRequest usuarioRequest, BindingResult result){
 		Integer response;
 		log.info("Inicio UsuarioController createUser ");
 		try {
+			
+			if(result.hasErrors()) {
+				log.info("Fail request");
+				return this.getBadRequest(result);
+			}
+			
+			if(usuarioService.existsByNombreUsuario(usuarioRequest.getNombreUsuario())) {
+				log.info("El usuario ya existe");
+				result.addError(new ObjectError("error", "El usuario ya existe"));
+				return this.getBadRequest(result);				
+			}
+			
 			response = usuarioService.createUser(usuarioRequest);
 			if(response == Constant.STATUS_SUCCESS) {
 				return this.getCreatedResponseTransactional();
@@ -150,4 +213,6 @@ public class UsuarioController extends GenericController{
 			return this.getInternalServerError(Constant.ERROR_500);
 		}
 	}
+	
+	
 }

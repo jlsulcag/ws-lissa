@@ -1,6 +1,5 @@
 package com.sulcacorp.lissa.security.jwt;
 
-import java.security.SecureRandom;
 import java.util.Collections;
 import java.util.Date;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,14 +23,14 @@ public class TokenUtils {
 	private final static Long ACCESS_TOKEN_VALIDITY_SECONDS = 2_592_000L;
 
 	public static String createToken(String usuario) {
-
-		System.out.println("Entra a crear Token");
+		log.info("Inicio TokenUtils createToken");
 		String token;
 
 		long expirationTime = ACCESS_TOKEN_VALIDITY_SECONDS * 1_000;
 		Date expirationDate = new Date(System.currentTimeMillis() + expirationTime);
 		
 		/*
+		 * add properties en token
 		 * Map<String, Object> extra = new HashMap<>(); extra.put("nombre", nombre);
 		 */
 		token = Jwts.builder()
@@ -39,8 +38,6 @@ public class TokenUtils {
 				.setExpiration(expirationDate)
 				.signWith(Keys.hmacShaKeyFor(ACCESS_TOKEN_SECRET.getBytes())).compact();
 
-		//Keys.hmacShaKeyFor(ACCESS_TOKEN_SECRET.getBytes())
-		System.out.println("................... token " + token);
 
 		return token;
 
@@ -77,16 +74,7 @@ public class TokenUtils {
 			log.error("Error en la firma del token");
 		}
 		return false;
-	}
-	
-	private String generateSafeToken() {
-	    SecureRandom random = new SecureRandom();
-	    byte[] bytes = new byte[36]; // 36 bytes * 8 = 288 bits, a little bit more than
-	                                 // the 256 required bits 
-	    random.nextBytes(bytes);
-	    //byte encoder = Base64.getUrlEncoder().withoutPadding();
-	    //return encoder.encodeToString(bytes);
-	    return null;
-	}
+	}	
+
 
 }
