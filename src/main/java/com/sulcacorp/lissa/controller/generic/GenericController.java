@@ -99,4 +99,24 @@ public abstract class GenericController {
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
 	}
 	
+	/*HttpStatus : 500*/
+	protected ResponseEntity<ResponseModel> getInternalServerErrorConstraintViolation(String msj){
+		ResponseModel response = ResponseModel.builder()
+				.statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
+				.statusResponse(Constant.STATUS_WARNING)
+				.errors(msj)
+				.build();
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+	}
+
+	protected ResponseEntity<ResponseModel> getResponseExists(){
+		ResponseModel response = ResponseModel.builder()
+				.statusCode(HttpStatus.ACCEPTED.value())
+				.statusResponse(Constant.STATUS_EXISTS_REGISTRO)
+				.errors(null)
+				.data(null)
+				.build();
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
+	}
+	
 }

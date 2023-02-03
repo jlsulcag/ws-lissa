@@ -44,6 +44,11 @@ public class TipoDocumentoServiceImpl implements ITipoDocumentoService {
 	}
 
 	@Override
+	public List<TipoDocumento> findAll() throws CustomServiceException {
+		return dao.findAll();
+	}
+	
+	@Override
 	public List<TipoDocumento> findAllAct() throws CustomServiceException {
 		return dao.findAllAct();
 	}

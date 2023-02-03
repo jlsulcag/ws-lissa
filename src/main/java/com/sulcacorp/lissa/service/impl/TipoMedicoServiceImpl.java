@@ -37,6 +37,11 @@ public class TipoMedicoServiceImpl implements ITipoMedicoService {
 	}
 
 	@Override
+	public List<TipoMedico> findAll() {
+		return tipoMedicoDAO.findAllAct();
+	}
+	
+	@Override
 	public List<TipoMedico> findAllAct() {
 		return tipoMedicoDAO.findAllAct();
 	}

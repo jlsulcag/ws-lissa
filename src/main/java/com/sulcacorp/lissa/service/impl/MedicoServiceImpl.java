@@ -56,6 +56,16 @@ public class MedicoServiceImpl implements IMedicoService{
 		Optional<Medico> opt = medicoDAO.findById(id);
 		return opt.isPresent()?convertToDTOMedico(opt.get()): null;
 	}
+	
+	@Override
+	public List<MedicoDTO> findAll() {
+		List<Medico> list = new ArrayList<>();
+		list = medicoDAO.findAll();
+		if(!list.isEmpty()) {
+			return list.stream().map(this::convertToDTOMedico).collect(Collectors.toList());
+		}
+		return new ArrayList<>();
+	}
 
 	@Override
 	public List<MedicoDTO> findAllAct() {

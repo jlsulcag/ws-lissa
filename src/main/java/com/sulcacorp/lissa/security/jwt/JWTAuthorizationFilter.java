@@ -15,6 +15,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import lombok.extern.slf4j.Slf4j;
 
+/*Validar token por cada peticion*/
 @Slf4j
 @Component
 public class JWTAuthorizationFilter extends OncePerRequestFilter {
@@ -28,9 +29,11 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
 			HttpServletResponse response, 
 			FilterChain filterChain)
 			throws ServletException, IOException {
+		log.info("Inicio JWTAuthorizationFilter doFilterInternal() - valida token por peticion");
 		
 		try {
 			String token = getToken(request);
+			log.info("token  a validar : ", token);
 			if(token != null && tokenUtils.validateToken(token)) {
 				UsernamePasswordAuthenticationToken usernamePAT = TokenUtils.getAuthentication(token);
 				SecurityContextHolder.getContext().setAuthentication(usernamePAT);
@@ -43,6 +46,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
 	}
 
 	private String getToken(HttpServletRequest request) {
+		log.info("Inicio getToken");
 		String bearerToken = request.getHeader("Authorization");
 
 		if (bearerToken != null && bearerToken.startsWith("Bearer ")) {

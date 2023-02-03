@@ -25,7 +25,7 @@ public class Especialidad {
 	private Long idEspecialidad;
 	
 	
-	@Column(name = "DESC_ESPECIALIDAD", nullable = false, length = 150)
+	@Column(name = "DESC_ESPECIALIDAD", unique = true, nullable = false, length = 150)
 	private String descEspecialidad;
 	
 	@Column(name = "FECHA_REG", nullable = false)

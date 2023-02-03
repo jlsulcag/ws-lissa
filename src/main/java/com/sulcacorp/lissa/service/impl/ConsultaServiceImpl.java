@@ -36,6 +36,12 @@ public class ConsultaServiceImpl implements IConsultaService{
 	}
 
 	@Override
+	public List<Consulta> findAll() throws CustomServiceException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
 	public List<Consulta> findAllAct() throws CustomServiceException {
 		// TODO Auto-generated method stub
 		return null;

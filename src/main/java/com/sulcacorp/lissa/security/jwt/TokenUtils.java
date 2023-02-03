@@ -34,6 +34,7 @@ public class TokenUtils {
 		 * Map<String, Object> extra = new HashMap<>(); extra.put("nombre", nombre);
 		 */
 		token = Jwts.builder()
+				.setIssuedAt(new Date())
 				.setSubject(usuario)
 				.setExpiration(expirationDate)
 				.signWith(Keys.hmacShaKeyFor(ACCESS_TOKEN_SECRET.getBytes())).compact();
@@ -44,6 +45,7 @@ public class TokenUtils {
 	}
 
 	public static UsernamePasswordAuthenticationToken getAuthentication(String token) {
+		log.info("Inicio TokenUtils getAuthentication : ", token);
 		try {
 			Claims claims = Jwts.parserBuilder().setSigningKey(ACCESS_TOKEN_SECRET.getBytes()).build()
 					.parseClaimsJws(token).getBody();

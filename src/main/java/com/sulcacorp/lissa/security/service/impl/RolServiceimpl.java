@@ -39,6 +39,11 @@ public class RolServiceimpl implements IRolService{
 	}
 
 	@Override
+	public List<Rol> findAll() throws CustomServiceException {
+		return repository.findAllAct();
+	}
+	
+	@Override
 	public List<Rol> findAllAct() throws CustomServiceException {
 		return repository.findAllAct();
 	}

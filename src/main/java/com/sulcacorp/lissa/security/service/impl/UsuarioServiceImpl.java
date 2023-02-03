@@ -64,6 +64,11 @@ public class UsuarioServiceImpl implements IUsuarioService {
 		Optional<Usuario> op = repository.findById(id);
 		return op.isPresent() ? op.get() : null;
 	}
+	
+	@Override
+	public List<Usuario> findAll() throws CustomServiceException {
+		return repository.findAllAct();
+	}
 
 	@Override
 	public List<Usuario> findAllAct() throws CustomServiceException {

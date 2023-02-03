@@ -7,9 +7,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Data;
+import org.springframework.data.annotation.Immutable;
 
 
 @Data
+@Immutable /*Evita el cambio en la BD*/
 @Table(name = "VIEW_MEDICO")
 @Entity
 public class MedicoView {

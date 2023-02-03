@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.apache.commons.lang3.StringUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import com.sulcacorp.lissa.dto.EspecialidadDTO;
 import com.sulcacorp.lissa.model.Especialidad;
@@ -47,6 +48,20 @@ public class EspecialidadServiceImpl implements IEspecialidadService {
 		Optional<Especialidad> op = especialidadDAO.findById(id);
 		return op.isPresent() ? convertToDto(op.get()) : null;
 	}
+	
+	@Override
+	public List<EspecialidadDTO> findAll() {
+		List<Especialidad> list = new ArrayList<>();
+		List<EspecialidadDTO> listDto = new ArrayList<>();
+		list = especialidadDAO.findAll(Sort.by(Sort.Direction.ASC,"descEspecialidad"));
+		if (!list.isEmpty()) {
+			for (Especialidad especialidad : list) {
+				listDto.add(convertToDto(especialidad));
+			}
+			return listDto;
+		}
+		return listDto;
+	}
 
 	@Override
 	public List<EspecialidadDTO> findAllAct() {
@@ -83,4 +98,8 @@ public class EspecialidadServiceImpl implements IEspecialidadService {
 
 	}
 
+	@Override
+	public boolean existsByDescEspecialidad(String especialidad) {
+		return especialidadDAO.existsByDescEspecialidad(especialidad.toUpperCase());
+	}
 }

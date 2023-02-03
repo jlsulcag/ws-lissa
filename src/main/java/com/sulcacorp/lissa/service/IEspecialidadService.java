@@ -5,4 +5,6 @@ import com.sulcacorp.lissa.service.generic.IGenericService;
 
 public interface IEspecialidadService extends IGenericService<EspecialidadDTO, Long> {
 
+    boolean existsByDescEspecialidad(String especialidad);
+
 }

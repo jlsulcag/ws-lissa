@@ -69,6 +69,20 @@ public class PersonaServiceImpl implements IPersonaService {
 		Optional<Persona> opt = dao.findById(id);
 		return opt.isPresent()? convertToDto(opt.get()) : null;
 	}
+	
+	@Override
+	public List<PersonaDTO> findAll() throws CustomServiceException {
+		List<Persona> list = new ArrayList<>();
+		List<PersonaDTO> listDto = new ArrayList<>();
+		list = dao.findAll();
+		if(!list.isEmpty()) {
+			for (Persona persona : list) {
+				listDto.add(convertToDto(persona));
+			}
+			return listDto;
+		}
+		return listDto;
+	}
 
 	@Override
 	public List<PersonaDTO> findAllAct() throws CustomServiceException {

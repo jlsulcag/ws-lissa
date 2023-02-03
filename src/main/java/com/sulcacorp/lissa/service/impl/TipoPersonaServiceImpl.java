@@ -1,6 +1,8 @@
 package com.sulcacorp.lissa.service.impl;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,12 @@ public class TipoPersonaServiceImpl extends GenericServiceImpl<TipoPersona, Long
 	@Override
 	public void deleteLogic(TipoPersona t) throws CustomServiceException {
 		
+	}
+
+	@Override
+	public List<TipoPersona> findAll() throws CustomServiceException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

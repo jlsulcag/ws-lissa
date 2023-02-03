@@ -40,6 +40,16 @@ public class EstadoCivilServiceImpl implements IEstadoCivilService{
 		Optional<EstadoCivil> opt = dao.findById(id);;
 		return opt.isPresent()?convertToDto(opt.get()):null;
 	}
+	
+	@Override
+	public List<EstadoCivilDTO> findAll() throws CustomServiceException{
+		List<EstadoCivil> list = null;
+		list = dao.findAllAct();
+		if(!list.isEmpty()) {
+			return list.stream().map(this::convertToDto).collect(Collectors.toList());
+		}
+		return new ArrayList<EstadoCivilDTO>();
+	}
 
 	@Override
 	public List<EstadoCivilDTO> findAllAct() throws CustomServiceException{

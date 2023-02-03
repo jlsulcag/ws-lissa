@@ -15,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import com.sulcacorp.lissa.security.jwt.JWTAuthorizationFilter;
+import com.sulcacorp.lissa.security.jwt.TokenUtils;
 import com.sulcacorp.lissa.security.service.impl.UsuarioDetailServiceImpl;
 
 import lombok.AllArgsConstructor;
@@ -32,6 +33,9 @@ public class SecurityConfig{
 	
 	@Autowired
 	private final JWTAuthorizationFilter jwtAuthorizationFilter;
+	
+	@Autowired
+	private TokenUtils tokenUtils;
 		
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity http, AuthenticationManager authManager) throws Exception {
@@ -46,11 +50,10 @@ public class SecurityConfig{
 		.csrf()
 		.disable()
 		.authorizeRequests()
-		.antMatchers("/api/usuario/login")
-		.permitAll()
-		.anyRequest()
-		.authenticated()
+		.antMatchers("/api/usuario/login").permitAll()
+		.anyRequest().authenticated()
 		.and()
+		//.exceptionHandling().authenticationEntryPoint(tokenUtils)
 		.sessionManagement()
 		.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 		.and()

@@ -9,6 +9,7 @@ public interface IGenericService<T, ID extends Serializable> {
 	T save(T t) throws CustomServiceException;
 	T update(T t) throws CustomServiceException;
 	T findById(ID id) throws CustomServiceException;
+	List<T> findAll() throws CustomServiceException;
 	List<T> findAllAct() throws CustomServiceException;
 	void delete(ID id) throws CustomServiceException;
 	void deleteLogic(T t) throws CustomServiceException;

@@ -32,6 +32,11 @@ public class UsuarioRolServiceImpl implements IUsuarioRolService{
 		Optional<UsuarioRol> op = repository.findById(id);
 		return op.isPresent() ? op.get():null;
 	}
+	
+	@Override
+	public List<UsuarioRol> findAll() throws CustomServiceException {
+		return repository.findAllAct();
+	}
 
 	@Override
 	public List<UsuarioRol> findAllAct() throws CustomServiceException {
