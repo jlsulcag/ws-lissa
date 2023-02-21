@@ -18,7 +18,7 @@ import com.sulcacorp.lissa.security.repository.IUsuarioRolRepository;
 import com.sulcacorp.lissa.security.request.UsuarioRequest;
 import com.sulcacorp.lissa.security.service.IUsuarioService;
 import com.sulcacorp.lissa.service.exception.CustomServiceException;
-import com.sulcacorp.lissa.util.Constant;
+import com.sulcacorp.lissa.util.Constante;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -43,7 +43,7 @@ public class UsuarioServiceImpl implements IUsuarioService {
 
 	@Override
 	public Usuario save(Usuario t) throws CustomServiceException {
-		t.setEstado(Constant.STATUS_REG_ENABLE);
+		t.setEstado(Constante.STATUS_REG_ENABLE);
 		t.setFechaReg(LocalDateTime.now());
 		t.setNombreUsuario(t.getNombreUsuario().toUpperCase().trim());
 
@@ -117,10 +117,10 @@ public class UsuarioServiceImpl implements IUsuarioService {
 				repositoryUsuarioRol.save(usuarioRolTemp);
 			});
 
-			responseStatus = Constant.STATUS_SUCCESS;
+			responseStatus = Constante.STATUS_SUCCESS;
 		} catch (Exception e) {
 			log.info("Error UsuarioServiceImpl create User {} ", e.fillInStackTrace());
-			responseStatus = Constant.STATUS_ERROR;
+			responseStatus = Constante.STATUS_ERROR;
 		}
 
 		return responseStatus;

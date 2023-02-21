@@ -10,7 +10,7 @@ import com.sulcacorp.lissa.model.view.MedicoView;
 import com.sulcacorp.lissa.repository.IMedicoViewRepository;
 import com.sulcacorp.lissa.service.IMedicoViewService;
 import com.sulcacorp.lissa.service.exception.CustomServiceException;
-import com.sulcacorp.lissa.util.Constant;
+import com.sulcacorp.lissa.util.Constante;
 
 @Service
 public class MedicoViewServiceImpl implements IMedicoViewService{
@@ -26,7 +26,7 @@ public class MedicoViewServiceImpl implements IMedicoViewService{
 
 	@Override
 	public List<MedicoView> findAllAct() throws CustomServiceException {
-		return repository.findAllAct(Constant.STATUS_REG_ENABLE);
+		return repository.findAllAct(Constante.STATUS_REG_ENABLE);
 	}
 
 

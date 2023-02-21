@@ -22,7 +22,7 @@ import com.sulcacorp.lissa.repository.IMedicoDAO;
 import com.sulcacorp.lissa.repository.IPersonaDAO;
 import com.sulcacorp.lissa.service.IMedicoService;
 import com.sulcacorp.lissa.service.exception.CustomServiceException;
-import com.sulcacorp.lissa.util.Constant;
+import com.sulcacorp.lissa.util.Constante;
 
 @Service
 public class MedicoServiceImpl implements IMedicoService{
@@ -39,7 +39,7 @@ public class MedicoServiceImpl implements IMedicoService{
 	@Override
 	public MedicoDTO save(MedicoDTO t) {
 		t.setColegiatura(StringUtils.upperCase(t.getColegiatura()));
-		t.setEstado(Constant.STATUS_REG_ENABLE);
+		t.setEstado(Constante.STATUS_REG_ENABLE);
 		t.setFechaReg(LocalDate.now());
 		return convertToDTOMedico(medicoDAO.save(convertToEntityMedico(t)));
 	}
@@ -94,7 +94,7 @@ public class MedicoServiceImpl implements IMedicoService{
 		Persona persona = new Persona();
 		persona = convertToEntity(medicoDTO.getPersonaDTO());
 		persona.setFechaRegistro(LocalDateTime.now());
-		persona.setEstado(Constant.STATUS_REG_ENABLE);
+		persona.setEstado(Constante.STATUS_REG_ENABLE);
 		personaDAO.save(persona);
 		
 		/*Transaccion 2 registrar medico*/
@@ -106,7 +106,7 @@ public class MedicoServiceImpl implements IMedicoService{
 		medico.setPersona(persona);
 		medico.setEspecialidad(especialidad);
 		medico.setFechaReg(LocalDate.now());
-		medico.setEstado(Constant.STATUS_REG_ENABLE);
+		medico.setEstado(Constante.STATUS_REG_ENABLE);
 		
 		medicoDAO.save(medico);
 		

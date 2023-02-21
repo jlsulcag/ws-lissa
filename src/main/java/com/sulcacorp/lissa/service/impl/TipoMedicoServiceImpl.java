@@ -9,7 +9,7 @@ import com.sulcacorp.lissa.model.TipoMedico;
 import com.sulcacorp.lissa.repository.ITipoMedicoDAO;
 import com.sulcacorp.lissa.service.ITipoMedicoService;
 import com.sulcacorp.lissa.service.exception.CustomServiceException;
-import com.sulcacorp.lissa.util.Constant;
+import com.sulcacorp.lissa.util.Constante;
 
 @Service
 public class TipoMedicoServiceImpl implements ITipoMedicoService {
@@ -20,7 +20,7 @@ public class TipoMedicoServiceImpl implements ITipoMedicoService {
 	@Override
 	public TipoMedico save(TipoMedico t) {
 		t.setDescTipoMedico(t.getDescTipoMedico().toUpperCase());
-		t.setEstado(Constant.STATUS_REG_ENABLE);
+		t.setEstado(Constante.STATUS_REG_ENABLE);
 		return tipoMedicoDAO.save(t);
 	}
 

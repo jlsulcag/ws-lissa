@@ -11,7 +11,7 @@ import com.sulcacorp.lissa.model.TipoDocumento;
 import com.sulcacorp.lissa.repository.ITipoDocumentoDAO;
 import com.sulcacorp.lissa.service.ITipoDocumentoService;
 import com.sulcacorp.lissa.service.exception.CustomServiceException;
-import com.sulcacorp.lissa.util.Constant;
+import com.sulcacorp.lissa.util.Constante;
 
 @Service
 public class TipoDocumentoServiceImpl implements ITipoDocumentoService {
@@ -24,7 +24,7 @@ public class TipoDocumentoServiceImpl implements ITipoDocumentoService {
 		t.setDescripcion(StringUtils.isBlank(t.getDescripcion()) ? "" : t.getDescripcion().toUpperCase().trim());
 		t.setAbreviatura(StringUtils.isBlank(t.getAbreviatura()) ? null : t.getAbreviatura().toUpperCase().trim());
 		t.setCodigo(StringUtils.isBlank(t.getCodigo()) ? null : t.getCodigo().toUpperCase().trim());
-		t.setEstado(Constant.STATUS_REG_ENABLE);
+		t.setEstado(Constante.STATUS_REG_ENABLE);
 		return dao.save(t);
 
 	}

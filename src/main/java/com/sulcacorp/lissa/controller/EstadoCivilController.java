@@ -19,7 +19,7 @@ import com.sulcacorp.lissa.controller.generic.GenericController;
 import com.sulcacorp.lissa.dto.EstadoCivilDTO;
 import com.sulcacorp.lissa.service.exception.CustomServiceException;
 import com.sulcacorp.lissa.service.impl.EstadoCivilServiceImpl;
-import com.sulcacorp.lissa.util.Constant;
+import com.sulcacorp.lissa.util.Constante;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -42,10 +42,10 @@ public class EstadoCivilController extends GenericController {
 			return this.getOkResponseConsulta(list);
 		} catch (CustomServiceException e) {
 			log.error(">>> Error estadoCivil findAll... {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error(">>> Error estadoCivil findAll : {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		}
 		
 	}
@@ -63,10 +63,10 @@ public class EstadoCivilController extends GenericController {
 			return this.getOkResponseConsulta(estadoCivilDTO);
 		} catch (CustomServiceException e) {
 			log.error(">>> Error estadoCivil findById :\n {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error(">>> Error estadoCivil findById :\n {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		}
 
 	}
@@ -83,10 +83,10 @@ public class EstadoCivilController extends GenericController {
 			return this.getCreatedResponse(dto, result);
 		} catch (CustomServiceException e) {
 			log.error(">>> Error estadoCivil save {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error(">>> Error estadoCivil save {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		}
 	}
 
@@ -105,10 +105,10 @@ public class EstadoCivilController extends GenericController {
 			return this.getOkResponseRegistro(service.update(t), result);
 		} catch (CustomServiceException e) {
 			log.error(">>> Error estadoCivil update {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error(">>> Error estadoCivil update {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		}
 	}
 
@@ -120,14 +120,14 @@ public class EstadoCivilController extends GenericController {
 			if (dto == null) {
 				return this.getNotFoundRequest();
 			}
-			dto.setEstado(Constant.STATUS_REG_DISABLE);			
+			dto.setEstado(Constante.STATUS_REG_DISABLE);
 			return this.getOkResponseConsulta(service.update(dto));
 		} catch (CustomServiceException e) {
 			log.error(">>> Error estadoCivil delete : {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error(">>> Error estadoCivil delete : {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		}
 	}
 	
@@ -144,10 +144,10 @@ public class EstadoCivilController extends GenericController {
 			return this.getOkResponseConsulta(dto);
 		} catch (CustomServiceException e) {
 			log.error(">>> Error estadoCivil delete : {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error(">>> Error estadoCivil delete : {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		}
 	}
 

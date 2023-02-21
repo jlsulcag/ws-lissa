@@ -22,7 +22,7 @@ import com.sulcacorp.lissa.controller.generic.GenericController;
 import com.sulcacorp.lissa.model.Rol;
 import com.sulcacorp.lissa.security.service.impl.RolServiceimpl;
 import com.sulcacorp.lissa.service.exception.CustomServiceException;
-import com.sulcacorp.lissa.util.Constant;
+import com.sulcacorp.lissa.util.Constante;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -45,10 +45,10 @@ public class RolController extends GenericController{
 			return this.getOkResponseConsulta(list);			
 		} catch (CustomServiceException e) {
 			log.error("Error RolController findAll :\n {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error("Error RolController findAll : {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		}
 	}
 	
@@ -64,10 +64,10 @@ public class RolController extends GenericController{
 			return getOkResponseConsulta(rol);
 		} catch (CustomServiceException e) {
 			log.error("Error RolController findById :\n {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error("Error RolController findById : {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		}
 		
 	}
@@ -83,10 +83,10 @@ public class RolController extends GenericController{
 			return this.getCreatedResponse(dto,result);
 		} catch (CustomServiceException e) {
 			log.error("Error RolController save :\n {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error("Error RolController save : {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		}
 	}
 	
@@ -104,10 +104,10 @@ public class RolController extends GenericController{
 			return this.getOkResponseRegistro(rolService.update(rol), result);
 		} catch (CustomServiceException e) {
 			log.error("Error RolController update : {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error("Error RolController update : {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		}
 	}
 
@@ -125,10 +125,10 @@ public class RolController extends GenericController{
 			return this.getOkResponseConsulta(obj);
 		} catch (CustomServiceException e) {
 			log.error("Error RolController delete : {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error("Error RolController delete : {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		}
 		
 	}

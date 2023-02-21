@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import com.sulcacorp.lissa.controller.commons.ResponseModel;
-import com.sulcacorp.lissa.util.Constant;
+import com.sulcacorp.lissa.util.Constante;
 
 public abstract class GenericController {
 
@@ -29,7 +29,7 @@ public abstract class GenericController {
 	protected ResponseEntity<ResponseModel> getOkResponseConsulta(Object obj){
 		ResponseModel response = ResponseModel.builder()
 						.statusCode(HttpStatus.OK.value())
-						.statusResponse(Constant.STATUS_SUCCESS)				
+						.statusResponse(Constante.STATUS_SUCCESS)
 						.data(obj)
 						.build();
 		return ResponseEntity.status(HttpStatus.OK).body(response);
@@ -39,7 +39,7 @@ public abstract class GenericController {
 	protected ResponseEntity<ResponseModel> getOkResponseRegistro(Object obj, BindingResult result){
 		ResponseModel response = ResponseModel.builder()
 				.statusCode(HttpStatus.OK.value())
-				.statusResponse(Constant.STATUS_SUCCESS)
+				.statusResponse(Constante.STATUS_SUCCESS)
 				.errors(this.formatMapMessageList(result))
 				.data(obj)
 				.build();
@@ -51,7 +51,7 @@ public abstract class GenericController {
 	protected ResponseEntity<ResponseModel> getCreatedResponse(Object obj, BindingResult result){
 		ResponseModel response = ResponseModel.builder()
 				.statusCode(HttpStatus.CREATED.value())
-				.statusResponse(Constant.STATUS_SUCCESS)
+				.statusResponse(Constante.STATUS_SUCCESS)
 				.errors(this.formatMapMessageList(result))
 				.data(obj)
 				.build();
@@ -62,7 +62,7 @@ public abstract class GenericController {
 	protected ResponseEntity<ResponseModel> getCreatedResponseTransactional(){
 		ResponseModel response = ResponseModel.builder()
 				.statusCode(HttpStatus.CREATED.value())
-				.statusResponse(Constant.STATUS_SUCCESS)
+				.statusResponse(Constante.STATUS_SUCCESS)
 				.errors(null)
 				.data(null)
 				.build();
@@ -73,7 +73,7 @@ public abstract class GenericController {
 	protected ResponseEntity<ResponseModel> getBadRequest(BindingResult result){
 		ResponseModel response = ResponseModel.builder()
 				.statusCode(HttpStatus.BAD_REQUEST.value())
-				.statusResponse(Constant.STATUS_ERROR)
+				.statusResponse(Constante.STATUS_ERROR)
 				.errors(this.formatMapMessageList(result))
 				.build();
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
@@ -83,7 +83,7 @@ public abstract class GenericController {
 	protected ResponseEntity<ResponseModel> getNotFoundRequest(){
 		ResponseModel response = ResponseModel.builder()
 				.statusCode(HttpStatus.NOT_FOUND.value())
-				.statusResponse(Constant.STATUS_ERROR)
+				.statusResponse(Constante.STATUS_ERROR)
 				.errors(null)
 				.build();
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
@@ -93,7 +93,7 @@ public abstract class GenericController {
 	protected ResponseEntity<ResponseModel> getInternalServerError(String msj){
 		ResponseModel response = ResponseModel.builder()
 				.statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
-				.statusResponse(Constant.STATUS_ERROR)
+				.statusResponse(Constante.STATUS_ERROR)
 				.errors(msj)
 				.build();
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
@@ -103,7 +103,7 @@ public abstract class GenericController {
 	protected ResponseEntity<ResponseModel> getInternalServerErrorConstraintViolation(String msj){
 		ResponseModel response = ResponseModel.builder()
 				.statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
-				.statusResponse(Constant.STATUS_WARNING)
+				.statusResponse(Constante.STATUS_WARNING)
 				.errors(msj)
 				.build();
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
@@ -112,7 +112,7 @@ public abstract class GenericController {
 	protected ResponseEntity<ResponseModel> getResponseExists(){
 		ResponseModel response = ResponseModel.builder()
 				.statusCode(HttpStatus.ACCEPTED.value())
-				.statusResponse(Constant.STATUS_EXISTS_REGISTRO)
+				.statusResponse(Constante.STATUS_EXISTS_REGISTRO)
 				.errors(null)
 				.data(null)
 				.build();

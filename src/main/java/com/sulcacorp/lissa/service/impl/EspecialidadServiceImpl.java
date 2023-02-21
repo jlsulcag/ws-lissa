@@ -14,7 +14,7 @@ import com.sulcacorp.lissa.model.Especialidad;
 import com.sulcacorp.lissa.repository.IEspecialidadDAO;
 import com.sulcacorp.lissa.service.IEspecialidadService;
 import com.sulcacorp.lissa.service.exception.CustomServiceException;
-import com.sulcacorp.lissa.util.Constant;
+import com.sulcacorp.lissa.util.Constante;
 
 @Service
 public class EspecialidadServiceImpl implements IEspecialidadService {
@@ -29,7 +29,7 @@ public class EspecialidadServiceImpl implements IEspecialidadService {
 	public EspecialidadDTO save(EspecialidadDTO t) {
 		Especialidad especialidad = new Especialidad();
 		t.setDescEspecialidad(StringUtils.upperCase(t.getDescEspecialidad()));
-		t.setEstado(Constant.STATUS_REG_ENABLE);
+		t.setEstado(Constante.STATUS_REG_ENABLE);
 		t.setFechaReg(LocalDateTime.now());
 		especialidad = especialidadDAO.saveAndFlush(convertToEntity(t));
 		return convertToDto(especialidad);

@@ -22,7 +22,7 @@ import com.sulcacorp.lissa.controller.generic.GenericController;
 import com.sulcacorp.lissa.model.TipoMedico;
 import com.sulcacorp.lissa.service.ITipoMedicoService;
 import com.sulcacorp.lissa.service.exception.CustomServiceException;
-import com.sulcacorp.lissa.util.Constant;
+import com.sulcacorp.lissa.util.Constante;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -45,10 +45,10 @@ public class TipoMedicoController extends GenericController{
 			return this.getOkResponseConsulta(list);
 		} catch (CustomServiceException e) {
 			log.error(">>> Error execute findAll {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error(">>> Error execute findAll {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		}
 	}
 	
@@ -63,10 +63,10 @@ public class TipoMedicoController extends GenericController{
 			return this.getOkResponseConsulta(obj);
 		} catch (CustomServiceException e) {
 			log.error(">>> Error execute findById {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error(">>> Error execute findById {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		}
 	}
 	
@@ -80,10 +80,10 @@ public class TipoMedicoController extends GenericController{
 			return this.getCreatedResponse(iTipoMedicoService.save(obj), result);
 		} catch (CustomServiceException e) {
 			log.error(">>> Error save {} ", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error(">>> Error save {} ", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		}
 		
 	}
@@ -102,10 +102,10 @@ public class TipoMedicoController extends GenericController{
 			return this.getOkResponseRegistro(iTipoMedicoService.save(obj), result);
 		} catch (CustomServiceException e) {
 			log.error(">>> Error update {} ", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error(">>> Error update {} ", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		}
 		
 	}
@@ -118,14 +118,14 @@ public class TipoMedicoController extends GenericController{
 			if(temp == null) {
 				return this.getNotFoundRequest();
 			}
-			temp.setEstado(Constant.STATUS_REG_DISABLE);
+			temp.setEstado(Constante.STATUS_REG_DISABLE);
 			return this.getOkResponseConsulta(iTipoMedicoService.update(temp));
 		} catch (CustomServiceException e) {
 			log.error(">>> Error updateStatus {} ", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error(">>> Error updateStatus {} ", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		}
 		
 	}
@@ -142,10 +142,10 @@ public class TipoMedicoController extends GenericController{
 			return this.getOkResponseConsulta(null);
 		} catch (CustomServiceException e) {
 			log.error(">>> Error delete {} ", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error(">>> Error delete {} ", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		}
 		
 	}

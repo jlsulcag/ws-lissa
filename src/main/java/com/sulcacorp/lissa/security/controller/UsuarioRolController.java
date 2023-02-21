@@ -22,7 +22,7 @@ import com.sulcacorp.lissa.controller.generic.GenericController;
 import com.sulcacorp.lissa.model.UsuarioRol;
 import com.sulcacorp.lissa.security.service.impl.UsuarioRolServiceImpl;
 import com.sulcacorp.lissa.service.exception.CustomServiceException;
-import com.sulcacorp.lissa.util.Constant;
+import com.sulcacorp.lissa.util.Constante;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -45,10 +45,10 @@ public class UsuarioRolController extends GenericController{
 			return this.getOkResponseConsulta(list);			
 		} catch (CustomServiceException e) {
 			log.error("Error UsuarioRolController findAll :\n {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error("Error UsuarioRolController findAll : {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		}
 	}
 	
@@ -64,10 +64,10 @@ public class UsuarioRolController extends GenericController{
 			return getOkResponseConsulta(usuarioRol);
 		} catch (CustomServiceException e) {
 			log.error("Error UsuarioRolController findById :\n {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error("Error UsuarioRolController findById : {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		}
 		
 	}
@@ -83,10 +83,10 @@ public class UsuarioRolController extends GenericController{
 			return this.getCreatedResponse(dto,result);
 		} catch (CustomServiceException e) {
 			log.error("Error UsuarioRolController save :\n {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error("Error UsuarioRolController save : {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		}
 	}
 	
@@ -104,10 +104,10 @@ public class UsuarioRolController extends GenericController{
 			return this.getOkResponseRegistro(usuarioRolService.update(usuarioRol), result);
 		} catch (CustomServiceException e) {
 			log.error("Error UsuarioRolController update : {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error("Error UsuarioRolController update : {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		}
 	}
 	
@@ -124,10 +124,10 @@ public class UsuarioRolController extends GenericController{
 			return this.getOkResponseConsulta(obj);
 		} catch (CustomServiceException e) {
 			log.error("Error UsuarioRolController delete : {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error("Error UsuarioRolController delete : {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		}
 		
 	}

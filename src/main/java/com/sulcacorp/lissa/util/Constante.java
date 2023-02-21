@@ -1,6 +1,6 @@
 package com.sulcacorp.lissa.util;
 
-public class Constant {
+public class Constante {
 	
 	/*Document Type*/
 	public static final String DNI = "1";

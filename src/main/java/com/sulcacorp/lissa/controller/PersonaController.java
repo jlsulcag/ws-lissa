@@ -19,7 +19,7 @@ import com.sulcacorp.lissa.controller.generic.GenericController;
 import com.sulcacorp.lissa.dto.PersonaDTO;
 import com.sulcacorp.lissa.service.exception.CustomServiceException;
 import com.sulcacorp.lissa.service.impl.PersonaServiceImpl;
-import com.sulcacorp.lissa.util.Constant;
+import com.sulcacorp.lissa.util.Constante;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -42,10 +42,10 @@ public class PersonaController extends GenericController{
 			return this.getOkResponseConsulta(list);			
 		} catch (CustomServiceException e) {
 			log.error(">>> Error findAll Persona :\n {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error(">>> Error findAll Persona : {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		}
 	}
 	
@@ -61,10 +61,10 @@ public class PersonaController extends GenericController{
 			return getOkResponseConsulta(persona);
 		} catch (CustomServiceException e) {
 			log.error(">>> Error findById Persona :\n {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error(">>> Error findById Persona :\n {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		}
 		
 	}
@@ -79,10 +79,10 @@ public class PersonaController extends GenericController{
 			return this.getCreatedResponse(service.save(persona),result);
 		} catch (CustomServiceException e) {
 			log.error(">>> Error save Persona :\n {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error(">>> Error save Persona :\n {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		}
 	}
 	
@@ -97,10 +97,10 @@ public class PersonaController extends GenericController{
 			return this.getOkResponseRegistro(service.update(persona), result);
 		} catch (CustomServiceException e) {
 			log.error(">>> Error update Persona : {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error(">>> Error update Persona : {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		}
 	}
 	
@@ -117,10 +117,10 @@ public class PersonaController extends GenericController{
 			return this.getOkResponseConsulta(obj);
 		} catch (CustomServiceException e) {
 			log.error(">>> Error delete Persona : {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error(">>> Error delete Persona : {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		}
 		
 	}
@@ -137,10 +137,10 @@ public class PersonaController extends GenericController{
 			return getOkResponseConsulta(persona);
 		} catch (CustomServiceException e) {
 			log.error(">>> Error findByTipoDocAndNumero Persona :\n {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error(">>> Error findByTipoDocAndNumero Persona :\n {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constant.ERROR_500);
+			return this.getInternalServerError(Constante.ERROR_500);
 		}
 	}
 	
