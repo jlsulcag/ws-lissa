@@ -38,7 +38,12 @@ public class OrganizacionServiceImpl implements IOrganizacionService {
 
     @Override
     public OrganizacionDTO update(OrganizacionDTO organizacionDTO) throws CustomServiceException {
-        return save(organizacionDTO);
+        Organizacion organizacion = new Organizacion();
+        organizacionDTO.setRazonSocial(organizacionDTO.getRazonSocial().toUpperCase());
+        organizacionDTO.setDireccion(organizacionDTO.getDireccion().toUpperCase());
+        organizacionDTO.setImpuesto(organizacionDTO.getImpuesto().toUpperCase());
+        organizacion = organizacionRepository.save(convertToEntity(organizacionDTO));
+        return convertToDTO(organizacion);
     }
 
     @Override

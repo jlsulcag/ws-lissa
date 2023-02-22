@@ -121,9 +121,6 @@ public class EspecialidadController extends GenericController{
 			if(especialidadDTO == null) {
 				return this.getNotFoundRequest();
 			}
-			if(especialidadService.existsByDescEspecialidad(especialidad.getDescEspecialidad())){
-				return this.getResponseExists();
-			}
 			especialidad.setEstado(especialidadDTO.getEstado());
 			especialidad.setFechaReg(especialidadDTO.getFechaReg());
 			return this.getOkResponseRegistro(especialidadService.update(especialidad), result);

@@ -118,9 +118,7 @@ public class OrganizacionController extends GenericController {
             if(temp == null){
                 return this.getNotFoundRequest();
             }
-            if(organizacionService.existsByRazonSocial(organizacionDTO.getRazonSocial().toUpperCase())){
-                return this.getResponseExists();
-            }
+            organizacionDTO.setEstado(temp.getEstado());
             OrganizacionDTO organizacion = organizacionService.update(organizacionDTO);
             return this.getOkResponseRegistro(organizacion, result);
         } catch (CustomServiceException e) {
