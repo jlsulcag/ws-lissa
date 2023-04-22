@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.sulcacorp.lissa.model.Consulta;
 import com.sulcacorp.lissa.repository.IConsultaDAO;
 import com.sulcacorp.lissa.service.IConsultaService;
-import com.sulcacorp.lissa.service.exception.CustomServiceException;
 
 @Service
 public class ConsultaServiceImpl implements IConsultaService{
@@ -18,43 +17,43 @@ public class ConsultaServiceImpl implements IConsultaService{
 	private IConsultaDAO dao;
 
 	@Override
-	public Consulta save(Consulta t) throws CustomServiceException {
+	public Consulta save(Consulta t) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Consulta update(Consulta t) throws CustomServiceException {
+	public Consulta update(Consulta t) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Consulta findById(Long id) throws CustomServiceException {
+	public Consulta findById(Long id) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Consulta> findAll() throws CustomServiceException {
+	public List<Consulta> findAll() throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
 	@Override
-	public List<Consulta> findAllAct() throws CustomServiceException {
+	public List<Consulta> findAllAct() throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void delete(Long id) throws CustomServiceException {
+	public void delete(Long id) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void deleteLogic(Consulta t) throws CustomServiceException {
+	public void deleteLogic(Consulta t) throws Exception {
 		// TODO Auto-generated method stub		
 	}
 

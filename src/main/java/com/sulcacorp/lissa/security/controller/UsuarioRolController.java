@@ -21,7 +21,6 @@ import com.sulcacorp.lissa.controller.commons.ResponseModel;
 import com.sulcacorp.lissa.controller.generic.GenericController;
 import com.sulcacorp.lissa.model.UsuarioRol;
 import com.sulcacorp.lissa.security.service.impl.UsuarioRolServiceImpl;
-import com.sulcacorp.lissa.service.exception.CustomServiceException;
 import com.sulcacorp.lissa.util.Constante;
 
 import lombok.extern.slf4j.Slf4j;
@@ -43,11 +42,8 @@ public class UsuarioRolController extends GenericController{
 				return this.getNotFoundRequest();
 			}	
 			return this.getOkResponseConsulta(list);			
-		} catch (CustomServiceException e) {
-			log.error("Error UsuarioRolController findAll :\n {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
-			log.error("Error UsuarioRolController findAll : {}", e.fillInStackTrace());
+			log.error("Error UsuarioRolController findAll :\n {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constante.ERROR_500);
 		}
 	}
@@ -62,11 +58,8 @@ public class UsuarioRolController extends GenericController{
 				return this.getNotFoundRequest();
 			}
 			return getOkResponseConsulta(usuarioRol);
-		} catch (CustomServiceException e) {
-			log.error("Error UsuarioRolController findById :\n {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
-			log.error("Error UsuarioRolController findById : {}", e.fillInStackTrace());
+			log.error("Error UsuarioRolController findById :\n {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constante.ERROR_500);
 		}
 		
@@ -81,11 +74,8 @@ public class UsuarioRolController extends GenericController{
 		try {
 			UsuarioRol dto = usuarioRolService.save(usuarioRol);			
 			return this.getCreatedResponse(dto,result);
-		} catch (CustomServiceException e) {
-			log.error("Error UsuarioRolController save :\n {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
-			log.error("Error UsuarioRolController save : {}", e.fillInStackTrace());
+			log.error("Error UsuarioRolController save :\n {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constante.ERROR_500);
 		}
 	}
@@ -102,9 +92,6 @@ public class UsuarioRolController extends GenericController{
 				return this.getNotFoundRequest();
 			}			
 			return this.getOkResponseRegistro(usuarioRolService.update(usuarioRol), result);
-		} catch (CustomServiceException e) {
-			log.error("Error UsuarioRolController update : {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error("Error UsuarioRolController update : {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constante.ERROR_500);
@@ -122,9 +109,6 @@ public class UsuarioRolController extends GenericController{
 			}			
 			usuarioRolService.delete(id);
 			return this.getOkResponseConsulta(obj);
-		} catch (CustomServiceException e) {
-			log.error("Error UsuarioRolController delete : {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error("Error UsuarioRolController delete : {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constante.ERROR_500);

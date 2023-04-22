@@ -12,7 +12,6 @@ import com.sulcacorp.lissa.dto.EstadoCivilDTO;
 import com.sulcacorp.lissa.model.EstadoCivil;
 import com.sulcacorp.lissa.repository.IEstadoCivilDAO;
 import com.sulcacorp.lissa.service.IEstadoCivilService;
-import com.sulcacorp.lissa.service.exception.CustomServiceException;
 
 @Service
 public class EstadoCivilServiceImpl implements IEstadoCivilService{
@@ -24,25 +23,25 @@ public class EstadoCivilServiceImpl implements IEstadoCivilService{
 	private ModelMapper modelMapper;
 	
 	@Override
-	public EstadoCivilDTO save(EstadoCivilDTO t) throws CustomServiceException{
+	public EstadoCivilDTO save(EstadoCivilDTO t) throws Exception {
 		t.setDescripcion(t.getDescripcion().toUpperCase().trim());		
 		return convertToDto(dao.saveAndFlush(convertToEntity(t)));
 	}
 
 	@Override
-	public EstadoCivilDTO update(EstadoCivilDTO t) throws CustomServiceException{
+	public EstadoCivilDTO update(EstadoCivilDTO t) throws Exception {
 		t.setDescripcion(t.getDescripcion().toUpperCase().trim());		
 		return convertToDto(dao.save(convertToEntity(t)));
 	}	
 
 	@Override
-	public EstadoCivilDTO findById(Long id) throws CustomServiceException{
+	public EstadoCivilDTO findById(Long id) throws Exception {
 		Optional<EstadoCivil> opt = dao.findById(id);;
 		return opt.isPresent()?convertToDto(opt.get()):null;
 	}
 	
 	@Override
-	public List<EstadoCivilDTO> findAll() throws CustomServiceException{
+	public List<EstadoCivilDTO> findAll() throws Exception {
 		List<EstadoCivil> list = null;
 		list = dao.findAllAct();
 		if(!list.isEmpty()) {
@@ -52,7 +51,7 @@ public class EstadoCivilServiceImpl implements IEstadoCivilService{
 	}
 
 	@Override
-	public List<EstadoCivilDTO> findAllAct() throws CustomServiceException{
+	public List<EstadoCivilDTO> findAllAct() throws Exception {
 		List<EstadoCivil> list = null;
 		list = dao.findAllAct();
 		if(!list.isEmpty()) {
@@ -62,7 +61,7 @@ public class EstadoCivilServiceImpl implements IEstadoCivilService{
 	}
 
 	@Override
-	public void delete(Long id) throws CustomServiceException{
+	public void delete(Long id) throws Exception {
 		dao.deleteById(id);		
 	}
 	
@@ -77,7 +76,7 @@ public class EstadoCivilServiceImpl implements IEstadoCivilService{
 	}
 
 	@Override
-	public void deleteLogic(EstadoCivilDTO t) throws CustomServiceException {
+	public void deleteLogic(EstadoCivilDTO t) throws Exception {
 		dao.deleteLogic(t.getIdEstadoCivil());
 	}	
 

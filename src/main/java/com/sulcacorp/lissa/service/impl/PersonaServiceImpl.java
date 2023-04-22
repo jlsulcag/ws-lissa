@@ -14,7 +14,6 @@ import com.sulcacorp.lissa.dto.PersonaDTO;
 import com.sulcacorp.lissa.model.Persona;
 import com.sulcacorp.lissa.repository.IPersonaDAO;
 import com.sulcacorp.lissa.service.IPersonaService;
-import com.sulcacorp.lissa.service.exception.CustomServiceException;
 
 @Service
 public class PersonaServiceImpl implements IPersonaService {
@@ -26,12 +25,12 @@ public class PersonaServiceImpl implements IPersonaService {
 	private ModelMapper modelMapper;
 
 	@Override
-	public PersonaDTO buscarXDoc(String numDoc) throws CustomServiceException{
+	public PersonaDTO buscarXDoc(String numDoc) throws Exception {
 		return convertToDto(dao.buscarXDni(numDoc));
 	}
 
 	@Override
-	public List<PersonaDTO> listarFullName(String fullName) throws CustomServiceException{
+	public List<PersonaDTO> listarFullName(String fullName) throws Exception {
 		List<Persona> listPerson = dao.listarFullName(fullName);
 		if (!listPerson.isEmpty()) {
 			return listPerson.stream().map(this::convertToDto).collect(Collectors.toList());
@@ -40,7 +39,7 @@ public class PersonaServiceImpl implements IPersonaService {
 	}
 
 	@Override
-	public PersonaDTO buscarXDoc(Long typeDOc, String docNumber) throws CustomServiceException{
+	public PersonaDTO buscarXDoc(Long typeDOc, String docNumber) throws Exception {
 		Persona persona = new Persona();
 		persona = dao.buscarXDoc(typeDOc, docNumber);
 		if(persona != null && persona.getIdPersona() > 0L) {
@@ -51,27 +50,27 @@ public class PersonaServiceImpl implements IPersonaService {
 	}
 
 	@Override
-	public PersonaDTO save(PersonaDTO t) throws CustomServiceException {
+	public PersonaDTO save(PersonaDTO t) throws Exception {
 		Persona persona = new Persona();
 		persona = convertToEntity(t);
 		return convertToDto(dao.save(persona));
 	}
 
 	@Override
-	public PersonaDTO update(PersonaDTO t) throws CustomServiceException {
+	public PersonaDTO update(PersonaDTO t) throws Exception {
 		Persona persona = new Persona();
 		persona = convertToEntity(t);
 		return convertToDto(dao.save(persona));
 	}
 
 	@Override
-	public PersonaDTO findById(Long id) throws CustomServiceException {
+	public PersonaDTO findById(Long id) throws Exception {
 		Optional<Persona> opt = dao.findById(id);
 		return opt.isPresent()? convertToDto(opt.get()) : null;
 	}
 	
 	@Override
-	public List<PersonaDTO> findAll() throws CustomServiceException {
+	public List<PersonaDTO> findAll() throws Exception {
 		List<Persona> list = new ArrayList<>();
 		List<PersonaDTO> listDto = new ArrayList<>();
 		list = dao.findAll();
@@ -85,7 +84,7 @@ public class PersonaServiceImpl implements IPersonaService {
 	}
 
 	@Override
-	public List<PersonaDTO> findAllAct() throws CustomServiceException {
+	public List<PersonaDTO> findAllAct() throws Exception {
 		List<Persona> list = new ArrayList<>();
 		List<PersonaDTO> listDto = new ArrayList<>();
 		list = dao.findAllAct();
@@ -99,7 +98,7 @@ public class PersonaServiceImpl implements IPersonaService {
 	}
 
 	@Override
-	public void delete(Long id) throws CustomServiceException {
+	public void delete(Long id) throws Exception {
 		dao.deleteById(id);		
 	}
 	
@@ -115,7 +114,7 @@ public class PersonaServiceImpl implements IPersonaService {
 	}
 
 	@Override
-	public void deleteLogic(PersonaDTO t) throws CustomServiceException {
+	public void deleteLogic(PersonaDTO t) throws Exception {
 		
 	}
 

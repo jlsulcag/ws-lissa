@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.sulcacorp.lissa.model.view.MedicoView;
 import com.sulcacorp.lissa.repository.IMedicoViewRepository;
 import com.sulcacorp.lissa.service.IMedicoViewService;
-import com.sulcacorp.lissa.service.exception.CustomServiceException;
 import com.sulcacorp.lissa.util.Constante;
 
 @Service
@@ -19,13 +18,13 @@ public class MedicoViewServiceImpl implements IMedicoViewService{
 	private IMedicoViewRepository repository;
 
 	@Override
-	public MedicoView findById(Long id) throws CustomServiceException {
+	public MedicoView findById(Long id) throws Exception {
 		Optional<MedicoView> opt = repository.findById(id);
 		return opt.isPresent()?opt.get():null;
 	}
 
 	@Override
-	public List<MedicoView> findAllAct() throws CustomServiceException {
+	public List<MedicoView> findAllAct() throws Exception {
 		return repository.findAllAct(Constante.STATUS_REG_ENABLE);
 	}
 

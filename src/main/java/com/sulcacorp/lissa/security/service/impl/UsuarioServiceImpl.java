@@ -17,7 +17,6 @@ import com.sulcacorp.lissa.security.repository.IUsuarioRepository;
 import com.sulcacorp.lissa.security.repository.IUsuarioRolRepository;
 import com.sulcacorp.lissa.security.request.UsuarioRequest;
 import com.sulcacorp.lissa.security.service.IUsuarioService;
-import com.sulcacorp.lissa.service.exception.CustomServiceException;
 import com.sulcacorp.lissa.util.Constante;
 
 import lombok.extern.slf4j.Slf4j;
@@ -42,7 +41,7 @@ public class UsuarioServiceImpl implements IUsuarioService {
 
 
 	@Override
-	public Usuario save(Usuario t) throws CustomServiceException {
+	public Usuario save(Usuario t) throws Exception {
 		t.setEstado(Constante.STATUS_REG_ENABLE);
 		t.setFechaReg(LocalDateTime.now());
 		t.setNombreUsuario(t.getNombreUsuario().toUpperCase().trim());
@@ -51,7 +50,7 @@ public class UsuarioServiceImpl implements IUsuarioService {
 	}
 
 	@Override
-	public Usuario update(Usuario t) throws CustomServiceException {
+	public Usuario update(Usuario t) throws Exception {
 		t.setEstado(t.getEstado().toUpperCase());
 		t.setFechaReg(t.getFechaReg());
 		t.setNombreUsuario(t.getNombreUsuario().toUpperCase().trim());
@@ -60,36 +59,36 @@ public class UsuarioServiceImpl implements IUsuarioService {
 	}
 
 	@Override
-	public Usuario findById(Long id) throws CustomServiceException {
+	public Usuario findById(Long id) throws Exception {
 		Optional<Usuario> op = repository.findById(id);
 		return op.isPresent() ? op.get() : null;
 	}
 	
 	@Override
-	public List<Usuario> findAll() throws CustomServiceException {
+	public List<Usuario> findAll() throws Exception {
 		return repository.findAllAct();
 	}
 
 	@Override
-	public List<Usuario> findAllAct() throws CustomServiceException {
+	public List<Usuario> findAllAct() throws Exception {
 		return repository.findAllAct();
 	}
 
 	@Override
-	public void delete(Long id) throws CustomServiceException {
+	public void delete(Long id) throws Exception {
 		repository.deleteById(id);
 
 	}
 
 	@Override
-	public void deleteLogic(Usuario t) throws CustomServiceException {
+	public void deleteLogic(Usuario t) throws Exception {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	@Transactional
-	public Integer createUser(UsuarioRequest usuarioRequest) throws CustomServiceException {
+	public Integer createUser(UsuarioRequest usuarioRequest) throws Exception {
 
 		try {
 			Persona temp = new Persona();
@@ -127,7 +126,7 @@ public class UsuarioServiceImpl implements IUsuarioService {
 	}
 
 	@Override
-	public boolean existsByNombreUsuario(String nombreUsuario) throws CustomServiceException {
+	public boolean existsByNombreUsuario(String nombreUsuario) throws Exception {
 		return repository.existsByNombreUsuario(nombreUsuario);
 	}
 

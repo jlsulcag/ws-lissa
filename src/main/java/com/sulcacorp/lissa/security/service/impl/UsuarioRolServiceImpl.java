@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.sulcacorp.lissa.model.UsuarioRol;
 import com.sulcacorp.lissa.security.repository.IUsuarioRolRepository;
 import com.sulcacorp.lissa.security.service.IUsuarioRolService;
-import com.sulcacorp.lissa.service.exception.CustomServiceException;
 
 @Service
 public class UsuarioRolServiceImpl implements IUsuarioRolService{
@@ -18,39 +17,39 @@ public class UsuarioRolServiceImpl implements IUsuarioRolService{
 	private IUsuarioRolRepository repository;
 
 	@Override
-	public UsuarioRol save(UsuarioRol t) throws CustomServiceException {
+	public UsuarioRol save(UsuarioRol t) throws Exception {
 		return repository.save(t);
 	}
 
 	@Override
-	public UsuarioRol update(UsuarioRol t) throws CustomServiceException {
+	public UsuarioRol update(UsuarioRol t) throws Exception {
 		return repository.save(t);
 	}
 
 	@Override
-	public UsuarioRol findById(Long id) throws CustomServiceException {
+	public UsuarioRol findById(Long id) throws Exception {
 		Optional<UsuarioRol> op = repository.findById(id);
 		return op.isPresent() ? op.get():null;
 	}
 	
 	@Override
-	public List<UsuarioRol> findAll() throws CustomServiceException {
+	public List<UsuarioRol> findAll() throws Exception {
 		return repository.findAllAct();
 	}
 
 	@Override
-	public List<UsuarioRol> findAllAct() throws CustomServiceException {
+	public List<UsuarioRol> findAllAct() throws Exception {
 		return repository.findAllAct();
 	}
 
 	@Override
-	public void delete(Long id) throws CustomServiceException {
+	public void delete(Long id) throws Exception {
 		repository.deleteById(id);
 		
 	}
 
 	@Override
-	public void deleteLogic(UsuarioRol t) throws CustomServiceException {
+	public void deleteLogic(UsuarioRol t) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}

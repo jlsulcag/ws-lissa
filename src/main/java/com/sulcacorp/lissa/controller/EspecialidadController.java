@@ -2,6 +2,8 @@ package com.sulcacorp.lissa.controller;
 
 import java.util.List;
 import javax.validation.Valid;
+
+import com.sulcacorp.lissa.util.Constante;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.MediaType;
@@ -19,8 +21,6 @@ import com.sulcacorp.lissa.controller.commons.ResponseModel;
 import com.sulcacorp.lissa.controller.generic.GenericController;
 import com.sulcacorp.lissa.dto.EspecialidadDTO;
 import com.sulcacorp.lissa.service.IEspecialidadService;
-import com.sulcacorp.lissa.service.exception.CustomServiceException;
-import com.sulcacorp.lissa.util.Constante;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -34,18 +34,15 @@ public class EspecialidadController extends GenericController{
 	
 	@GetMapping(value = "/findAll", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ResponseModel> findAll(){
-		log.info(">>> Process findAll");
+		log.info(">>> Process EspecialidadController findAll");
 		try {
 			List<EspecialidadDTO> list = especialidadService.findAll();
 			if(list.isEmpty()) {
 				return this.getNotFoundRequest();
 			}	
 			return this.getOkResponseConsulta(list);			
-		} catch (CustomServiceException e) {
-			log.error(">>> Error especialidad findAll :\n {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
-			log.error(">>> Error especialidad findAll : {}", e.fillInStackTrace());
+			log.error(">>> Error especialidad findAll :\n ", e.fillInStackTrace());
 			return this.getInternalServerError(Constante.ERROR_500);
 		}
 	}
@@ -59,11 +56,8 @@ public class EspecialidadController extends GenericController{
 				return this.getNotFoundRequest();
 			}	
 			return this.getOkResponseConsulta(list);			
-		} catch (CustomServiceException e) {
-			log.error(">>> Error especialidad findAll :\n {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
-			log.error(">>> Error especialidad update : {}", e.fillInStackTrace());
+			log.error(">>> Error especialidad findAll :\n {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constante.ERROR_500);
 		}
 	}
@@ -78,11 +72,8 @@ public class EspecialidadController extends GenericController{
 				return this.getNotFoundRequest();
 			}
 			return getOkResponseConsulta(especialidad);
-		} catch (CustomServiceException e) {
-			log.error(">>> Error especialidad findById :\n {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
-			log.error(">>> Error especialidad update : {}", e.fillInStackTrace());
+			log.error(">>> Error especialidad findById :\n {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constante.ERROR_500);
 		}
 		
@@ -101,11 +92,8 @@ public class EspecialidadController extends GenericController{
 			}
 			EspecialidadDTO dto = especialidadService.save(especialidad);			
 			return this.getCreatedResponse(dto,result);
-		} catch (CustomServiceException e) {
-			log.error(">>> Error especialidad save :\n {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
-			log.error(">>> Error especialidad save : {}", e.fillInStackTrace());
+			log.error(">>> Error especialidad save :\n {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constante.ERROR_500);
 		}
 	}
@@ -124,9 +112,6 @@ public class EspecialidadController extends GenericController{
 			especialidad.setEstado(especialidadDTO.getEstado());
 			especialidad.setFechaReg(especialidadDTO.getFechaReg());
 			return this.getOkResponseRegistro(especialidadService.update(especialidad), result);
-		} catch (CustomServiceException e) {
-			log.error(">>> Error especialidad update : {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error(">>> Error especialidad update : {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constante.ERROR_500);
@@ -144,9 +129,6 @@ public class EspecialidadController extends GenericController{
 			}
 			obj.setEstado(Constante.STATUS_REG_DISABLE);
 			return this.getOkResponseConsulta(especialidadService.update(obj));
-		} catch (CustomServiceException e) {
-			log.error(">>> Error especialidad updateStatus : {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error(">>> Error especialidad updateStatus : {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constante.ERROR_500);
@@ -165,16 +147,14 @@ public class EspecialidadController extends GenericController{
 			}			
 			especialidadService.delete(id);
 			return this.getOkResponseConsulta(obj);
-		} catch (CustomServiceException e) {
-			log.error(">>> Error especialidad delete : {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constante.ERROR_500);
-		} catch (DataIntegrityViolationException e) {
+		}catch (DataIntegrityViolationException e) {
 			log.error(">>> Error especialidad delete DataIntegrityViolationException {}", e.fillInStackTrace());
 			return this.getInternalServerErrorConstraintViolation(Constante.ERROR_COSTRAINT_VIOLATION_500);
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			log.error(">>> Error especialidad delete : {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constante.ERROR_500);
-		} 
+		}
 		
 	}
 }

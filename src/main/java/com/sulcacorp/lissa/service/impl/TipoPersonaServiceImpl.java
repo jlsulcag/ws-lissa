@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import com.sulcacorp.lissa.model.TipoPersona;
 import com.sulcacorp.lissa.repository.ITipoPersonaDAO;
 import com.sulcacorp.lissa.service.ITipoPersonaService;
-import com.sulcacorp.lissa.service.exception.CustomServiceException;
 import com.sulcacorp.lissa.service.generic.GenericServiceImpl;
 
 @Service
@@ -25,12 +24,12 @@ public class TipoPersonaServiceImpl extends GenericServiceImpl<TipoPersona, Long
 	}
 
 	@Override
-	public void deleteLogic(TipoPersona t) throws CustomServiceException {
+	public void deleteLogic(TipoPersona t) throws Exception {
 		
 	}
 
 	@Override
-	public List<TipoPersona> findAll() throws CustomServiceException {
+	public List<TipoPersona> findAll() throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -1,12 +1,9 @@
 package com.sulcacorp.lissa.service.impl;
 
-import com.sulcacorp.lissa.dto.EspecialidadDTO;
 import com.sulcacorp.lissa.dto.OrganizacionDTO;
-import com.sulcacorp.lissa.model.Especialidad;
 import com.sulcacorp.lissa.model.Organizacion;
 import com.sulcacorp.lissa.repository.IOrganizacionRepository;
 import com.sulcacorp.lissa.service.IOrganizacionService;
-import com.sulcacorp.lissa.service.exception.CustomServiceException;
 import com.sulcacorp.lissa.util.enums.EstadoEnum;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +24,7 @@ public class OrganizacionServiceImpl implements IOrganizacionService {
     private ModelMapper modelMapper;
 
     @Override
-    public OrganizacionDTO save(OrganizacionDTO organizacionDTO) throws CustomServiceException {
+    public OrganizacionDTO save(OrganizacionDTO organizacionDTO) throws Exception {
         Organizacion organizacion = new Organizacion();
         organizacionDTO.setRazonSocial(organizacionDTO.getRazonSocial().toUpperCase());
         organizacionDTO.setDireccion(organizacionDTO.getDireccion().toUpperCase());
@@ -37,7 +34,7 @@ public class OrganizacionServiceImpl implements IOrganizacionService {
     }
 
     @Override
-    public OrganizacionDTO update(OrganizacionDTO organizacionDTO) throws CustomServiceException {
+    public OrganizacionDTO update(OrganizacionDTO organizacionDTO) throws Exception {
         Organizacion organizacion = new Organizacion();
         organizacionDTO.setRazonSocial(organizacionDTO.getRazonSocial().toUpperCase());
         organizacionDTO.setDireccion(organizacionDTO.getDireccion().toUpperCase());
@@ -47,13 +44,13 @@ public class OrganizacionServiceImpl implements IOrganizacionService {
     }
 
     @Override
-    public OrganizacionDTO findById(Long id) throws CustomServiceException {
+    public OrganizacionDTO findById(Long id) throws Exception {
         Optional<Organizacion> op = organizacionRepository.findById(id);
         return op.isPresent() ? convertToDTO(op.get()) : null;
     }
 
     @Override
-    public List<OrganizacionDTO> findAll() throws CustomServiceException {
+    public List<OrganizacionDTO> findAll() throws Exception {
         List<Organizacion> list = new ArrayList<>();
         List<OrganizacionDTO> listDTO = new ArrayList<>();
         list = organizacionRepository.findAll(Sort.by(Sort.Direction.ASC, "razonSocial"));
@@ -65,7 +62,7 @@ public class OrganizacionServiceImpl implements IOrganizacionService {
     }
 
     @Override
-    public List<OrganizacionDTO> findAllAct() throws CustomServiceException {
+    public List<OrganizacionDTO> findAllAct() throws Exception {
         List<Organizacion> list = new ArrayList<>();
         List<OrganizacionDTO> listDTO = new ArrayList<>();
         list = organizacionRepository.findAllAct(EstadoEnum.ACTIVO.getEstado());
@@ -77,12 +74,12 @@ public class OrganizacionServiceImpl implements IOrganizacionService {
     }
 
     @Override
-    public void delete(Long aLong) throws CustomServiceException {
+    public void delete(Long aLong) throws Exception {
 
     }
 
     @Override
-    public void deleteLogic(OrganizacionDTO organizacion) throws CustomServiceException {
+    public void deleteLogic(OrganizacionDTO organizacion) throws Exception {
 
     }
 

@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sulcacorp.lissa.controller.commons.ResponseModel;
 import com.sulcacorp.lissa.controller.generic.GenericController;
 import com.sulcacorp.lissa.dto.EstadoCivilDTO;
-import com.sulcacorp.lissa.service.exception.CustomServiceException;
 import com.sulcacorp.lissa.service.impl.EstadoCivilServiceImpl;
 import com.sulcacorp.lissa.util.Constante;
 
@@ -40,11 +39,8 @@ public class EstadoCivilController extends GenericController {
 				return this.getNotFoundRequest();
 			}
 			return this.getOkResponseConsulta(list);
-		} catch (CustomServiceException e) {
-			log.error(">>> Error estadoCivil findAll... {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
-			log.error(">>> Error estadoCivil findAll : {}", e.fillInStackTrace());
+			log.error(">>> Error estadoCivil findAll... {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constante.ERROR_500);
 		}
 		
@@ -61,9 +57,6 @@ public class EstadoCivilController extends GenericController {
 				return this.getNotFoundRequest();
 			}
 			return this.getOkResponseConsulta(estadoCivilDTO);
-		} catch (CustomServiceException e) {
-			log.error(">>> Error estadoCivil findById :\n {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error(">>> Error estadoCivil findById :\n {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constante.ERROR_500);
@@ -81,9 +74,6 @@ public class EstadoCivilController extends GenericController {
 			EstadoCivilDTO dto;
 			dto = service.save(t);
 			return this.getCreatedResponse(dto, result);
-		} catch (CustomServiceException e) {
-			log.error(">>> Error estadoCivil save {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error(">>> Error estadoCivil save {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constante.ERROR_500);
@@ -103,9 +93,6 @@ public class EstadoCivilController extends GenericController {
 			}
 			t.setEstado(dto.getEstado());
 			return this.getOkResponseRegistro(service.update(t), result);
-		} catch (CustomServiceException e) {
-			log.error(">>> Error estadoCivil update {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error(">>> Error estadoCivil update {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constante.ERROR_500);
@@ -122,9 +109,6 @@ public class EstadoCivilController extends GenericController {
 			}
 			dto.setEstado(Constante.STATUS_REG_DISABLE);
 			return this.getOkResponseConsulta(service.update(dto));
-		} catch (CustomServiceException e) {
-			log.error(">>> Error estadoCivil delete : {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error(">>> Error estadoCivil delete : {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constante.ERROR_500);
@@ -142,9 +126,6 @@ public class EstadoCivilController extends GenericController {
 			}			
 			service.delete(id);
 			return this.getOkResponseConsulta(dto);
-		} catch (CustomServiceException e) {
-			log.error(">>> Error estadoCivil delete : {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error(">>> Error estadoCivil delete : {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constante.ERROR_500);

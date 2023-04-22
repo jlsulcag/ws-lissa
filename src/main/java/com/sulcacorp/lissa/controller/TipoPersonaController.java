@@ -18,7 +18,6 @@ import com.sulcacorp.lissa.controller.commons.ResponseModel;
 import com.sulcacorp.lissa.controller.generic.GenericController;
 import com.sulcacorp.lissa.model.TipoPersona;
 import com.sulcacorp.lissa.service.ITipoPersonaService;
-import com.sulcacorp.lissa.service.exception.CustomServiceException;
 import com.sulcacorp.lissa.util.Constante;
 
 import lombok.extern.slf4j.Slf4j;
@@ -40,9 +39,6 @@ public class TipoPersonaController extends GenericController{
 				return this.getNotFoundRequest();
 			}
 			return this.getOkResponseConsulta(list);
-		} catch (CustomServiceException e) {
-			log.error(">>> Error execute findAll {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error(">>> Error execute findAll {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constante.ERROR_500);
@@ -58,9 +54,6 @@ public class TipoPersonaController extends GenericController{
 				return this.getNotFoundRequest();
 			}
 			return this.getOkResponseConsulta(obj);
-		} catch (CustomServiceException e) {
-			log.error(">>> Error execute findById {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error(">>> Error execute findById {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constante.ERROR_500);
@@ -75,9 +68,6 @@ public class TipoPersonaController extends GenericController{
 		}
 		try {
 			return this.getCreatedResponse(service.save(obj), result);
-		} catch (CustomServiceException e) {
-			log.error(">>> Error save {} ", e.fillInStackTrace());
-			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error(">>> Error save {} ", e.fillInStackTrace());
 			return this.getInternalServerError(Constante.ERROR_500);
@@ -97,9 +87,6 @@ public class TipoPersonaController extends GenericController{
 				return this.getNotFoundRequest();
 			}
 			return this.getOkResponseRegistro(service.update(obj), result);
-		} catch (CustomServiceException e) {
-			log.error(">>> Error update {} ", e.fillInStackTrace());
-			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error(">>> Error update {} ", e.fillInStackTrace());
 			return this.getInternalServerError(Constante.ERROR_500);
@@ -117,9 +104,6 @@ public class TipoPersonaController extends GenericController{
 			}
 			temp.setEstado(Constante.STATUS_REG_DISABLE);
 			return this.getOkResponseConsulta(service.update(temp));
-		} catch (CustomServiceException e) {
-			log.error(">>> Error updateStatus {} ", e.fillInStackTrace());
-			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error(">>> Error updateStatus {} ", e.fillInStackTrace());
 			return this.getInternalServerError(Constante.ERROR_500);
@@ -137,9 +121,6 @@ public class TipoPersonaController extends GenericController{
 			}
 			service.delete(id);
 			return this.getOkResponseConsulta(temp);
-		} catch (CustomServiceException e) {
-			log.error(">>> Error delete {} ", e.fillInStackTrace());
-			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error(">>> Error delete {} ", e.fillInStackTrace());
 			return this.getInternalServerError(Constante.ERROR_500);

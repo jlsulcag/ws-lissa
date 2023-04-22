@@ -29,7 +29,6 @@ import com.sulcacorp.lissa.security.jwt.TokenUtils;
 import com.sulcacorp.lissa.security.request.AuthRequest;
 import com.sulcacorp.lissa.security.request.UsuarioRequest;
 import com.sulcacorp.lissa.security.service.IUsuarioService;
-import com.sulcacorp.lissa.service.exception.CustomServiceException;
 import com.sulcacorp.lissa.util.Constante;
 import lombok.extern.slf4j.Slf4j;
 
@@ -92,11 +91,8 @@ public class UsuarioController extends GenericController{
 				return this.getNotFoundRequest();
 			}	
 			return this.getOkResponseConsulta(list);			
-		} catch (CustomServiceException e) {
-			log.error("Error UsuarioController findAll :\n {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
-			log.error("Error UsuarioController findAll : {}", e.fillInStackTrace());
+			log.error("Error UsuarioController findAll :\n {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constante.ERROR_500);
 		}
 	}
@@ -111,11 +107,8 @@ public class UsuarioController extends GenericController{
 				return this.getNotFoundRequest();
 			}
 			return getOkResponseConsulta(usuario);
-		} catch (CustomServiceException e) {
-			log.error("Error UsuarioController findById :\n {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
-			log.error("Error UsuarioController update : {}", e.fillInStackTrace());
+			log.error("Error UsuarioController findById :\n {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constante.ERROR_500);
 		}
 		
@@ -131,11 +124,8 @@ public class UsuarioController extends GenericController{
 			Usuario user = usuarioService.save(usuario);
 			log.info("Fin UsuarioController save");
 			return this.getCreatedResponse(user,result);
-		} catch (CustomServiceException e) {
-			log.error("Error UsuarioController save :\n {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
-			log.error("Error UsuarioController save : {}", e.fillInStackTrace());
+			log.error("Error UsuarioController save :\n {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constante.ERROR_500);
 		}
 	}
@@ -153,9 +143,6 @@ public class UsuarioController extends GenericController{
 			}
 			log.info("Fin UsuarioController update");
 			return this.getOkResponseRegistro(usuarioService.update(usuario), result);
-		} catch (CustomServiceException e) {
-			log.error("Error UsuarioController update : {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error("Error UsuarioController update : {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constante.ERROR_500);
@@ -173,9 +160,6 @@ public class UsuarioController extends GenericController{
 			}			
 			usuarioService.delete(id);
 			return this.getOkResponseConsulta(obj);
-		} catch (CustomServiceException e) {
-			log.error("Error UsuarioController delete : {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error("Error UsuarioController delete : {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constante.ERROR_500);
@@ -204,9 +188,6 @@ public class UsuarioController extends GenericController{
 			if(response == Constante.STATUS_SUCCESS) {
 				return this.getCreatedResponseTransactional();
 			}
-			return this.getInternalServerError(Constante.ERROR_500);
-		} catch (CustomServiceException e) {
-			log.error("Error UsuarioRolController createUser :\n {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error("Error UsuarioRolController createUser :\n {}", e.fillInStackTrace());

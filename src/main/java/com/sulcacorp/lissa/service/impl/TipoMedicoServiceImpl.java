@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.sulcacorp.lissa.model.TipoMedico;
 import com.sulcacorp.lissa.repository.ITipoMedicoDAO;
 import com.sulcacorp.lissa.service.ITipoMedicoService;
-import com.sulcacorp.lissa.service.exception.CustomServiceException;
 import com.sulcacorp.lissa.util.Constante;
 
 @Service
@@ -52,7 +51,7 @@ public class TipoMedicoServiceImpl implements ITipoMedicoService {
 	}
 
 	@Override
-	public void deleteLogic(TipoMedico t) throws CustomServiceException {
+	public void deleteLogic(TipoMedico t) throws Exception {
 		
 	}
 

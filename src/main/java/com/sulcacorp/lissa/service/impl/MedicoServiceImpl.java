@@ -21,7 +21,6 @@ import com.sulcacorp.lissa.model.Persona;
 import com.sulcacorp.lissa.repository.IMedicoDAO;
 import com.sulcacorp.lissa.repository.IPersonaDAO;
 import com.sulcacorp.lissa.service.IMedicoService;
-import com.sulcacorp.lissa.service.exception.CustomServiceException;
 import com.sulcacorp.lissa.util.Constante;
 
 @Service
@@ -83,13 +82,13 @@ public class MedicoServiceImpl implements IMedicoService{
 	}
 
 	@Override
-	public void deleteLogic(MedicoDTO t) throws CustomServiceException {
+	public void deleteLogic(MedicoDTO t) throws Exception {
 		
 	}
 
 	@Transactional
 	@Override
-	public Medico saveCustom(MedicoDTO medicoDTO) throws CustomServiceException {
+	public Medico saveCustom(MedicoDTO medicoDTO) throws Exception {
 		/*Trasaccion 1 registrar persona*/
 		Persona persona = new Persona();
 		persona = convertToEntity(medicoDTO.getPersonaDTO());

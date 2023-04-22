@@ -18,7 +18,6 @@ import com.sulcacorp.lissa.model.UsuarioRol;
 import com.sulcacorp.lissa.security.entity.UserDetailsImpl;
 import com.sulcacorp.lissa.security.repository.IUsuarioRepository;
 import com.sulcacorp.lissa.security.repository.IUsuarioRolRepository;
-import com.sulcacorp.lissa.service.exception.CustomServiceException;
 
 @Service("usuarioDetailServiceImpl")
 public class UsuarioDetailServiceImpl implements UserDetailsService {
@@ -59,7 +58,7 @@ public class UsuarioDetailServiceImpl implements UserDetailsService {
 					if (rol != null && rol.getIdRol() > 0) {
 						authorities.add(new SimpleGrantedAuthority(rol.getNombreRol().trim()));
 					}
-				} catch (CustomServiceException e) {
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}

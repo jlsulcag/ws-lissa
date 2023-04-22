@@ -20,7 +20,6 @@ import com.sulcacorp.lissa.dto.MedicoDTO;
 import com.sulcacorp.lissa.model.view.MedicoView;
 import com.sulcacorp.lissa.service.IMedicoService;
 import com.sulcacorp.lissa.service.IMedicoViewService;
-import com.sulcacorp.lissa.service.exception.CustomServiceException;
 import com.sulcacorp.lissa.util.Constante;
 
 import lombok.extern.slf4j.Slf4j;
@@ -45,9 +44,6 @@ public class MedicoController extends GenericController{
 				return this.getNotFoundRequest();
 			}	
 			return this.getOkResponseConsulta(list);			
-		} catch (CustomServiceException e) {
-			log.error(">>> Error findAll Medico :\n {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error(">>> Error findAll Medico :\n {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constante.ERROR_500);
@@ -64,9 +60,6 @@ public class MedicoController extends GenericController{
 				return this.getNotFoundRequest();
 			}
 			return getOkResponseConsulta(medico);
-		} catch (CustomServiceException e) {
-			log.error(">>> Error findById Medico :\n {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error(">>> Error findById Medico :\n {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constante.ERROR_500);
@@ -82,11 +75,8 @@ public class MedicoController extends GenericController{
 		}
 		try {
 			return this.getCreatedResponse(service.saveCustom(medicoDTO),result);
-		} catch (CustomServiceException e) {
-			log.error("Error CustomServiceException - MedicoController - save ", e.fillInStackTrace());
-			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
-			log.error("Error Exception - MedicoController - save ", e.fillInStackTrace());
+			log.error("Error CustomServiceException - MedicoController - save ", e.fillInStackTrace());
 			return this.getInternalServerError(Constante.ERROR_500);
 		}
 	}
@@ -101,11 +91,8 @@ public class MedicoController extends GenericController{
 			}
 			log.info("Fin - MedicoController - update");
 			return this.getOkResponseRegistro(service.actualizardatos(medico), result);
-		} catch (CustomServiceException e) {
-			log.error(">>> Error CustomServiceException MedicoController - update ", e.fillInStackTrace());
-			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
-			log.error("Error Exception - MedicoController - update ", e.fillInStackTrace());
+			log.error(">>> Error CustomServiceException MedicoController - update ", e.fillInStackTrace());
 			return this.getInternalServerError(Constante.ERROR_500);
 		}
 		
@@ -122,11 +109,8 @@ public class MedicoController extends GenericController{
 			}			
 			service.delete(id);
 			return this.getOkResponseConsulta(obj);
-		} catch (CustomServiceException e) {
-			log.error(">>> Error CustomServiceException MedicoController - delete ", e.getMessage());
-			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
-			log.error("Error Exception - MedicoController - delete ", e.fillInStackTrace());
+			log.error(">>> Error CustomServiceException MedicoController - delete ", e.getMessage());
 			return this.getInternalServerError(Constante.ERROR_500);
 		}
 		

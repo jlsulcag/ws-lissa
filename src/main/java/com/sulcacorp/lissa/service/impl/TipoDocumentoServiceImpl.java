@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import com.sulcacorp.lissa.model.TipoDocumento;
 import com.sulcacorp.lissa.repository.ITipoDocumentoDAO;
 import com.sulcacorp.lissa.service.ITipoDocumentoService;
-import com.sulcacorp.lissa.service.exception.CustomServiceException;
 import com.sulcacorp.lissa.util.Constante;
 
 @Service
@@ -20,7 +19,7 @@ public class TipoDocumentoServiceImpl implements ITipoDocumentoService {
 	private ITipoDocumentoDAO dao;
 
 	@Override
-	public TipoDocumento save(TipoDocumento t) throws CustomServiceException {
+	public TipoDocumento save(TipoDocumento t) throws Exception {
 		t.setDescripcion(StringUtils.isBlank(t.getDescripcion()) ? "" : t.getDescripcion().toUpperCase().trim());
 		t.setAbreviatura(StringUtils.isBlank(t.getAbreviatura()) ? null : t.getAbreviatura().toUpperCase().trim());
 		t.setCodigo(StringUtils.isBlank(t.getCodigo()) ? null : t.getCodigo().toUpperCase().trim());
@@ -30,7 +29,7 @@ public class TipoDocumentoServiceImpl implements ITipoDocumentoService {
 	}
 
 	@Override
-	public TipoDocumento update(TipoDocumento t) throws CustomServiceException {
+	public TipoDocumento update(TipoDocumento t) throws Exception {
 		t.setDescripcion(StringUtils.isBlank(t.getDescripcion()) ? "" : t.getDescripcion().toUpperCase().trim());
 		t.setAbreviatura(StringUtils.isBlank(t.getAbreviatura()) ? null : t.getAbreviatura().toUpperCase().trim());
 		t.setCodigo(StringUtils.isBlank(t.getCodigo()) ? null : t.getCodigo().toUpperCase().trim());
@@ -38,28 +37,28 @@ public class TipoDocumentoServiceImpl implements ITipoDocumentoService {
 	}
 
 	@Override
-	public TipoDocumento findById(Long id) throws CustomServiceException {
+	public TipoDocumento findById(Long id) throws Exception {
 		Optional<TipoDocumento> opt = dao.findById(id);
 		return opt.isPresent() ? opt.get() : null;
 	}
 
 	@Override
-	public List<TipoDocumento> findAll() throws CustomServiceException {
+	public List<TipoDocumento> findAll() throws Exception {
 		return dao.findAll();
 	}
 	
 	@Override
-	public List<TipoDocumento> findAllAct() throws CustomServiceException {
+	public List<TipoDocumento> findAllAct() throws Exception {
 		return dao.findAllAct();
 	}
 
 	@Override
-	public void delete(Long id) throws CustomServiceException {
+	public void delete(Long id) throws Exception {
 		dao.deleteById(id);
 	}
 
 	@Override
-	public void deleteLogic(TipoDocumento t) throws CustomServiceException {
+	public void deleteLogic(TipoDocumento t) throws Exception {
 		
 	}
 

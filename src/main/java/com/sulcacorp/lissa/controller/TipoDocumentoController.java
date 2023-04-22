@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sulcacorp.lissa.controller.commons.ResponseModel;
 import com.sulcacorp.lissa.controller.generic.GenericController;
 import com.sulcacorp.lissa.model.TipoDocumento;
-import com.sulcacorp.lissa.service.exception.CustomServiceException;
 import com.sulcacorp.lissa.service.impl.TipoDocumentoServiceImpl;
 import com.sulcacorp.lissa.util.Constante;
 
@@ -40,9 +39,6 @@ public class TipoDocumentoController extends GenericController{
 				return this.getNotFoundRequest();
 			}
 			return this.getOkResponseConsulta(list);
-		} catch (CustomServiceException e) {
-			log.error(">>> Error /api/tipodocumento/findAll : {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error(">>> Error /api/tipodocumento/findAll : {}", e.fillInStackTrace());
 			return this.getInternalServerError(Constante.ERROR_500);
@@ -60,9 +56,6 @@ public class TipoDocumentoController extends GenericController{
 				return this.getNotFoundRequest();
 			}
 			return this.getOkResponseConsulta(obj);
-		} catch (CustomServiceException e) {
-			log.error(">>> Error /api/tipodocumento/findById : {} ", e.fillInStackTrace());
-			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error(">>> Error /api/tipodocumento/findById : {} ", e.fillInStackTrace());
 			return this.getInternalServerError(Constante.ERROR_500);
@@ -80,11 +73,8 @@ public class TipoDocumentoController extends GenericController{
 		try {
 			TipoDocumento obj = service.save(t);			
 			return this.getCreatedResponse(obj, result);
-		} catch (CustomServiceException e) {
-			log.error(">>>  Error /api/tipodocumento/save : {} ",e.fillInStackTrace());
-			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
-			log.error(">>>  Error /api/tipodocumento/save : {} ", e.fillInStackTrace());
+			log.error(">>>  Error /api/tipodocumento/save : {} ",e.fillInStackTrace());
 			return this.getInternalServerError(Constante.ERROR_500);
 		}
 	}
@@ -103,11 +93,8 @@ public class TipoDocumentoController extends GenericController{
 			}
 			t.setEstado(obj.getEstado());
 			return this.getOkResponseRegistro(service.update(t), result);
-		} catch (CustomServiceException e) {
-			log.error(">>>  Error /api/tipodocumento/update : {} ",e.fillInStackTrace());
-			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
-			log.error(">>>  Error /api/tipodocumento/update : {}",e.fillInStackTrace());
+			log.error(">>>  Error /api/tipodocumento/update : {} ",e.fillInStackTrace());
 			return this.getInternalServerError(Constante.ERROR_500);
 		}
 	}
@@ -122,11 +109,8 @@ public class TipoDocumentoController extends GenericController{
 			}	
 			obj.setEstado(Constante.STATUS_REG_DISABLE);
 			return this.getOkResponseConsulta(service.update(obj));
-		} catch (CustomServiceException e) {
-			log.error(">>>  Error /api/tipodocumento/updateStatus : {} ",e.fillInStackTrace());
-			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
-			log.error(">>>  Error /api/tipodocumento/updateStatus : {} ", e.fillInStackTrace());
+			log.error(">>>  Error /api/tipodocumento/updateStatus : {} ",e.fillInStackTrace());
 			return this.getInternalServerError(Constante.ERROR_500);
 		}
 	}
@@ -143,9 +127,6 @@ public class TipoDocumentoController extends GenericController{
 			}
 			service.delete(id);
 			return this.getOkResponseConsulta(obj);
-		} catch (CustomServiceException e) {
-			log.error("Error delete {} ", e.fillInStackTrace());
-			return this.getInternalServerError(Constante.ERROR_500);
 		} catch (Exception e) {
 			log.error("Error delete {} ", e.fillInStackTrace());
 			return this.getInternalServerError(Constante.ERROR_500);

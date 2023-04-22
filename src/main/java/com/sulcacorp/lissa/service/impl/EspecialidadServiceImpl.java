@@ -2,6 +2,7 @@ package com.sulcacorp.lissa.service.impl;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import org.apache.commons.lang3.StringUtils;
@@ -13,7 +14,6 @@ import com.sulcacorp.lissa.dto.EspecialidadDTO;
 import com.sulcacorp.lissa.model.Especialidad;
 import com.sulcacorp.lissa.repository.IEspecialidadDAO;
 import com.sulcacorp.lissa.service.IEspecialidadService;
-import com.sulcacorp.lissa.service.exception.CustomServiceException;
 import com.sulcacorp.lissa.util.Constante;
 
 @Service
@@ -50,8 +50,8 @@ public class EspecialidadServiceImpl implements IEspecialidadService {
 	}
 	
 	@Override
-	public List<EspecialidadDTO> findAll() {
-		List<Especialidad> list = new ArrayList<>();
+	public List<EspecialidadDTO> findAll() throws Exception {
+		List<Especialidad> list;
 		List<EspecialidadDTO> listDto = new ArrayList<>();
 		list = especialidadDAO.findAll(Sort.by(Sort.Direction.ASC,"descEspecialidad"));
 		if (!list.isEmpty()) {
@@ -60,7 +60,7 @@ public class EspecialidadServiceImpl implements IEspecialidadService {
 			}
 			return listDto;
 		}
-		return listDto;
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -74,7 +74,7 @@ public class EspecialidadServiceImpl implements IEspecialidadService {
 			}
 			return listDto;
 		}
-		return listDto;
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -93,7 +93,7 @@ public class EspecialidadServiceImpl implements IEspecialidadService {
 	}
 
 	@Override
-	public void deleteLogic(EspecialidadDTO t) throws CustomServiceException {
+	public void deleteLogic(EspecialidadDTO t) throws Exception {
 		// TODO Auto-generated method stub
 
 	}

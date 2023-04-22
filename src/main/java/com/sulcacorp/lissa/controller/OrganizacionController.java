@@ -4,7 +4,6 @@ import com.sulcacorp.lissa.controller.commons.ResponseModel;
 import com.sulcacorp.lissa.controller.generic.GenericController;
 import com.sulcacorp.lissa.dto.OrganizacionDTO;
 import com.sulcacorp.lissa.service.IOrganizacionService;
-import com.sulcacorp.lissa.service.exception.CustomServiceException;
 import com.sulcacorp.lissa.util.Constante;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,11 +34,8 @@ public class OrganizacionController extends GenericController {
                 return this.getNotFoundRequest();
             }
             return this.getOkResponseConsulta(list);
-        }catch (CustomServiceException e){
-            log.error("Error OrganizacionController findAll() ", e.fillInStackTrace());
-            return this.getInternalServerError(Constante.ERROR_500);
         }catch (Exception e){
-            log.error("Error OrganizacionController findAll() Exception ", e.fillInStackTrace());
+            log.error("Error OrganizacionController findAll() ", e.fillInStackTrace());
             return this.getInternalServerError(Constante.ERROR_500);
         }
 
@@ -55,11 +51,8 @@ public class OrganizacionController extends GenericController {
                 return this.getNotFoundRequest();
             }
             return this.getOkResponseConsulta(list);
-        }catch (CustomServiceException e){
-            log.error("Error OrganizacionController findAllAct() ", e.fillInStackTrace());
-            return this.getInternalServerError(Constante.ERROR_500);
         }catch (Exception e){
-            log.error("Error OrganizacionController findAllAct() Exception ", e.fillInStackTrace());
+            log.error("Error OrganizacionController findAllAct() ", e.fillInStackTrace());
             return this.getInternalServerError(Constante.ERROR_500);
         }
 
@@ -76,11 +69,8 @@ public class OrganizacionController extends GenericController {
                 return this.getNotFoundRequest();
             }
             return this.getOkResponseConsulta(organizacion);
-        } catch (CustomServiceException e) {
+        } catch (Exception e) {
             log.error("Error OrganizacionController findById() {} ", e.fillInStackTrace());
-            return this.getInternalServerError(Constante.ERROR_500);
-        } catch (Exception e){
-            log.error("Error OrganizacionController findById() Exception {} ", e.fillInStackTrace());
             return this.getInternalServerError(Constante.ERROR_500);
         }
     }
@@ -97,11 +87,8 @@ public class OrganizacionController extends GenericController {
             }
             OrganizacionDTO organizacion = organizacionService.save(organizacionDTO);
             return this.getCreatedResponse(organizacion, result);
-        } catch (CustomServiceException e) {
-            log.error(">>> Error OrganizacionController save CustomServiceException : {}", e.fillInStackTrace());
-            return this.getInternalServerError(Constante.ERROR_500);
         } catch (Exception e) {
-            log.error(">>> Error OrganizacionController save Exception : {}", e.fillInStackTrace());
+            log.error(">>> Error OrganizacionController save CustomServiceException : {}", e.fillInStackTrace());
             return this.getInternalServerError(Constante.ERROR_500);
         }
 
@@ -121,11 +108,8 @@ public class OrganizacionController extends GenericController {
             organizacionDTO.setEstado(temp.getEstado());
             OrganizacionDTO organizacion = organizacionService.update(organizacionDTO);
             return this.getOkResponseRegistro(organizacion, result);
-        } catch (CustomServiceException e) {
-            log.error(">>> Error OrganizacionController update CustomServiceException : {}", e.fillInStackTrace());
-            return this.getInternalServerError(Constante.ERROR_500);
         } catch (Exception e) {
-            log.error(">>> Error OrganizacionController update Exception : {}", e.fillInStackTrace());
+            log.error(">>> Error OrganizacionController update CustomServiceException : {}", e.fillInStackTrace());
             return this.getInternalServerError(Constante.ERROR_500);
         }
 
@@ -143,11 +127,8 @@ public class OrganizacionController extends GenericController {
             organizationDTO.setEstado(Constante.STATUS_REG_DISABLE);
             return this.getOkResponseConsulta(organizacionService.update(organizationDTO));
 
-        } catch (CustomServiceException e) {
-            log.error("Error OrganizacionController disable() CustomServiceException : {}", e.fillInStackTrace());
-            return this.getInternalServerError(Constante.ERROR_500);
         } catch (Exception e) {
-            log.error("Error OrganizacionController disable() Exception : {}", e.fillInStackTrace());
+            log.error("Error OrganizacionController disable() CustomServiceException : {}", e.fillInStackTrace());
             return this.getInternalServerError(Constante.ERROR_500);
         }
     }
