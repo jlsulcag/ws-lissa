@@ -6,7 +6,7 @@ import java.util.Set;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.sulcacorp.lissa.model.Usuario;
+import com.sulcacorp.lissa.entity.Usuario;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

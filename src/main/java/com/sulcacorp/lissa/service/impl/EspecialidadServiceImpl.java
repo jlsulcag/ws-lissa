@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import com.sulcacorp.lissa.dto.EspecialidadDTO;
-import com.sulcacorp.lissa.model.Especialidad;
+import com.sulcacorp.lissa.entity.Especialidad;
 import com.sulcacorp.lissa.repository.IEspecialidadDAO;
 import com.sulcacorp.lissa.service.IEspecialidadService;
 import com.sulcacorp.lissa.util.Constante;

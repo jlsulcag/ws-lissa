@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sulcacorp.lissa.dto.PersonaDTO;
-import com.sulcacorp.lissa.model.Persona;
+import com.sulcacorp.lissa.entity.Persona;
 import com.sulcacorp.lissa.repository.IPersonaDAO;
 import com.sulcacorp.lissa.service.IPersonaService;
 

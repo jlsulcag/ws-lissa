@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.sulcacorp.lissa.controller.commons.ResponseModel;
 import com.sulcacorp.lissa.controller.generic.GenericController;
-import com.sulcacorp.lissa.model.TipoPersona;
+import com.sulcacorp.lissa.entity.TipoPersona;
 import com.sulcacorp.lissa.service.ITipoPersonaService;
 import com.sulcacorp.lissa.util.Constante;
 

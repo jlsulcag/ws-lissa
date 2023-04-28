@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.sulcacorp.lissa.controller.commons.ResponseModel;
 import com.sulcacorp.lissa.controller.generic.GenericController;
-import com.sulcacorp.lissa.model.TipoDocumento;
+import com.sulcacorp.lissa.entity.TipoDocumento;
 import com.sulcacorp.lissa.service.impl.TipoDocumentoServiceImpl;
 import com.sulcacorp.lissa.util.Constante;
 

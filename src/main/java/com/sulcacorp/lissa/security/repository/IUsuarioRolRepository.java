@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.sulcacorp.lissa.model.UsuarioRol;
+import com.sulcacorp.lissa.entity.UsuarioRol;
 
 @Repository
 public interface IUsuarioRolRepository extends JpaRepository<UsuarioRol, Long>{

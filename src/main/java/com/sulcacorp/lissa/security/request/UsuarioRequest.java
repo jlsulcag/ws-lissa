@@ -3,8 +3,8 @@ package com.sulcacorp.lissa.security.request;
 import java.util.HashSet;
 import java.util.Set;
 import javax.validation.constraints.NotBlank;
-import com.sulcacorp.lissa.model.Persona;
-import com.sulcacorp.lissa.model.Rol;
+import com.sulcacorp.lissa.entity.Persona;
+import com.sulcacorp.lissa.entity.Rol;
 
 import lombok.Data;
 

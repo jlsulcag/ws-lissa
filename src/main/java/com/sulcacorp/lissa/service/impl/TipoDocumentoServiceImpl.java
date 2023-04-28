@@ -7,7 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sulcacorp.lissa.model.TipoDocumento;
+import com.sulcacorp.lissa.entity.TipoDocumento;
 import com.sulcacorp.lissa.repository.ITipoDocumentoDAO;
 import com.sulcacorp.lissa.service.ITipoDocumentoService;
 import com.sulcacorp.lissa.util.Constante;

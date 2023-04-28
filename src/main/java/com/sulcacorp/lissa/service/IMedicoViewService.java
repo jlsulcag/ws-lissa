@@ -1,7 +1,7 @@
 package com.sulcacorp.lissa.service;
 
 import java.util.List;
-import com.sulcacorp.lissa.model.view.MedicoView;
+import com.sulcacorp.lissa.entity.view.MedicoView;
 
 public interface IMedicoViewService{
 	

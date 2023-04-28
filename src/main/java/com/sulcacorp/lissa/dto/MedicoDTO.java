@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 import javax.validation.Valid;
 
-import com.sulcacorp.lissa.model.TipoMedico;
+import com.sulcacorp.lissa.entity.TipoMedico;
 
 import lombok.Data;
 

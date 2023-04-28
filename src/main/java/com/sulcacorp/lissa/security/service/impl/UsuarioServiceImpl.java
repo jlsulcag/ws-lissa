@@ -9,9 +9,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sulcacorp.lissa.model.Persona;
-import com.sulcacorp.lissa.model.Usuario;
-import com.sulcacorp.lissa.model.UsuarioRol;
+import com.sulcacorp.lissa.entity.Persona;
+import com.sulcacorp.lissa.entity.Usuario;
+import com.sulcacorp.lissa.entity.UsuarioRol;
 import com.sulcacorp.lissa.repository.IPersonaDAO;
 import com.sulcacorp.lissa.security.repository.IUsuarioRepository;
 import com.sulcacorp.lissa.security.repository.IUsuarioRolRepository;

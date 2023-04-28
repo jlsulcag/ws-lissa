@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sulcacorp.lissa.controller.commons.ResponseModel;
 import com.sulcacorp.lissa.controller.generic.GenericController;
-import com.sulcacorp.lissa.model.TipoMedico;
+import com.sulcacorp.lissa.entity.TipoMedico;
 import com.sulcacorp.lissa.service.ITipoMedicoService;
 import com.sulcacorp.lissa.util.Constante;
 

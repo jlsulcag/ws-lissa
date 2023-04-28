@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sulcacorp.lissa.controller.commons.ResponseModel;
 import com.sulcacorp.lissa.controller.generic.GenericController;
-import com.sulcacorp.lissa.model.Rol;
+import com.sulcacorp.lissa.entity.Rol;
 import com.sulcacorp.lissa.security.service.impl.RolServiceimpl;
 import com.sulcacorp.lissa.util.Constante;
 

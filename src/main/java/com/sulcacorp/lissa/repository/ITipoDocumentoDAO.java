@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.sulcacorp.lissa.model.TipoDocumento;
+import com.sulcacorp.lissa.entity.TipoDocumento;
 
 @Repository
 public interface ITipoDocumentoDAO extends JpaRepository<TipoDocumento, Long>{

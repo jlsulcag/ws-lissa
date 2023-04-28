@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.sulcacorp.lissa.model.TipoMedico;
+import com.sulcacorp.lissa.entity.TipoMedico;
 
 @Repository
 public interface ITipoMedicoDAO extends JpaRepository<TipoMedico, Long>{

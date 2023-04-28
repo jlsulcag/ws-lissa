@@ -1,7 +1,7 @@
 package com.sulcacorp.lissa.service.impl;
 
 import com.sulcacorp.lissa.dto.OrganizacionDTO;
-import com.sulcacorp.lissa.model.Organizacion;
+import com.sulcacorp.lissa.entity.Organizacion;
 import com.sulcacorp.lissa.repository.IOrganizacionRepository;
 import com.sulcacorp.lissa.service.IOrganizacionService;
 import com.sulcacorp.lissa.util.enums.EstadoEnum;

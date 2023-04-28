@@ -1,6 +1,6 @@
 package com.sulcacorp.lissa.security.service;
 
-import com.sulcacorp.lissa.model.Usuario;
+import com.sulcacorp.lissa.entity.Usuario;
 import com.sulcacorp.lissa.security.request.UsuarioRequest;
 import com.sulcacorp.lissa.service.generic.IGenericService;
 

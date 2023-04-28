@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sulcacorp.lissa.model.view.MedicoView;
+import com.sulcacorp.lissa.entity.view.MedicoView;
 import com.sulcacorp.lissa.repository.IMedicoViewRepository;
 import com.sulcacorp.lissa.service.IMedicoViewService;
 import com.sulcacorp.lissa.util.Constante;

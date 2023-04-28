@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.sulcacorp.lissa.model.Persona;
+import com.sulcacorp.lissa.entity.Persona;
 
 @Repository
 public interface IPersonaDAO extends JpaRepository<Persona, Long>{

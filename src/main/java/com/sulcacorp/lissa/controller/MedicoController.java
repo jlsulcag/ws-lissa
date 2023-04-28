@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sulcacorp.lissa.controller.commons.ResponseModel;
 import com.sulcacorp.lissa.controller.generic.GenericController;
 import com.sulcacorp.lissa.dto.MedicoDTO;
-import com.sulcacorp.lissa.model.view.MedicoView;
+import com.sulcacorp.lissa.entity.view.MedicoView;
 import com.sulcacorp.lissa.service.IMedicoService;
 import com.sulcacorp.lissa.service.IMedicoViewService;
 import com.sulcacorp.lissa.util.Constante;

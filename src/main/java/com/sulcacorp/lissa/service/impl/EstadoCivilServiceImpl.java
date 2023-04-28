@@ -1,6 +1,6 @@
 package com.sulcacorp.lissa.service.impl;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sulcacorp.lissa.dto.EstadoCivilDTO;
-import com.sulcacorp.lissa.model.EstadoCivil;
+import com.sulcacorp.lissa.entity.EstadoCivil;
 import com.sulcacorp.lissa.repository.IEstadoCivilDAO;
 import com.sulcacorp.lissa.service.IEstadoCivilService;
 
@@ -36,7 +36,7 @@ public class EstadoCivilServiceImpl implements IEstadoCivilService{
 
 	@Override
 	public EstadoCivilDTO findById(Long id) throws Exception {
-		Optional<EstadoCivil> opt = dao.findById(id);;
+		Optional<EstadoCivil> opt = dao.findById(id);
 		return opt.isPresent()?convertToDto(opt.get()):null;
 	}
 	
@@ -47,7 +47,7 @@ public class EstadoCivilServiceImpl implements IEstadoCivilService{
 		if(!list.isEmpty()) {
 			return list.stream().map(this::convertToDto).collect(Collectors.toList());
 		}
-		return new ArrayList<EstadoCivilDTO>();
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -57,7 +57,7 @@ public class EstadoCivilServiceImpl implements IEstadoCivilService{
 		if(!list.isEmpty()) {
 			return list.stream().map(this::convertToDto).collect(Collectors.toList());
 		}
-		return new ArrayList<EstadoCivilDTO>();
+		return Collections.emptyList();
 	}
 
 	@Override

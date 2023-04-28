@@ -9,9 +9,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
-import com.sulcacorp.lissa.model.EstadoCivil;
-import com.sulcacorp.lissa.model.TipoDocumento;
-import com.sulcacorp.lissa.model.TipoPersona;
+import com.sulcacorp.lissa.entity.EstadoCivil;
+import com.sulcacorp.lissa.entity.TipoDocumento;
+import com.sulcacorp.lissa.entity.TipoPersona;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

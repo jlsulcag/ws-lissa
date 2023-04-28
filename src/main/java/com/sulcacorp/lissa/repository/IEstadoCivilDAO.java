@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sulcacorp.lissa.model.EstadoCivil;
+import com.sulcacorp.lissa.entity.EstadoCivil;
 
 @Repository
 public interface IEstadoCivilDAO extends JpaRepository<EstadoCivil, Long>{

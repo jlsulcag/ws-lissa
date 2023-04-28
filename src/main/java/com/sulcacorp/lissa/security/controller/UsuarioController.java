@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.sulcacorp.lissa.controller.commons.ResponseModel;
 import com.sulcacorp.lissa.controller.generic.GenericController;
-import com.sulcacorp.lissa.model.Usuario;
+import com.sulcacorp.lissa.entity.Usuario;
 import com.sulcacorp.lissa.security.dto.JwtDto;
 import com.sulcacorp.lissa.security.jwt.TokenUtils;
 import com.sulcacorp.lissa.security.request.AuthRequest;

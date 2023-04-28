@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sulcacorp.lissa.model.UsuarioRol;
+import com.sulcacorp.lissa.entity.UsuarioRol;
 import com.sulcacorp.lissa.security.repository.IUsuarioRolRepository;
 import com.sulcacorp.lissa.security.service.IUsuarioRolService;
 
