@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
@@ -25,6 +26,9 @@ public class TarifarioEmpresaConvenio {
     @JoinColumn(name = "ID_EMPRESA_CONVENIO", foreignKey = @ForeignKey(name="FK_EMPRESA_CONVENIO_TARIFARIO"))
     @ManyToOne
     private EmpresaConvenio empresaConvenio;
+
+    @Column(name = "COSTO_PROCEDIMIENTO", nullable = false)
+    private BigDecimal costoProcedimiento;
 
     @Column(name = "FECHA_REG", nullable = false)
     private LocalDateTime fechaReg;

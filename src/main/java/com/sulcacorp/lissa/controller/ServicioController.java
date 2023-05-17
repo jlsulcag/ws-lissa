@@ -2,7 +2,6 @@ package com.sulcacorp.lissa.controller;
 
 import com.sulcacorp.lissa.controller.commons.ResponseModel;
 import com.sulcacorp.lissa.controller.generic.GenericController;
-import com.sulcacorp.lissa.dto.OrganizacionDTO;
 import com.sulcacorp.lissa.dto.ServicioDTO;
 import com.sulcacorp.lissa.service.IServicioService;
 import com.sulcacorp.lissa.util.Constante;

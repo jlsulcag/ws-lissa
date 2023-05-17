@@ -98,6 +98,16 @@ public abstract class GenericController {
 				.build();
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
 	}
+
+	/*HttpStatus : 500*/
+	protected ResponseEntity<ResponseModel> getInternalServerError(String msj, Exception ex){
+		ResponseModel response = ResponseModel.builder()
+				.statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
+				.statusResponse(Constante.STATUS_ERROR)
+				.errors(msj +" "+ex.getMessage())
+				.build();
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+	}
 	
 	/*HttpStatus : 500*/
 	protected ResponseEntity<ResponseModel> getInternalServerErrorConstraintViolation(String msj){
