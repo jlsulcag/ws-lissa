@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.sulcacorp.lissa.entity.TipoPersona;
 
 @Repository
-public interface ITipoPersonaDAO extends JpaRepository<TipoPersona, Long>{
+public interface ITipoPersonaRepository extends JpaRepository<TipoPersona, Long>{
 	
 }

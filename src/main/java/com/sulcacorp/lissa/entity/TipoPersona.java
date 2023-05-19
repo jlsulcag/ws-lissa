@@ -10,6 +10,7 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.sulcacorp.lissa.entity.generic.GenericModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,7 +21,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "TIPO_PERSONA")
 @JsonPropertyOrder({"idTipoPersona", "descripcion", "estado"})
-public class TipoPersona {
+public class TipoPersona extends GenericModel {
 	@Id
 	@Column(name = "ID_TIPO_PERSONA")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,8 +30,5 @@ public class TipoPersona {
 	@Size(min = 3, max = 60, message = "La descripcion es requerida y debe tener mánimo 3 y máximo  60 caracteres")
 	@Column(name = "DESCRIPCION", nullable = false, length = 60)
 	private String descripcion;
-	
-	@Column(name = "ESTADO", nullable = false)
-	private String estado;
 
 }

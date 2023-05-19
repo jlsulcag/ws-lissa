@@ -42,27 +42,4 @@ public class Organizacion extends GenericModel {
     @Column(name = "TELEFONO", length = 15)
     private String telefono;
 
-    /*
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    @Column(name = "FECHA_CREACION")
-    private LocalDateTime fechaCreacion;
-    */
-
-    /*
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    @Column(name = "FECHA_ACT")
-    private LocalDateTime fechaAct;
-    */
-
-    @PrePersist
-    void initCreatedAt() {
-        setFechaReg(LocalDateTime.now());
-        setEstado(Constante.STATUS_REG_ENABLE);
-    }
-
-    @PreUpdate
-    void initUpdatedAt() {
-        setFechaAct(LocalDateTime.now());
-    }
-
 }

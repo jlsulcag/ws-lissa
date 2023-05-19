@@ -24,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/tipoPersona")
+@RequestMapping("/api/tipo-persona")
 public class TipoPersonaController extends GenericController{
 	
 	@Autowired
@@ -34,7 +34,7 @@ public class TipoPersonaController extends GenericController{
 	public ResponseEntity<ResponseModel> findAllAct(){
 		log.info(">>> Execute findAll {}", TipoPersona.class.getName());
 		try {
-			List<TipoPersona> list = service.findAllAct();
+			List<TipoPersona> list = service.findAll();
 			if(list.isEmpty()) {
 				return this.getNotFoundRequest();
 			}
