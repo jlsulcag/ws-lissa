@@ -92,7 +92,6 @@ public class MedicoServiceImpl implements IMedicoService{
 		/*Trasaccion 1 registrar persona*/
 		Persona persona = new Persona();
 		persona = convertToEntity(medicoDTO.getPersonaDTO());
-		persona.setFechaRegistro(LocalDateTime.now());
 		persona.setEstado(Constante.STATUS_REG_ENABLE);
 		personaDAO.save(persona);
 		

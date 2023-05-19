@@ -1,5 +1,6 @@
 package com.sulcacorp.lissa.entity;
 
+import com.sulcacorp.lissa.entity.generic.GenericModel;
 import com.sulcacorp.lissa.util.Constante;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Entity
 @Table(name = "EMPRESA_CONVENIO")
-public class EmpresaConvenio {
+public class EmpresaConvenio extends GenericModel {
 
     @Id
     @Column(name = "ID_EMPRESA_CONVENIO")
@@ -23,18 +24,18 @@ public class EmpresaConvenio {
     @Column(name = "DENOMINACION", unique = true, nullable = false, length = 150)
     private String denominacion;
 
-    @Column(name = "FECHA_REG", nullable = false)
-    private LocalDateTime fechaReg;
-
     @Column(name = "CONFIG_CARTA")
     private String configCarta;
 
-    @Column(name = "estado", nullable = false)
-    private String estado;
 
     @PrePersist
     void initCreatedAt() {
-        fechaReg = LocalDateTime.now();
+        setFechaReg(LocalDateTime.now());
         setEstado(Constante.STATUS_REG_ENABLE);
+    }
+
+    @PreUpdate
+    void preUpdate(){
+        setFechaAct(LocalDateTime.now());
     }
 }

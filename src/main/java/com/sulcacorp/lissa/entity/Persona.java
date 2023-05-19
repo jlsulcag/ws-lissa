@@ -65,9 +65,6 @@ public class Persona extends GenericModel{
 	@Column(name = "FECHA_NACIMIENTO", nullable = true)
 	private LocalDate fechaNacimiento;
 	
-	@Column(name = "FECHA_REGISTRO", nullable = false)
-	private LocalDateTime fechaRegistro;
-	
 	@Column(name = "SEXO", nullable = true, length = 2)
 	private String sexo;
 	
@@ -79,8 +76,5 @@ public class Persona extends GenericModel{
 	
 	@Column(name = "CORREO_ELECTRONICO", nullable = true, length = 50)
 	private String correoElectronico;
-	
-	@Column(name = "ESTADO", nullable = false, length = 1)
-	private String estado;
 	
 }

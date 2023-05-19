@@ -1,3 +1,4 @@
+/*
 package com.sulcacorp.lissa.service.generic;
 
 import java.io.Serializable;
@@ -39,3 +40,4 @@ public abstract class GenericServiceImpl<T, ID extends Serializable> implements 
 	
 
 }
+*/
