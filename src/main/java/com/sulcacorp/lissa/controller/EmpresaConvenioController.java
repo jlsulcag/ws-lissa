@@ -54,10 +54,10 @@ public class EmpresaConvenioController extends GenericController {
             if(temp == null){
                 return this.getNotFoundRequest();
             }
-            service.save(empresaConvenio);
+            service.update(empresaConvenio);
             return this.getOkResponseRegistro(empresaConvenio, result);
         } catch (Exception e){
-            log.error("Error EmpresaConvenioController save ",e.fillInStackTrace());
+            log.error("Error EmpresaConvenioController update ",e.fillInStackTrace());
             return this.getInternalServerError(Constante.ERROR_500);
         }
     }
