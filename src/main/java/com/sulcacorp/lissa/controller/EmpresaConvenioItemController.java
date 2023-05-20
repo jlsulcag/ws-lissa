@@ -4,8 +4,6 @@ import com.sulcacorp.lissa.controller.commons.ResponseModel;
 import com.sulcacorp.lissa.controller.generic.GenericController;
 import com.sulcacorp.lissa.controller.generic.IGenericController;
 import com.sulcacorp.lissa.entity.EmpresaConvenioItem;
-import com.sulcacorp.lissa.entity.TipoPersona;
-import com.sulcacorp.lissa.entity.generic.GenericModel;
 import com.sulcacorp.lissa.service.IEmpresaConvenioItemService;
 import com.sulcacorp.lissa.util.Constante;
 import lombok.extern.slf4j.Slf4j;

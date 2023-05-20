@@ -1,12 +1,10 @@
 package com.sulcacorp.lissa.entity;
 
-import com.sulcacorp.lissa.entity.generic.GenericModel;
-import com.sulcacorp.lissa.util.Constante;
+import com.sulcacorp.lissa.entity.generic.GenericEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 /*
 * Esta entidad permite gestionar los beneficios de las empresas aseguradoras y convenios (Copago Fijo, Descuento por planilla, etc)
@@ -15,7 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Entity
 @Table(name = "EMPRESA_CONVENIO_ITEM")
-public class EmpresaConvenioItem extends GenericModel {
+public class EmpresaConvenioItem extends GenericEntity {
 
     @Id
     @Column(name = "ID_EMPRESA_CONVENIO_ITEM")

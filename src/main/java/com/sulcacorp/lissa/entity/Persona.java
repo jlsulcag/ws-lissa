@@ -1,7 +1,6 @@
 package com.sulcacorp.lissa.entity;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,7 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.sulcacorp.lissa.entity.generic.GenericModel;
+import com.sulcacorp.lissa.entity.generic.GenericEntity;
 
 //import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
@@ -29,7 +28,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "PERSONA")
-public class Persona extends GenericModel{
+public class Persona extends GenericEntity {
 	
 	private static final long serialVersionUID = -3944545346661730666L;
 

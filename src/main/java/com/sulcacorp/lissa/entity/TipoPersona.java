@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-import com.sulcacorp.lissa.entity.generic.GenericModel;
+import com.sulcacorp.lissa.entity.generic.GenericEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "TIPO_PERSONA")
 @JsonPropertyOrder({"idTipoPersona", "descripcion", "estado"})
-public class TipoPersona extends GenericModel {
+public class TipoPersona extends GenericEntity {
 	@Id
 	@Column(name = "ID_TIPO_PERSONA")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

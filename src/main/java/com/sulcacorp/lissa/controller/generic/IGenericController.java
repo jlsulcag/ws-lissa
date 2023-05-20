@@ -2,7 +2,6 @@ package com.sulcacorp.lissa.controller.generic;
 
 
 import com.sulcacorp.lissa.controller.commons.ResponseModel;
-import com.sulcacorp.lissa.entity.generic.GenericModel;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;

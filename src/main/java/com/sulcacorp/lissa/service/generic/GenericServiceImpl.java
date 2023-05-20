@@ -1,4 +1,4 @@
-/*
+
 package com.sulcacorp.lissa.service.generic;
 
 import java.io.Serializable;
@@ -12,32 +12,32 @@ public abstract class GenericServiceImpl<T, ID extends Serializable> implements 
 	public abstract JpaRepository<T, ID> getDao();
 	
 	@Override
-	public T save(T t) {
+	public T save(T t) throws Exception {
 		return getDao().save(t);
 	}
 
 	@Override
-	public T update(T t) {
+	public T update(T t) throws Exception{
 		return getDao().save(t);
 	}
 
 	@Override
-	public T findById(ID id) {
+	public T findById(ID id) throws Exception{
 		Optional<T> opt = getDao().findById(id);
 		return opt.isPresent()?opt.get(): null;
 	}
 
 	@Override
-	public List<T> findAllAct() {
+	public List<T> findAll() throws Exception{
 		return getDao().findAll();
 	}
 
 	@Override
-	public void delete(ID id) {
+	public void delete(ID id) throws Exception{
 		 getDao().deleteById(id);
 		
 	}
 	
 
 }
-*/
+

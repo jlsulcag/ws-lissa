@@ -1,20 +1,17 @@
 package com.sulcacorp.lissa.entity;
 
-import com.sulcacorp.lissa.entity.generic.GenericModel;
-import com.sulcacorp.lissa.util.Constante;
+import com.sulcacorp.lissa.entity.generic.GenericEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 @EqualsAndHashCode(callSuper=false)/*Comparar solo los campos de esta clase y no la clase padre*/
 @Data
 @Entity
 @Table(name = "ORGANIZACION")
-public class Organizacion extends GenericModel {
+public class Organizacion extends GenericEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

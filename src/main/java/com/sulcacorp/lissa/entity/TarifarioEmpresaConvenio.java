@@ -1,18 +1,17 @@
 package com.sulcacorp.lissa.entity;
 
-import com.sulcacorp.lissa.util.Constante;
+import com.sulcacorp.lissa.entity.generic.GenericEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
 @Entity
 @Table(name = "TARIFARIO_EMPRESA_CONVENIO")
-public class TarifarioEmpresaConvenio {
+public class TarifarioEmpresaConvenio extends GenericEntity {
 
     @Id
     @Column(name = "ID_TARIFARIO_EMPRESA_CONVENIO")
@@ -30,15 +29,4 @@ public class TarifarioEmpresaConvenio {
     @Column(name = "COSTO_PROCEDIMIENTO", nullable = false)
     private BigDecimal costoProcedimiento;
 
-    @Column(name = "FECHA_REG", nullable = false)
-    private LocalDateTime fechaReg;
-
-    @Column(name = "estado", nullable = false)
-    private String estado;
-
-    @PrePersist
-    void initCreatedAt() {
-        fechaReg = LocalDateTime.now();
-        setEstado(Constante.STATUS_REG_ENABLE);
-    }
 }

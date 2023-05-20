@@ -11,11 +11,12 @@ import javax.validation.constraints.Size;
 
 import com.sulcacorp.lissa.util.Constante;
 import lombok.Data;
+import lombok.NonNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @MappedSuperclass
 @Data
-public class GenericModel implements Serializable{
+public class GenericEntity implements Serializable{
 	
 	private static final long serialVersionUID = -3216499732482401620L;
 	

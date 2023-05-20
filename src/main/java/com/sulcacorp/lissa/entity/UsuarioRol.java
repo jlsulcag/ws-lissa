@@ -10,14 +10,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.sulcacorp.lissa.entity.generic.GenericModel;
+import com.sulcacorp.lissa.entity.generic.GenericEntity;
 
 import lombok.Data;
 
 @Data
 @Table(name = "USUARIO_ROL")
 @Entity
-public class UsuarioRol extends GenericModel{
+public class UsuarioRol extends GenericEntity {
 	
 	private static final long serialVersionUID = 5203579611910941653L;
 

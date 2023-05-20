@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.sulcacorp.lissa.entity.generic.GenericModel;
+import com.sulcacorp.lissa.entity.generic.GenericEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "ROL")
-public class Rol extends GenericModel{
+public class Rol extends GenericEntity {
 
 	private static final long serialVersionUID = 8937561756526892800L;
 

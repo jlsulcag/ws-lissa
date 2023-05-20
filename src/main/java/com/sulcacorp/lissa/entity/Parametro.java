@@ -1,17 +1,14 @@
 package com.sulcacorp.lissa.entity;
 
-import com.sulcacorp.lissa.entity.generic.GenericModel;
+import com.sulcacorp.lissa.entity.generic.GenericEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.Entity;
-import javax.persistence.Table;
 
 @Data
 @NoArgsConstructor
 //@Table(name = "PARAMETRO")
 //@Entity
-public class Parametro  extends GenericModel {
+public class Parametro  extends GenericEntity {
 
     private Long idParametro;
 
