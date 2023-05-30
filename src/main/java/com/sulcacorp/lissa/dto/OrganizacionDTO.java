@@ -1,10 +1,11 @@
 package com.sulcacorp.lissa.dto;
 
+import com.sulcacorp.lissa.dto.generic.BasicDTO;
 import lombok.Data;
 import java.math.BigDecimal;
 
 @Data
-public class OrganizacionDTO {
+public class OrganizacionDTO extends BasicDTO {
 
     private Long idOrganizacion;
 
@@ -21,7 +22,5 @@ public class OrganizacionDTO {
     private String direccion;
 
     private String telefono;
-
-    private String estado;
 
 }
