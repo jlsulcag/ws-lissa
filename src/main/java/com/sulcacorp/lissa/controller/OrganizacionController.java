@@ -114,21 +114,4 @@ public class OrganizacionController extends GenericController {
 
     }
 
-    @PutMapping(value = "/disable/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ResponseModel> disable(@PathVariable("id") Long id){
-        log.info("Inicio OrganizacionController disable() ");
-        OrganizacionDTO organizationDTO = null;
-        try {
-            organizationDTO = organizacionService.findById(id);
-            if(organizationDTO == null){
-                return this.getNotFoundRequest();
-            }
-            organizationDTO.setEstado(Constante.STATUS_REG_DISABLE);
-            return this.getOkResponseConsulta(organizacionService.update(organizationDTO));
-
-        } catch (Exception e) {
-            log.error("Error OrganizacionController disable() CustomServiceException : {}", e.fillInStackTrace());
-            return this.getInternalServerError(Constante.ERROR_500);
-        }
-    }
 }

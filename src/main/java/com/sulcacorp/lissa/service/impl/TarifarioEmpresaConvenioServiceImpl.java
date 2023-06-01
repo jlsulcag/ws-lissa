@@ -27,11 +27,6 @@ public class TarifarioEmpresaConvenioServiceImpl extends GenericServiceImpl<Tari
     }
 
     @Override
-    public void deleteLogic(TarifarioEmpresaConvenio tarifarioEmpresaConvenio) throws Exception {
-
-    }
-
-    @Override
     public boolean existsByProcedimientoAndEmpresa(Long idProcedimiento, Long idEmpresa) throws Exception {
         return repository.existsByProcedimientoAndEmpresa(idProcedimiento, idEmpresa);
     }

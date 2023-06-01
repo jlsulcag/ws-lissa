@@ -85,11 +85,6 @@ public class ServicioServiceImpl implements IServicioService {
 
     }
 
-    @Override
-    public void deleteLogic(ServicioDTO servicioDTO) throws Exception {
-
-    }
-
     private ServicioDTO convertToDTO(Servicio servicio){
         ServicioDTO servicioDTO = modelMapper.map(servicio, ServicioDTO.class);
         return servicioDTO;

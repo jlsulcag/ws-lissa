@@ -57,9 +57,4 @@ public class TipoPersonaServiceImpl implements ITipoPersonaService{
 	public void delete(Long aLong) throws Exception {
 
 	}
-
-	@Override
-	public void deleteLogic(TipoPersona tipoPersona) throws Exception {
-
-	}
 }

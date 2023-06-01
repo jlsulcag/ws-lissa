@@ -86,7 +86,6 @@ public class EspecialidadController extends GenericController{
 			return this.getBadRequest(result);
 		}
 		try {
-			boolean es = especialidadService.existsByDescEspecialidad(especialidad.getDescEspecialidad());
 			if(especialidadService.existsByDescEspecialidad(especialidad.getDescEspecialidad())){
 				return this.getResponseExists();
 			}
@@ -109,8 +108,6 @@ public class EspecialidadController extends GenericController{
 			if(especialidadDTO == null) {
 				return this.getNotFoundRequest();
 			}
-			especialidad.setEstado(especialidadDTO.getEstado());
-			especialidad.setFechaReg(especialidadDTO.getFechaReg());
 			return this.getOkResponseRegistro(especialidadService.update(especialidad), result);
 		} catch (Exception e) {
 			log.error(">>> Error especialidad update : {}", e.fillInStackTrace());

@@ -88,11 +88,6 @@ public class ProcedimientoServiceImpl implements IProcedimientoService {
 
     }
 
-    @Override
-    public void deleteLogic(ProcedimientoDTO procedimientoDTO) throws Exception {
-
-    }
-
     private ProcedimientoDTO convertToDTO(Procedimiento procedimiento){
         ProcedimientoDTO procedimientoDTO = modelMapper.map(procedimiento, ProcedimientoDTO.class);
         return procedimientoDTO;

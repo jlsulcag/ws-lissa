@@ -78,11 +78,6 @@ public class OrganizacionServiceImpl implements IOrganizacionService {
 
     }
 
-    @Override
-    public void deleteLogic(OrganizacionDTO organizacion) throws Exception {
-
-    }
-
     public boolean existsByRazonSocial(String razonSocial){
         return organizacionRepository.existsByRazonSocial(razonSocial);
     }

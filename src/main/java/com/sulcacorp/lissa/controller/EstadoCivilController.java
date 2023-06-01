@@ -98,22 +98,6 @@ public class EstadoCivilController extends GenericController {
 			return this.getInternalServerError(Constante.ERROR_500);
 		}
 	}
-
-	@PutMapping(value = "/updateStatus/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ResponseModel> deleteLogic(@PathVariable("id") long id) {
-		log.info(">>> Process estadoCivil eliminar x ID :::>");
-		try {
-			EstadoCivilDTO dto = service.findById(id);
-			if (dto == null) {
-				return this.getNotFoundRequest();
-			}
-			dto.setEstado(Constante.STATUS_REG_DISABLE);
-			return this.getOkResponseConsulta(service.update(dto));
-		} catch (Exception e) {
-			log.error(">>> Error estadoCivil delete : {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constante.ERROR_500);
-		}
-	}
 	
 	@DeleteMapping(value = "/delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ResponseModel> delete(@PathVariable("id") long id) {

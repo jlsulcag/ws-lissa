@@ -81,12 +81,6 @@ public class UsuarioServiceImpl implements IUsuarioService {
 	}
 
 	@Override
-	public void deleteLogic(Usuario t) throws Exception {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	@Transactional
 	public Integer createUser(UsuarioRequest usuarioRequest) throws Exception {
 

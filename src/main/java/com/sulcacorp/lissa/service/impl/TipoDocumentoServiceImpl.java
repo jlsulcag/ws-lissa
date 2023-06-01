@@ -57,9 +57,4 @@ public class TipoDocumentoServiceImpl implements ITipoDocumentoService {
 		dao.deleteById(id);
 	}
 
-	@Override
-	public void deleteLogic(TipoDocumento t) throws Exception {
-		
-	}
-
 }

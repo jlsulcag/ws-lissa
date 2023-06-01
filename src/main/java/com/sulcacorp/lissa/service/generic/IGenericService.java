@@ -10,5 +10,4 @@ public interface IGenericService<T, ID extends Serializable> {
 	List<T> findAll() throws Exception;
 	List<T> findAllAct() throws Exception;
 	void delete(ID id) throws Exception;
-	void deleteLogic(T t) throws Exception;
 }

@@ -75,9 +75,4 @@ public class EstadoCivilServiceImpl implements IEstadoCivilService{
 		return estadoCivil;
 	}
 
-	@Override
-	public void deleteLogic(EstadoCivilDTO t) throws Exception {
-		dao.deleteLogic(t.getIdEstadoCivil());
-	}	
-
 }

@@ -81,11 +81,6 @@ public class MedicoServiceImpl implements IMedicoService{
 		medicoDAO.deleteById(id);
 	}
 
-	@Override
-	public void deleteLogic(MedicoDTO t) throws Exception {
-		
-	}
-
 	@Transactional
 	@Override
 	public Medico saveCustom(MedicoDTO medicoDTO) throws Exception {

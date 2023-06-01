@@ -53,10 +53,4 @@ public class RolServiceimpl implements IRolService{
 		
 	}
 
-	@Override
-	public void deleteLogic(Rol t) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

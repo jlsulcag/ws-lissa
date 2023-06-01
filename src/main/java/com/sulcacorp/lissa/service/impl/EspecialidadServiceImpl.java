@@ -29,8 +29,6 @@ public class EspecialidadServiceImpl implements IEspecialidadService {
 	public EspecialidadDTO save(EspecialidadDTO t) {
 		Especialidad especialidad = new Especialidad();
 		t.setDescEspecialidad(StringUtils.upperCase(t.getDescEspecialidad()));
-		t.setEstado(Constante.STATUS_REG_ENABLE);
-		t.setFechaReg(LocalDateTime.now());
 		especialidad = especialidadDAO.saveAndFlush(convertToEntity(t));
 		return convertToDto(especialidad);
 	}
@@ -90,12 +88,6 @@ public class EspecialidadServiceImpl implements IEspecialidadService {
 	private Especialidad convertToEntity(EspecialidadDTO dto) {
 		Especialidad entity = modelMapper.map(dto, Especialidad.class);
 		return entity;
-	}
-
-	@Override
-	public void deleteLogic(EspecialidadDTO t) throws Exception {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override

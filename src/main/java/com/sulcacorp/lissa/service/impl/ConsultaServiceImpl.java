@@ -52,10 +52,4 @@ public class ConsultaServiceImpl implements IConsultaService{
 		
 	}
 
-	@Override
-	public void deleteLogic(Consulta t) throws Exception {
-		// TODO Auto-generated method stub		
-	}
-
-
 }

@@ -47,13 +47,4 @@ public class UsuarioRolServiceImpl implements IUsuarioRolService{
 		repository.deleteById(id);
 		
 	}
-
-	@Override
-	public void deleteLogic(UsuarioRol t) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	
-
 }

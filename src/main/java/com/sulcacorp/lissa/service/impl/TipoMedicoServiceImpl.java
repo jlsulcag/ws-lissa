@@ -50,9 +50,4 @@ public class TipoMedicoServiceImpl implements ITipoMedicoService {
 		tipoMedicoDAO.deleteById(id);		
 	}
 
-	@Override
-	public void deleteLogic(TipoMedico t) throws Exception {
-		
-	}
-
 }

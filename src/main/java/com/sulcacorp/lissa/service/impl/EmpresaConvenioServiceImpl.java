@@ -66,9 +66,4 @@ public class EmpresaConvenioServiceImpl implements IEmpresaConvenioService {
     public void delete(Long aLong) throws Exception {
 
     }
-
-    @Override
-    public void deleteLogic(EmpresaConvenio empresaConvenio) throws Exception {
-
-    }
 }

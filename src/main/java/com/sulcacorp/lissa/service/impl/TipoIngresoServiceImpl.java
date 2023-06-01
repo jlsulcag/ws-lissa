@@ -59,11 +59,6 @@ public class TipoIngresoServiceImpl implements ITipoIngresoService {
     }
 
     @Override
-    public void deleteLogic(TipoIngreso tipoIngreso) throws Exception {
-
-    }
-
-    @Override
     public boolean existsByTipoIngreso(String tipoIngreso) throws Exception {
         return repository.existsByTipoIngreso(tipoIngreso);
     }

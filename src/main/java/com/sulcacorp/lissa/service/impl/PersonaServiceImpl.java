@@ -113,9 +113,4 @@ public class PersonaServiceImpl implements IPersonaService {
 		return entity;
 	}
 
-	@Override
-	public void deleteLogic(PersonaDTO t) throws Exception {
-		
-	}
-
 }
