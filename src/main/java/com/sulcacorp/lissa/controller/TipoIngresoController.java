@@ -34,7 +34,7 @@ public class TipoIngresoController extends GenericController implements IGeneric
             }
             return this.getCreatedResponse(service.save(tipoIngreso), result);
         } catch (Exception e) {
-            LogPrint.logError(this, "save");
+            LogPrint.logError(this, "save", e);
             return this.getInternalServerError(Constante.ERROR_500);
         }
 
@@ -53,7 +53,7 @@ public class TipoIngresoController extends GenericController implements IGeneric
             }
             return this.getCreatedResponse(service.save(tipoIngreso), result);
         } catch (Exception e) {
-            LogPrint.logError(this, "update");
+            LogPrint.logError(this, "update", e);
             return this.getInternalServerError(Constante.ERROR_500);
         }
     }
@@ -68,7 +68,7 @@ public class TipoIngresoController extends GenericController implements IGeneric
             }
             return this.getOkResponseConsulta(obj);
         } catch (Exception e) {
-            LogPrint.logError(this, "findById");
+            LogPrint.logError(this, "findById ", e);
             return this.getInternalServerError(Constante.ERROR_500);
         }
     }
@@ -83,7 +83,7 @@ public class TipoIngresoController extends GenericController implements IGeneric
             }
             return this.getOkResponseConsulta(list);
         } catch (Exception e) {
-            LogPrint.logError(this, "findAll");
+            LogPrint.logError(this, "findAll ", e);
             return this.getInternalServerError(Constante.ERROR_500);
         }
     }

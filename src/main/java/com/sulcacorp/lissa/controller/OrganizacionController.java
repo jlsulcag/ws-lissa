@@ -2,11 +2,14 @@ package com.sulcacorp.lissa.controller;
 
 import com.sulcacorp.lissa.controller.commons.ResponseModel;
 import com.sulcacorp.lissa.controller.generic.GenericController;
+import com.sulcacorp.lissa.dto.EspecialidadDTO;
 import com.sulcacorp.lissa.dto.OrganizacionDTO;
 import com.sulcacorp.lissa.service.IOrganizacionService;
 import com.sulcacorp.lissa.util.Constante;
+import com.sulcacorp.lissa.util.LogPrint;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -109,6 +112,28 @@ public class OrganizacionController extends GenericController {
             return this.getOkResponseRegistro(organizacion, result);
         } catch (Exception e) {
             log.error(">>> Error OrganizacionController update CustomServiceException : {}", e.fillInStackTrace());
+            return this.getInternalServerError(Constante.ERROR_500);
+        }
+
+    }
+
+    @DeleteMapping(value = "/delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ResponseModel> delete(@PathVariable("id") Long id) {
+        LogPrint.logInicio(this, "delete() ");
+        OrganizacionDTO obj = new OrganizacionDTO();
+        try {
+            obj = organizacionService.findById(id);
+            if(obj == null) {
+                return this.getNotFoundRequest();
+            }
+            organizacionService.delete(id);
+            return this.getOkResponseConsulta(obj);
+        }catch (DataIntegrityViolationException e) {
+            LogPrint.logError(this, "delete() ", e);
+            return this.getInternalServerErrorConstraintViolation(Constante.ERROR_COSTRAINT_VIOLATION_500);
+        }
+        catch (Exception e) {
+            LogPrint.logError(this, "delete() ", e);
             return this.getInternalServerError(Constante.ERROR_500);
         }
 

@@ -75,7 +75,7 @@ public class OrganizacionServiceImpl implements IOrganizacionService {
 
     @Override
     public void delete(Long aLong) throws Exception {
-
+        organizacionRepository.deleteById(aLong);
     }
 
     public boolean existsByRazonSocial(String razonSocial){

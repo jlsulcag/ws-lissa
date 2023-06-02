@@ -10,8 +10,8 @@ public final class LogPrint {
         log.info("Inicio ".concat(myClass.getClass().getName()).concat(" ").concat(nameMethod));
     }
 
-    public static void logError(Object myClass, String nameMethod) {
-        log.info("Error ".concat(myClass.getClass().getName()).concat(" ").concat(nameMethod));
+    public static void logError(Object myClass, String nameMethod, Exception exception) {
+        log.info("Error ".concat(myClass.getClass().getName()).concat(" ").concat(nameMethod), exception.fillInStackTrace());
     }
 
 }

@@ -114,24 +114,6 @@ public class EspecialidadController extends GenericController{
 			return this.getInternalServerError(Constante.ERROR_500);
 		}
 	}
-
-	
-	@PutMapping(value = "/updateStatus/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ResponseModel> updateStatus(@PathVariable("id") Long id) {
-		log.info(">>> Process updateStatus");
-		try {
-			EspecialidadDTO obj = especialidadService.findById(id);
-			if(obj == null) {
-				return this.getNotFoundRequest();
-			}
-			obj.setEstado(Constante.STATUS_REG_DISABLE);
-			return this.getOkResponseConsulta(especialidadService.update(obj));
-		} catch (Exception e) {
-			log.error(">>> Error especialidad updateStatus : {}", e.fillInStackTrace());
-			return this.getInternalServerError(Constante.ERROR_500);
-		}
-		
-	}
 	
 	@DeleteMapping(value = "/delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ResponseModel> delete(@PathVariable("id") Long id) {
