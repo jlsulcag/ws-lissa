@@ -6,20 +6,22 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.sulcacorp.lissa.entity.generic.GenericEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "AREA_CAJA")
-public class AreaCaja {
+@Table(name = "AREA")
+public class Area extends GenericEntity {
 	@Id
-	@Column(name = "ID_AREA_CAJA")
+	@Column(name = "ID_AREA")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long idAreaCaja;
+	private long idArea;
+
 	@Column(name = "AREA", nullable = false, length = 3)
 	private String area;
-	@Column(name = "ESTADO", nullable = false)
-	private int estado;
+
 }
